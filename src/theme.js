@@ -15,10 +15,15 @@ const theme = extendTheme({
   },
   colors: {
     green: "#0F766E",
-    yellow: "#FACC15",
+    yellow: "#e9ce62",
     beige: "#F5F0E6",
     background: "#0B0B0B",
     surface: "#111111",
+  },
+  fonts: {
+    heading: '"Syne", sans-serif',
+    body: '"Syne", sans-serif',
+    space: '"Space Grotesk", sans-serif',
   },
 });
 

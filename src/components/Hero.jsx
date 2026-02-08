@@ -1,9 +1,26 @@
-import { Box, Heading, Text, Stack, Button, Flex } from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Button, Flex, Image } from "@chakra-ui/react";
 import { MotionBox } from "./Motion";
+import logoCelu from "../assets/logo-celu.png";
 
 const Hero = () => {
   return (
-    <Box minH="100vh" display="flex" alignItems="center" px={[6, 12, 24]}>
+    <Box minH="100vh" display="flex" alignItems="center" px={[6, 12, 24]} position={'relative'}>
+      <MotionBox
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        position="absolute" 
+        top={10} 
+        right={60} 
+        display={{ base: "none", md: "block" }}
+        >
+        <Image 
+          src={logoCelu} 
+          alt="Logo Matías Gunsett" 
+          w={'350px'} 
+          h={'650px'} 
+          objectFit="contain"       
+        />
+      </MotionBox>
       <MotionBox
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -19,7 +36,7 @@ const Hero = () => {
               textTransform="uppercase"
               color="green"
             >
-              Portfolio profesional
+              Portfolio
             </Text>
           </Flex>
 
@@ -29,14 +46,16 @@ const Hero = () => {
               GUNSETT
             </Box>
           </Heading>
-
+          <Flex align="center" gap={4}>
+          <Box w="50px" h="3px" bg="yellow" />
           <Text
             fontSize="xl"
             letterSpacing="0.15em"
             textTransform="uppercase"
           >
-            Front-End Developer · React
+            Front-End Developer · React.js
           </Text>
+          </Flex>
 
           <Text maxW="2xl" fontSize="lg" opacity={0.85}>
             Desarrollo interfaces modernas, escalables y optimizadas,
@@ -44,10 +63,12 @@ const Hero = () => {
           </Text>
 
           <Flex gap={6}>
-            <Button bg="green" color="background">
+            <Button bg="green" color="background" p={2}>
               Ver proyectos
             </Button>
-            <Button variant="ghost">Descargar CV</Button>
+            <Button variant="outline" py={2} >
+              Descargar CV
+            </Button>
           </Flex>
         </Stack>
       </MotionBox>
