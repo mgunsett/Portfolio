@@ -6,6 +6,7 @@ import {
   Heading,
   Text,
   Image,
+  useColorMode,
 } from "@chakra-ui/react";
 import { MotionBox } from "./Motion";
 import html from '../assets/icono-html.webp';
@@ -13,12 +14,31 @@ import css from '../assets/icono-css.webp';
 import js from '../assets/icono-js.webp';
 import react from '../assets/icono-react.webp';
 import chakra from '../assets/icono-chakra.webp';
-import saas from '../assets/icono-saas.webp';
+import node from '../assets/icono-node.webp';
+import api from '../assets/icono-api.webp'; 
+import postgre from '../assets/icono-postgre.webp';
+import firebase from '../assets/icono-firebase.webp';
+import auth from '../assets/icono-auth.webp';
+import git from '../assets/icono-git.webp';
+import github from '../assets/icono-github.webp';
+import vite from '../assets/icono-vite.webp';
+import hostinger from '../assets/icono-hostinger.webp';
+import figma from '../assets/icono-figma.webp';
+import canva from '../assets/icono-canva.webp';
+import wireframes from '../assets/icono-wireframes.webp';
+import responsive from '../assets/icono-responsive.webp';
+import './styleComponents.css';
 
 
 const Habilidades = () => {
+    const { colorMode } = useColorMode();
+    
+    const shadowFilter = colorMode === "dark"
+      ? 'drop-shadow(0 4px 8px rgba(255, 251, 251, 0.63))'
+      :'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))';
+    
     return (
-    <Box position="relative" bg={'#F5F0E8'}>
+    <Box position="relative">
       <Box
           w={{ base: "80%" , md: "70%" }}
           h="2px"
@@ -82,7 +102,7 @@ const Habilidades = () => {
               >
                 Front-End
                 </Text>
-                <Flex align="center" justify="flex-start" pt={4} wrap="wrap">
+                <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
                     <Flex 
                         h={24} 
                         w={20} 
@@ -95,10 +115,11 @@ const Habilidades = () => {
                         alt="HTML" 
                         w={8} 
                         h={10}
-                        transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
                         />
                         <Text fontSize="xs" letterSpacing="0.08em" textTransform="uppercase" mt={3} textAlign="center">
                             HTML
@@ -116,10 +137,12 @@ const Habilidades = () => {
                         alt="CSS" 
                         w={8} 
                         h={10}
-                        transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }/>
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
                         <Text fontSize="xs" letterSpacing="0.08em" textTransform="uppercase" mt={3} textAlign="center">
                             CSS
                         </Text>
@@ -136,10 +159,11 @@ const Habilidades = () => {
                         alt="JavaScript" 
                         w={8} 
                         h={10}
-                        transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
                         />
                         <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
                             JavaScript
@@ -157,13 +181,14 @@ const Habilidades = () => {
                         alt="React" 
                         w={8} 
                         h={10}
-                        transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
                         />
                         <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
-                            React
+                            React.js
                         </Text>
                     </Flex>
                     <Flex 
@@ -178,34 +203,14 @@ const Habilidades = () => {
                         alt="Chakra UI" 
                         w={10} 
                         h={10}
-                         transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }
+                         transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
                         />
                         <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
                             Chakra UI
-                        </Text>
-                    </Flex>
-                    <Flex 
-                        h={24} 
-                        w={20} 
-                        flexDirection="column"
-                        align="center"
-                        justify="center"
-                    >
-                        <Image 
-                        src={saas} 
-                        alt="Sass" 
-                        w={10} 
-                        h={10}
-                         transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }
-                        />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
-                            Sass
                         </Text>
                     </Flex>
                 </Flex>
@@ -221,7 +226,7 @@ const Habilidades = () => {
               >
                 Backend
                 </Text>
-                <Flex align="center" justify="flex-start" pt={4} wrap="wrap">
+                <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
                     <Flex 
                         h={24} 
                         w={20} 
@@ -230,58 +235,18 @@ const Habilidades = () => {
                         justify="center"
                     >
                         <Image 
-                        src={html} 
-                        alt="HTML" 
+                        src={node} 
+                        alt="Node.js" 
                         w={8} 
                         h={10}
-                        transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }
-                        />
-                        <Text fontSize="xs" letterSpacing="0.08em" textTransform="uppercase" mt={3} textAlign="center">
-                            HTML
-                        </Text>
-                    </Flex>
-                    <Flex 
-                        h={24} 
-                        w={20} 
-                        flexDirection="column"
-                        align="center"
-                        justify="center"
-                    >
-                        <Image 
-                        src={css} 
-                        alt="CSS" 
-                        w={8} 
-                        h={10}
-                        transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }/>
-                        <Text fontSize="xs" letterSpacing="0.08em" textTransform="uppercase" mt={3} textAlign="center">
-                            CSS
-                        </Text>
-                    </Flex>
-                    <Flex 
-                        h={24} 
-                        w={20} 
-                        flexDirection="column"
-                        align="center"
-                        justify="center"
-                    >
-                        <Image 
-                        src={js} 
-                        alt="JavaScript" 
-                        w={8} 
-                        h={10}
-                        transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}      
                         />
                         <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
-                            JavaScript
+                            Node.js
                         </Text>
                     </Flex>
                     <Flex 
@@ -292,17 +257,288 @@ const Habilidades = () => {
                         justify="center"
                     >
                         <Image 
-                        src={react} 
-                        alt="React" 
-                        w={8} 
+                        src={auth} 
+                        alt="Authentication" 
+                        w={10} 
                         h={10}
-                        transition='transform 0.3s ease-in-out'
-                        _hover={
-                            {transform: 'scale(1.1)'}
-                        }
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
                         />
                         <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
-                            React
+                            Auth
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={api} 
+                        alt="API" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            API Rest
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={postgre} 
+                        alt="PostgreSQL" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            PostgreSQL
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={firebase} 
+                        alt="Firebase" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            Firebase
+                        </Text>
+                    </Flex>
+                </Flex>
+            </GridItem>
+            <GridItem colSpan={{ base: 1, md: 6 }}>
+              <Text
+                fontSize="sm"
+                letterSpacing="0.1em"
+                color="green"
+                textTransform="uppercase"
+                fontWeight='semibold'
+                fontFamily='space'
+              >
+                HERRAMIENTAS
+                </Text>
+                <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={git} 
+                        alt="Git" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}      
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            Git
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={github} 
+                        alt="GitHub" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            GitHub
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={vite} 
+                        alt="Vite" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            Vite
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={hostinger} 
+                        alt="Hostinger" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            Hostinger
+                        </Text>
+                    </Flex>
+                </Flex>
+            </GridItem>
+            <GridItem colSpan={{ base: 1, md: 6 }}>
+              <Text
+                fontSize="sm"
+                letterSpacing="0.1em"
+                color="green"
+                textTransform="uppercase"
+                fontWeight='semibold'
+                fontFamily='space'
+              >
+                UX/UI DESIGN
+                </Text>
+                <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={figma} 
+                        alt="Figma" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}      
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            Figma
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={canva} 
+                        alt="Canva" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            Canva
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={wireframes} 
+                        alt="Wireframes" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            Wireframes
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={20} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={responsive} 
+                        alt="Responsive Design" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            Responsive
                         </Text>
                     </Flex>
                 </Flex>

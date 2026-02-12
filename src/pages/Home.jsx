@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Portfolio from "../components/Portfolio";
 import ProfessionalProfile from "../components/ProfessionalProfile";
 import Habilidades from "../components/Habilidades";
+import Contacto from "../components/Contacto";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <ProfessionalProfile/>        
       <Habilidades />
       <Portfolio />
+      <Contacto />
     </PageWrapper>
   );
 };
