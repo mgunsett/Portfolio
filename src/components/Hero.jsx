@@ -1,24 +1,74 @@
 import { Box, Heading, Text, Stack, Button, Flex, Image } from "@chakra-ui/react";
-import { MotionBox } from "./Motion";
+import { MotionBox, MotionImage } from "./Motion";
+import { useMotionValue, useTransform } from "framer-motion";
 import logoCelu from "../assets/logo-celu.png";
+import { useEffect } from "react";
 
 const Hero = () => {
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
+
+  const translateX = useTransform(mouseX, [-0.5, 0.5], [-20, 20]);
+  const translateY = useTransform(mouseY, [-0.5, 0.5], [-20, 20]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window;
+
+      const x = (e.clientX / innerWidth) - 0.5;
+      const y = (e.clientY / innerHeight) - 0.5;
+
+      mouseX.set(x);
+      mouseY.set(y);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [mouseX, mouseY]);
+
   return (
-    <Box minH="100vh" display="flex" alignItems="center" px={[6, 12, 24]} position={'relative'}>
+    <Box 
+    minH="100vh" 
+    display="flex" 
+    alignItems="center" 
+    px={[6, 12, 24]} 
+    position={'relative'} 
+    sx={{
+      perspective: "1000px",
+    }}
+    >
       <MotionBox
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 4, repeat: Infinity }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         position="absolute" 
         top={10} 
         right={60} 
         display={{ base: "none", md: "block" }}
         >
-        <Image 
+        <MotionImage
           src={logoCelu} 
           alt="Logo Matías Gunsett" 
           w={'350px'} 
           h={'650px'} 
           objectFit="contain"       
+          style={{
+            rotateX,
+            rotateY,
+            x: translateX,
+            y: translateY,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 80,
+            damping: 20,
+          }}
         />
       </MotionBox>
       <MotionBox

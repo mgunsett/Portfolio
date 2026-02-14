@@ -14,11 +14,13 @@ const theme = extendTheme({
     }),
   },
   colors: {
-    green: "#0F766E",
-    yellow: "#e9ce62",
-    beige: "#F5F0E6",
+    green: "#2D5A47",
+    yellow: "#E8D5A3",
+    beige: "#f8f6f1",
+    claro: "#f8eedd",
     background: "#0B0B0B",
     surface: "#111111",
+    grey: "#888888",
   },
   fonts: {
     heading: '"Syne", sans-serif',
