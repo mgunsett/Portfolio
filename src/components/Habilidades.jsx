@@ -38,7 +38,7 @@ const Habilidades = () => {
       :'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))';
     
     return (
-    <Box position="relative">
+    <Box id="habilidades" position="relative">
       <Box
           w={{ base: "80%" , md: "70%" }}
           h="2px"

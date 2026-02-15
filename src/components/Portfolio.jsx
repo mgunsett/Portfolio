@@ -14,7 +14,7 @@ import { projects } from "../data/projects";
 
 const Portfolio = () => {
   return (
-    <Box position="relative" >
+    <Box id="proyectos" position="relative" >
       <Box
           w={{ base: "80%" , md: "70%" }}
           h="2px"
@@ -144,9 +144,10 @@ const Portfolio = () => {
                       fontSize="xs"
                       px={3}
                       py={1}
-                      bg="#e9ce62"
+                      bg="yellow"
                       color="#0B0B0B"
                       textTransform="none"
+                      _hover={{cursor: 'default', opacity: 0.8}}
                     >
                       {tech}
                     </Badge>

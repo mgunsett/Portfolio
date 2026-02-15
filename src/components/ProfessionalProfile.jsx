@@ -10,7 +10,7 @@ import { MotionBox } from "./Motion";
 
 const ProfessionalProfile = () => {
   return (
-    <Box position="relative">
+    <Box id="perfil" position="relative">
       <Box
         position="absolute"
         bottom={12}

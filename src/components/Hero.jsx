@@ -1,7 +1,7 @@
-import { Box, Heading, Text, Stack, Button, Flex, Image } from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Button, Flex } from "@chakra-ui/react";
 import { MotionBox, MotionImage } from "./Motion";
 import { useMotionValue, useTransform } from "framer-motion";
-import logoCelu from "../assets/logo-celu.png";
+import logoCelu from "../assets/logo-celu.svg";
 import { useEffect } from "react";
 
 const Hero = () => {
@@ -32,8 +32,39 @@ const Hero = () => {
     };
   }, [mouseX, mouseY]);
 
+  //Scroll a secciones
+  const scrollToSectionSlow = (sectionId, duration = 1600) => {
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+
+    const startY = window.scrollY;
+    const targetY = target.getBoundingClientRect().top + window.scrollY;
+    const distance = targetY - startY;
+    let startTime = null;
+
+    const easeInOutCubic = (t) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeInOutCubic(progress);
+
+      window.scrollTo(0, startY + distance * easedProgress);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
   return (
     <Box 
+    id="home"
     minH="100vh" 
     display="flex" 
     alignItems="center" 
@@ -49,15 +80,15 @@ const Hero = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         position="absolute" 
         top={10} 
-        right={60} 
+        right={20} 
         display={{ base: "none", md: "block" }}
         >
         <MotionImage
           src={logoCelu} 
           alt="Logo Matías Gunsett" 
-          w={'350px'} 
-          h={'650px'} 
-          objectFit="contain"       
+          w={'600px'} 
+          h={'700px'} 
+          objectFit="contain"     
           style={{
             rotateX,
             rotateY,
@@ -113,11 +144,23 @@ const Hero = () => {
           </Text>
 
           <Flex gap={6}>
-            <Button bg="green" color="background" p={2}>
+            <Button 
+              bg="green" 
+              color='beige' 
+              p={2}
+              _hover={{ bg: "green", opacity: 0.8 }}
+              onClick={() => scrollToSectionSlow("proyectos")}
+            >
               Ver proyectos
             </Button>
-            <Button variant="outline" py={2} >
-              Descargar CV
+            <Button  
+              bg="yellow" 
+              color='black'
+              p={2} 
+              onClick={() => scrollToSectionSlow("contacto")}
+              _hover={{ bg: "yellow", opacity: 0.8 }}
+            >
+              Contacto
             </Button>
           </Flex>
         </Stack>

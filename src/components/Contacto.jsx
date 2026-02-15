@@ -24,7 +24,7 @@ const Contacto = () => {
   const colorbg = colorMode === "dark" ? "#161515ce" : "beige";
 
   return (
-    <Box position="relative" mb={10}>
+    <Box id="contacto" position="relative" mb={10}>
         <Box
         position="absolute"
         bottom={12}
