@@ -7,12 +7,28 @@ import {
   Link,
   Badge,
   GridItem,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { MotionBox, MotionFlex} from "./Motion.jsx";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { projects } from "../data/projects";
+import ModalProyects from "./ModalProyects.jsx";
+import { useState } from "react";
 
 const Portfolio = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleOpenProject = (project) => {
+    setSelectedProject(project);
+    onOpen();
+  };
+
+  const handleCloseProject = () => {
+    onClose();
+    setSelectedProject(null);
+  };
+
   return (
     <Box id="proyectos" position="relative" >
       <Box
@@ -156,8 +172,9 @@ const Portfolio = () => {
 
                 {/* Link */}
                 <Link
-                  href={p.url}
-                  target="_blank"
+                  as="button"
+                  type="button"
+                  onClick={() => handleOpenProject(p)}
                   display="inline-flex"
                   alignItems="center"
                   gap={2}
@@ -179,6 +196,12 @@ const Portfolio = () => {
           </Grid>
         </Box>
       </MotionBox>
+
+      <ModalProyects
+        isOpen={isOpen}
+        onClose={handleCloseProject}
+        project={selectedProject}
+      />
     </Box>
   );
 };

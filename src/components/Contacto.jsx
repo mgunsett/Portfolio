@@ -20,8 +20,15 @@ const Contacto = () => {
   const { colorMode } = useColorMode();
 
   const shadowBox = colorMode === "dark" ? '0 4px 8px rgba(255, 255, 255, 0.1)' : '0 4px 8px rgba(0, 0, 0, 0.2)';
-
   const colorbg = colorMode === "dark" ? "#161515ce" : "beige";
+
+  const email = "matiasgunsett@gmail.com";
+  const subject = encodeURIComponent("Consulta desde tu Portfolio");
+  const body = encodeURIComponent(
+    "Hola Matias,\n\nTe contacto porque vi tu portfolio y me gustaría conversar sobre..."
+  );
+
+  const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
 
   return (
     <Box id="contacto" position="relative" mb={10}>
@@ -100,7 +107,7 @@ const Contacto = () => {
                 {/* EMAIL */}
                 <MotionBox
                     as={Link}
-                    href="mailto:alejandro@mendez.dev"
+                    href={mailtoLink}
                     p={6}
                     border="1px solid"
                     bg={colorbg}

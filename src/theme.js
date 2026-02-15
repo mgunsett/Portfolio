@@ -21,6 +21,7 @@ const theme = extendTheme({
     background: "#0B0B0B",
     surface: "#111111",
     grey: "#888888",
+    modalbg: "#f8f6f1d8",
   },
   fonts: {
     heading: '"Syne", sans-serif',
