@@ -3,7 +3,6 @@ import {
   Flex,
   Text,
   Link,
-  AspectRatio,
   IconButton,
   Modal,
   ModalOverlay,
@@ -11,11 +10,14 @@ import {
   ModalCloseButton,
   ModalBody,
   useColorMode,
+  Tooltip,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { FiMonitor, FiSmartphone } from "react-icons/fi";
+import { FiMonitor, FiSmartphone, FiExternalLink } from "react-icons/fi";
 
 const ModalProyects = ({ isOpen, onClose, project }) => {
+  const desktopZoom= 0.72;
+  const mobileZoom = 0.72;
   const { colorMode } = useColorMode();
   const [activeView, setActiveView] = useState("desktop");
   const [iframeError, setIframeError] = useState(false);
@@ -34,12 +36,12 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
   const panelBg = colorMode === "dark" ? "black" : "white";
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="8xl" isCentered motionPreset="scale"> 
+    <Modal isOpen={isOpen} onClose={onClose} size="6xl" > 
       <ModalOverlay bg="blackAlpha.700" />
-      <ModalContent bg={modalBg} color={textColor} mx={4} mt={4}>
-        <ModalCloseButton />
+      <ModalContent bg={modalBg} color={textColor} m={4}>
+        <ModalCloseButton _hover={{bg:"red.600", opacity: '0.5'}} />
         <ModalBody pb={8} pt={12}>
-          <Flex direction="column" gap={6}>
+          <Flex direction="column" gap={2}>
             <Flex align="center" justify="center" gap={3}>
               <IconButton
                 aria-label="Vista desktop"
@@ -63,8 +65,21 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                 variant="ghost"
                 bg={!isDesktopView ? "green" : inactiveButtonBg}
                 color={!isDesktopView ? "white" : inactiveButtonColor}
-                _hover={{ bg: !isDesktopView ? "green" : inactiveButtonBg, opacity: 0.9 }}
+                _hover={{ bg: !isDesktopView ? "green" : inactiveButtonBg, opacity: 0.8 }}
               />
+              <Tooltip label='Visitar web' placement='right-start' hasArrow>
+                <IconButton
+                  aria-label="Abrir sitio"
+                  icon={<FiExternalLink />}
+                  as={Link}
+                  href={project?.url}
+                  variant="ghost"
+                  target="_blank"
+                  bg={inactiveButtonBg}
+                  color={textColor}
+                  _hover={{ bg: 'green', opacity: 0.5 }}
+                />
+              </Tooltip>
             </Flex>
             <Box
               w={{ base: "80%", md: "70%" }}
@@ -76,8 +91,8 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
               <Flex direction="column" align="center" gap={0}>
                 <Box
                   className="desktopContainer"
-                  w="85%"
-                  h="80vh"
+                  w="100%"
+                  h="75vh"
                   border="2px solid"
                   borderColor="green"
                   borderTopRadius="xl"
@@ -104,27 +119,30 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                         </Link>
                       </Flex>
                   ) : (
-                    <Box
-                      as="iframe"
-                      src={project?.url || ""}
-                      title={`${project?.name || "Proyecto"} - Vista desktop`}
-                      border="0"
-                      loading="lazy"
-                      borderRadius="md"
-                      w="100%"
-                      h="100%"
-                      onError={() => setIframeError(true)}
-                    />
+                    <Box w="100%" h="100%" borderRadius="md" overflow="hidden" position="relative">
+                      <Box
+                        as="iframe"
+                        src={project?.url || ""}
+                        title={`${project?.name || "Proyecto"} - Vista desktop`}
+                        border="0"
+                        loading="lazy"
+                        w={`calc(100% / ${desktopZoom})`}
+                        h={`calc(100% / ${desktopZoom})`}
+                        transform={`scale(${desktopZoom})`}
+                        transformOrigin="top left"
+                        onError={() => setIframeError(true)}
+                      />
+                    </Box>
                   )}
                 </Box>
                 <Box w="180px" h="10px" bg="green" borderBottomRadius="md" />
-                <Box w="260px" h="8px" bg="green" borderRadius="full" mt={2} opacity={0.85} />
+                <Box w="290px" h="8px" bg="green"  mt={2} opacity={0.85} />
               </Flex>
             ) : (
               <Flex justify="center">
                 <Box
                   w={{ base: "90%", sm: "340px" }}
-                  h={{ base: "560px", sm: "620px" }}
+                  h={{ base: "560px", sm: "590px" }}
                   border="1px solid"
                   borderColor="green"
                   borderRadius="3xl"
@@ -136,7 +154,7 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                   <Box
                     w="90px"
                     h="6px"
-                    bg="green"
+                    bg="white"
                     borderRadius="full"
                     position="absolute"
                     top={3}
@@ -164,17 +182,21 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                       </Link>
                     </Flex>
                   ) : (
-                    <Box
-                      as="iframe"
-                      src={project?.url || ""}
-                      title={`${project?.name || "Proyecto"} - Vista mobile`}
-                      border="0"
-                      w="100%"
-                      h="100%"
-                      loading="lazy"
-                      borderRadius="2xl"
-                      onError={() => setIframeError(true)}
-                    />
+                    <Box w="100%" h="100%" borderRadius="2xl" overflow="hidden" position="relative" >
+                      <Box
+                        as="iframe"
+                        src={project?.url || ""}
+                        title={`${project?.name || "Proyecto"} - Vista mobile`}
+                        border="0"
+                        loading="lazy"
+                        display="block"
+                        w={`calc(100% / ${mobileZoom})`}
+                        h={`calc(100% / ${mobileZoom})`}
+                        transform={`scale(${mobileZoom})`}
+                        transformOrigin="top left"
+                        onError={() => setIframeError(true)}
+                      />
+                    </Box>
                   )}
                 </Box>
               </Flex>

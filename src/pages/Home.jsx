@@ -4,6 +4,7 @@ import Portfolio from "../components/Portfolio";
 import ProfessionalProfile from "../components/ProfessionalProfile";
 import Habilidades from "../components/Habilidades";
 import Contacto from "../components/Contacto";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Habilidades />
       <Portfolio />
       <Contacto />
+      <Footer />
     </PageWrapper>
   );
 };
