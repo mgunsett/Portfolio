@@ -12,9 +12,6 @@ import { MotionBox } from "./Motion.jsx";
 import { MdMailOutline, MdWhatsapp  } from "react-icons/md";
 import { FaLinkedin  } from "react-icons/fa";
 
-
-
-
 const Contacto = () => {
 
   const { colorMode } = useColorMode();
@@ -50,16 +47,16 @@ const Contacto = () => {
           w={{ base: "80%" , md: "70%" }}
           h="2px"
           bgGradient="linear(to-r, transparent, green , transparent)"
-          mb={12}
+          mb={{ base: 0, md: 12 }}
           m={'auto'}
-          mt={10}
+          mt={{ base: 4, md: 10 }}
         />
     
       <MotionBox
         as="section"
-        py={24}
-        px={[6, 12, 24]}
-        mt={12}
+        py={{ base: 12, md: 24 }}
+        px={{ base: 6, md: 12, lg: 24 }}
+        mt={{ base: 4, md: 12 }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -67,7 +64,7 @@ const Contacto = () => {
       >
         <Box maxW="6xl" mx="auto">
           <Grid
-            templateColumns={{ base: "1fr", md: "repeat(12, 1fr)" }}
+            templateColumns={{ base: "100%", md: "repeat(12, 1fr)" }}
             gap={12}
           >
             <GridItem colSpan={{ base: 1, md: 5 }}>
@@ -90,19 +87,19 @@ const Contacto = () => {
               </Flex>
               <Heading
                 fontFamily={'"Syne", sans-serif'}
-                fontSize={["3xl", "4xl"]}
+                fontSize={{ base: "3xl", md: "4xl" }}
                 fontWeight="700"
                 textTransform="uppercase"
                 lineHeight="1.2"
               >
                 HABLEMOS
               </Heading>
-              <Text mt={4} color="var(--color-text)" fontSize="lg">
+              <Text mt={4}  fontSize={{ base: "md", md: "lg" }}>
                 ¿Tenés un proyecto en mente? Me encantaría escuchar tu idea y explorar cómo puedo ayudarte a hacerla realidad.
                 </Text>
             </GridItem>
 
-            <GridItem colSpan={{ base: 12, md: 7 }} pl={{ md: 12 }}>
+            <GridItem colSpan={{ base: 1, md: 7 }} pl={{ md: 12 }}>
                 <Flex direction="column" gap={6}>
                 {/* EMAIL */}
                 <MotionBox
@@ -137,7 +134,7 @@ const Contacto = () => {
                     >
                       Email
                     </Text>
-                    <Text fontSize="lg" fontWeight="semibold">
+                    <Text fontSize={{ base: "xs", md: "lg" }} fontWeight="semibold">
                       matiasgunsett@gmail.com
                     </Text>
                   </Box>
@@ -180,7 +177,7 @@ const Contacto = () => {
                     >
                       WhatsApp
                     </Text>
-                    <Text fontSize="lg" fontWeight="semibold">
+                    <Text fontSize={{ base: "xs", md: "lg" }} fontWeight="semibold">
                       +54 342 595-7222
                     </Text>
                   </Box>
@@ -223,7 +220,7 @@ const Contacto = () => {
                     >
                       LinkedIn
                     </Text>
-                    <Text fontSize="lg" fontWeight="semibold">
+                    <Text fontSize={{ base: "xs", md: "lg" }} fontWeight="semibold">
                       linkedin.com/in/matiasgunsett
                     </Text>
                   </Box>

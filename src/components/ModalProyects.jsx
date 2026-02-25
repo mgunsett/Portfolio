@@ -11,6 +11,7 @@ import {
   ModalBody,
   useColorMode,
   Tooltip,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FiMonitor, FiSmartphone, FiExternalLink } from "react-icons/fi";
@@ -21,11 +22,12 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
   const { colorMode } = useColorMode();
   const [activeView, setActiveView] = useState("desktop");
   const [iframeError, setIframeError] = useState(false);
+  const isMobile = useBreakpointValue({ base: true, sm: false, md: false });
 
   useEffect(() => {
-    setActiveView("desktop");
+    setActiveView(isMobile ? "mobile" : "desktop");
     setIframeError(false);
-  }, [project, isOpen]);
+  }, [project, isOpen, isMobile]);
 
   const isDesktopView = activeView === "desktop";
   const modalBg = colorMode === "dark" ? "surface" : "modalbg";
@@ -44,6 +46,7 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
           <Flex direction="column" gap={2}>
             <Flex align="center" justify="center" gap={3}>
               <IconButton
+                display={ isMobile ? "none" : "inline-flex" }
                 aria-label="Vista desktop"
                 icon={<FiMonitor />}
                 onClick={() => {
@@ -90,6 +93,7 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
             {isDesktopView ? (
               <Flex direction="column" align="center" gap={0}>
                 <Box
+                  display={ isMobile ? "none" : "block" }
                   className="desktopContainer"
                   w="100%"
                   h="75vh"

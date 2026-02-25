@@ -229,7 +229,7 @@ const Habilidades = () => {
                 <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -251,7 +251,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -273,7 +273,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -295,7 +295,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -317,7 +317,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -353,7 +353,7 @@ const Habilidades = () => {
                 <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -375,7 +375,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -397,7 +397,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -419,7 +419,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }}
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -455,7 +455,7 @@ const Habilidades = () => {
                 <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -477,7 +477,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }}
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -499,7 +499,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }}
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -521,7 +521,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={20}
                         flexDirection="column"
                         align="center"
                         justify="center"

@@ -94,7 +94,7 @@ const Portfolio = () => {
                 key={i}
                 direction="column"
                 justifyContent={'space-between'}
-                p={8}
+                p={{ base: 6, md: 8 }}
                 border="1px solid" 
                 borderColor="green"
                 position="relative"
