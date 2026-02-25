@@ -24,6 +24,7 @@ const Footer = () => {
     const bg = colorMode === "dark" ? "surface" : "modalbg";
     const color = colorMode === "dark" ? "beige" : "background";
     const logo = colorMode === "dark" ? logoClaro3 : logoOscuro;
+    const hoverColor = colorMode === "dark" ? "yellow" : "green";  
 
     return (
         <Box as="footer" bg={bg} color={color} py={8} mt={12}>
@@ -36,24 +37,24 @@ const Footer = () => {
                     <Heading as="h3" size="lg">Links</Heading>
                     <List mt={2} spacing={2}>
                         <ListItem display="flex" alignItems="center" gap={2}>
-                            <Box w={3} h={3} bg="green" borderRadius="full"/>
-                            <Link href="#home">Home</Link>
+                            <Box w={3} h={3} bg={hoverColor} borderRadius="full"/>
+                            <Link href="#home" _hover={{ textDecoration: 'none', color: hoverColor }}>Home</Link>
                         </ListItem>
                         <ListItem display="flex" alignItems="center" gap={2}>
                             <Box w={3} h={3} bg="green" borderRadius="full"/>
-                            <Link href="#perfil">Perfil</Link>
+                            <Link href="#perfil" _hover={{ textDecoration: 'none', color: hoverColor }}>Perfil</Link>
                         </ListItem>
                         <ListItem display="flex" alignItems="center" gap={2}>
                             <Box w={3} h={3} bg="green" borderRadius="full"/>
-                            <Link href="#habilidades">Habilidades</Link>
+                            <Link href="#habilidades" _hover={{ textDecoration: 'none', color: hoverColor }}>Habilidades</Link>
                         </ListItem>   
                         <ListItem display="flex" alignItems="center" gap={2}>
                             <Box w={3} h={3} bg="green" borderRadius="full"/>
-                            <Link href="#proyectos">Proyectos</Link>
+                            <Link href="#proyectos" _hover={{ textDecoration: 'none', color: hoverColor }}>Proyectos</Link>
                         </ListItem>
                         <ListItem display="flex" alignItems="center" gap={2}>
                             <Box w={3} h={3} bg="green" borderRadius="full"/>
-                            <Link href="#contacto">Contacto</Link>
+                            <Link href="#contacto" _hover={{ textDecoration: 'none', color: hoverColor }}>Contacto</Link>
                         </ListItem>
                     </List>
                 </Box>

@@ -45,14 +45,14 @@ const Habilidades = () => {
           bgGradient="linear(to-r, transparent, green , transparent)"
           mb={12}
           m={'auto'}
-          mt={10}
+          mt={{ base: 4, md: 10 }}
         />
 
       <MotionBox
         as="section"
         py={24}
-        px={[6, 12, 24]}
-        mt={12}
+        px={{ base: 6, md: 12, lg: 24 }}
+        mt={{ base: 4, md: 12 }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -105,7 +105,7 @@ const Habilidades = () => {
                 <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -127,7 +127,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -149,7 +149,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -171,7 +171,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"
@@ -193,7 +193,7 @@ const Habilidades = () => {
                     </Flex>
                     <Flex 
                         h={24} 
-                        w={20} 
+                        w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
                         justify="center"

@@ -65,7 +65,7 @@ const Hero = () => {
   return (
     <Box 
     id="home"
-    minH="100vh" 
+    minH={{ base: "80vh", md: "100vh" }} 
     display="flex" 
     alignItems="center" 
     px={[6, 12, 24]} 
@@ -128,9 +128,9 @@ const Hero = () => {
             </Box>
           </Heading>
           <Flex align="center" gap={4}>
-          <Box w="50px" h="3px" bg="yellow" />
+          <Box w={{ base: "30px", md: "50px" }} h="3px" bg="yellow" />
           <Text
-            fontSize="xl"
+            fontSize={{ base: "sm", md: "xl" }}
             letterSpacing="0.15em"
             textTransform="uppercase"
           >
@@ -138,7 +138,7 @@ const Hero = () => {
           </Text>
           </Flex>
 
-          <Text maxW="2xl" fontSize="lg" opacity={0.85}>
+          <Text maxW="2xl" fontSize={{ base: "md", md: "lg" }} opacity={0.85}>
             Desarrollo interfaces modernas, escalables y optimizadas,
             combinando diseño, performance y experiencia de usuario.
           </Text>

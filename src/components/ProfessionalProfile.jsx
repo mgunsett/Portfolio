@@ -32,14 +32,14 @@ const ProfessionalProfile = () => {
           bgGradient="linear(to-r, transparent, green , transparent)"
           mb={12}
           m={'auto'}
-          mt={10}
+          mt={{ base: 0, md: 10 }}
         />
 
       <MotionBox
         as="section"
         py={24}
-        px={[6, 12, 24]}
-        mt={12}
+        px={{ base: 6, md: 12, lg: 24 }}
+        mt={{ base: 4, md: 12 }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -70,7 +70,7 @@ const ProfessionalProfile = () => {
               </Flex>
               <Heading
                 fontFamily={'"Syne", sans-serif'}
-                fontSize={["3xl", "4xl"]}
+                fontSize={{ base: "3xl", md: "4xl" }}
                 fontWeight="700"
                 textTransform="uppercase"
                 lineHeight="1.2"
@@ -81,26 +81,26 @@ const ProfessionalProfile = () => {
               </Heading>
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 8 }} >
-              <Text id="profile-text" fontSize="lg" mb={8} fontFamily={'space'}>
+              <Text id="profile-text" fontSize={{ base: "md", md: "lg" }} mb={8} fontFamily={'space'}>
                 Profesional apasionado por la tecnología con experiencia en
                 desarrollo web, aplicaciones móviles y diseño de interfaces. Mi
                 enfoque combina conocimientos técnicos sólidos con una visión
                 creativa orientada al usuario final.
               </Text>
-              <Text fontSize="lg" mb={8} opacity={0.8} fontFamily={'space'}>
+              <Text fontSize={{ base: "md", md: "lg" }} mb={8} opacity={0.8} fontFamily={'space'}>
                 Especializado en crear productos digitales que equilibran
                 funcionalidad, rendimiento y estética. Trabajo colaborativamente
                 con equipos multidisciplinarios para entregar soluciones que
                 superen expectativas.
               </Text>
-              <Flex align="center" gap={8} pt={4}>
+              <Flex align="center" gap={{ base: 4, md: 8 }} pt={4}>
                 <Box>
                   <Text fontSize="4xl" fontWeight="bold" color="green">
                     3+
                   </Text>
                   <Text
                     fontFamily={'space'}
-                    fontSize="sm"
+                    fontSize={{ base: "xs", md: "sm" }}
                     letterSpacing="0.08em"
                     textTransform="uppercase"
                     mt={1}
@@ -119,7 +119,7 @@ const ProfessionalProfile = () => {
                   </Text>
                   <Text
                     fontFamily={'space'}
-                    fontSize="sm"
+                    fontSize={{ base: "xs", md: "sm" }}
                     letterSpacing="0.08em"
                     textTransform="uppercase"
                     mt={1}
@@ -138,7 +138,7 @@ const ProfessionalProfile = () => {
                   </Text>
                   <Text
                     fontFamily={'space'}
-                    fontSize="sm"
+                    fontSize={{ base: "xs", md: "sm" }}
                     letterSpacing="0.08em"
                     textTransform="uppercase"
                     mt={1}
