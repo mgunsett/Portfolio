@@ -10,6 +10,15 @@ export const projects = [
     url: "https://ledsportsmarketing.com/"
   },
   {
+    name: "Vilanova Sf",
+    title: "Tienda Online Indumentaria Surfwear",
+    year: "2025",
+    description:
+      "Base de datos de productos, catálogo, carrito, autenticación, pasarela de pago y panel de administración para gestión de inventario y pedidos.",
+    tech: ["React", "Framer Motion", "Vite", "Chakra UI", "Firebase", "Mercado Pago", "React Router", "Claude AI"],
+    url: "https://vilanovasf.netlify.app/"
+  },
+  {
     name: "Be Real Clothes",
     title: "Tienda Online Indumentaria Urbana",
     year: "2025",
