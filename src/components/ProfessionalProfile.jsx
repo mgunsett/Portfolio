@@ -81,12 +81,6 @@ const ProfessionalProfile = () => {
               </Heading>
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 8 }} >
-              <Text id="profile-text" fontSize={{ base: "md", md: "lg" }} mb={8} fontFamily={'space'}>
-                Profesional apasionado por la tecnología con experiencia en
-                desarrollo web, aplicaciones móviles y diseño de interfaces. Mi
-                enfoque combina conocimientos técnicos sólidos con una visión
-                creativa orientada al usuario final.
-              </Text>
               <Text fontSize={{ base: "md", md: "lg" }} mb={8} opacity={0.8} fontFamily={'space'}>
                 Especializado en crear productos digitales que equilibran
                 funcionalidad, rendimiento y estética. Trabajo colaborativamente

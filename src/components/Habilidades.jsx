@@ -27,6 +27,7 @@ import figma from '../assets/icono-figma.webp';
 import canva from '../assets/icono-canva.webp';
 import wireframes from '../assets/icono-wireframes.webp';
 import responsive from '../assets/icono-responsive.webp';
+import claude from '../assets/icono-claude.webp';
 import './styleComponents.css';
 
 
@@ -437,6 +438,28 @@ const Habilidades = () => {
                         />
                         <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
                             Hostinger
+                        </Text>
+                    </Flex>
+                    <Flex 
+                        h={24} 
+                        w={{ base: 16, md: 20 }} 
+                        flexDirection="column"
+                        align="center"
+                        justify="center"
+                    >
+                        <Image 
+                        src={claude} 
+                        alt="Claude" 
+                        w={10} 
+                        h={10}
+                        transition='transform 0.2s ease-in-out'
+                        _hover={{
+                            transform: 'scale(1.1)',
+                            filter: shadowFilter
+                        }}
+                        />
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                            Claude
                         </Text>
                     </Flex>
                 </Flex>
