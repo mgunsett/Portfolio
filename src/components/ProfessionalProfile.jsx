@@ -6,7 +6,9 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
+import { Fragment } from "react";
 import { MotionBox } from "./Motion";
+import { BRAND } from "../config/brand";
 
 const ProfessionalProfile = () => {
   return (
@@ -65,7 +67,7 @@ const ProfessionalProfile = () => {
                   fontWeight="semibold"
                   color="green"
                 >
-                  01
+                  03
                 </Text>
               </Flex>
               <Heading
@@ -82,64 +84,32 @@ const ProfessionalProfile = () => {
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 8 }} >
               <Text fontSize={{ base: "md", md: "lg" }} mb={8} opacity={0.8} fontFamily={'space'}>
-                Especializado en crear productos digitales que equilibran
-                funcionalidad, rendimiento y estética. Trabajo colaborativamente
-                con equipos multidisciplinarios para entregar soluciones que
-                superen expectativas.
+                Desarrollador front-end especializado en presencia digital para el
+                deporte profesional. Trabajo junto a {BRAND.partner.name} y de forma
+                directa con jugadores y representantes, construyendo sitios que no
+                son solo una tarjeta de presentación: son una herramienta de
+                difusión, negociación y marca personal.
               </Text>
               <Flex align="center" gap={{ base: 4, md: 8 }} pt={4}>
-                <Box>
-                  <Text fontSize="4xl" fontWeight="bold" color="green">
-                    3+
-                  </Text>
-                  <Text
-                    fontFamily={'space'}
-                    fontSize={{ base: "xs", md: "sm" }}
-                    letterSpacing="0.08em"
-                    textTransform="uppercase"
-                    mt={1}
-                  >
-                    Años experiencia
-                  </Text>
-                </Box>
-                <Box
-                  w={'0.5px'}
-                  h={12}
-                  bg="gray.600"
-                />
-                <Box>
-                  <Text fontSize="4xl" fontWeight="bold" color="green">
-                    10+
-                  </Text>
-                  <Text
-                    fontFamily={'space'}
-                    fontSize={{ base: "xs", md: "sm" }}
-                    letterSpacing="0.08em"
-                    textTransform="uppercase"
-                    mt={1}
-                  >
-                    Proyectos
-                  </Text>
-                </Box>
-                <Box
-                  w={'0.5px'}
-                  h={12}
-                  bg="gray.600"
-                />
-                <Box>
-                  <Text fontSize="4xl" fontWeight="bold" color="green">
-                    11+
-                  </Text>
-                  <Text
-                    fontFamily={'space'}
-                    fontSize={{ base: "xs", md: "sm" }}
-                    letterSpacing="0.08em"
-                    textTransform="uppercase"
-                    mt={1}
-                  >
-                    Clientes
-                  </Text>
-                </Box>
+                {BRAND.stats.map((stat, i) => (
+                  <Fragment key={stat.label}>
+                    {i > 0 && <Box w={'0.5px'} h={12} bg="gray.600" />}
+                    <Box>
+                      <Text fontSize="4xl" fontWeight="bold" color="green">
+                        {stat.value}
+                      </Text>
+                      <Text
+                        fontFamily={'space'}
+                        fontSize={{ base: "xs", md: "sm" }}
+                        letterSpacing="0.08em"
+                        textTransform="uppercase"
+                        mt={1}
+                      >
+                        {stat.label}
+                      </Text>
+                    </Box>
+                  </Fragment>
+                ))}
               </Flex>
             </GridItem>
           </Grid>

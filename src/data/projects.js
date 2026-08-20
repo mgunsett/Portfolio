@@ -34,6 +34,6 @@ export const projects = [
     description:
       "DEMO Web servicios inmobiliarios con enfoque directo a la visualización de las propiedades en entornos naturales.",
     tech: ["HTML", "Framer Motion", "CSS", "Bootstrap", "Sass", "JavaScript"],
-    url: "https://mgunsett.github.io/proyecto-alpina-home/  "
+    url: "https://mgunsett.github.io/proyecto-alpina-home/"
   },
 ];

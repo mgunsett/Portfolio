@@ -1,7 +1,6 @@
 import {
   Box,
   Flex,
-  Text,
   Link,
   IconButton,
   Modal,
@@ -13,64 +12,60 @@ import {
   Tooltip,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FiMonitor, FiSmartphone, FiExternalLink } from "react-icons/fi";
+import MediaFrame from "./MediaFrame";
+import SectionDivider from "./SectionDivider";
 
+/** Vista previa de un proyecto de desarrollo dentro de un frame desktop/mobile. */
 const ModalProyects = ({ isOpen, onClose, project }) => {
-  const desktopZoom= 0.72;
-  const mobileZoom = 0.72;
+  const zoom = 0.72;
   const { colorMode } = useColorMode();
-  const [activeView, setActiveView] = useState("desktop");
-  const [iframeError, setIframeError] = useState(false);
   const isMobile = useBreakpointValue({ base: true, sm: false, md: false });
 
-  useEffect(() => {
-    setActiveView(isMobile ? "mobile" : "desktop");
-    setIframeError(false);
-  }, [project, isOpen, isMobile]);
+  // Arranca según el breakpoint; solo cambia si el usuario togglea la vista.
+  const [viewOverride, setViewOverride] = useState(null);
+  const activeView = viewOverride ?? (isMobile ? "mobile" : "desktop");
+
+  const handleClose = () => {
+    setViewOverride(null);
+    onClose();
+  };
 
   const isDesktopView = activeView === "desktop";
   const modalBg = colorMode === "dark" ? "surface" : "modalbg";
   const textColor = colorMode === "dark" ? "beige" : "background";
-  const mutedText = colorMode === "dark" ? "beige" : "background";
   const inactiveButtonBg = colorMode === "dark" ? "whiteAlpha.100" : "blackAlpha.100";
-  const inactiveButtonColor = colorMode === "dark" ? "beige" : "background";
   const panelBg = colorMode === "dark" ? "black" : "white";
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="6xl" > 
+    <Modal isOpen={isOpen} onClose={handleClose} size="6xl">
       <ModalOverlay bg="blackAlpha.700" />
       <ModalContent bg={modalBg} color={textColor} m={4}>
-        <ModalCloseButton _hover={{bg:"red.600", opacity: '0.5'}} />
+        <ModalCloseButton _hover={{ bg: "red.600", opacity: 0.5 }} />
         <ModalBody pb={8} pt={12}>
           <Flex direction="column" gap={2}>
             <Flex align="center" justify="center" gap={3}>
               <IconButton
-                display={ isMobile ? "none" : "inline-flex" }
+                display={isMobile ? "none" : "inline-flex"}
                 aria-label="Vista desktop"
                 icon={<FiMonitor />}
-                onClick={() => {
-                  setActiveView("desktop");
-                  setIframeError(false);
-                }}
+                onClick={() => setViewOverride("desktop")}
                 variant="ghost"
                 bg={isDesktopView ? "green" : inactiveButtonBg}
-                color={isDesktopView ? "white" : inactiveButtonColor}
+                color={isDesktopView ? "white" : textColor}
                 _hover={{ bg: isDesktopView ? "green" : inactiveButtonBg, opacity: 0.9 }}
               />
               <IconButton
                 aria-label="Vista mobile"
                 icon={<FiSmartphone />}
-                onClick={() => {
-                  setActiveView("mobile");
-                  setIframeError(false);
-                }}
+                onClick={() => setViewOverride("mobile")}
                 variant="ghost"
                 bg={!isDesktopView ? "green" : inactiveButtonBg}
-                color={!isDesktopView ? "white" : inactiveButtonColor}
+                color={!isDesktopView ? "white" : textColor}
                 _hover={{ bg: !isDesktopView ? "green" : inactiveButtonBg, opacity: 0.8 }}
               />
-              <Tooltip label='Visitar web' placement='right-start' hasArrow>
+              <Tooltip label="Visitar web" placement="right-start" hasArrow>
                 <IconButton
                   aria-label="Abrir sitio"
                   icon={<FiExternalLink />}
@@ -78,22 +73,19 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                   href={project?.url}
                   variant="ghost"
                   target="_blank"
+                  rel="noopener noreferrer"
                   bg={inactiveButtonBg}
                   color={textColor}
-                  _hover={{ bg: 'green', opacity: 0.5 }}
+                  _hover={{ bg: "green", opacity: 0.5 }}
                 />
               </Tooltip>
             </Flex>
-            <Box
-              w={{ base: "80%", md: "70%" }}
-              h="2px"
-              bgGradient="linear(to-r, transparent, green , transparent)"
-              m={'auto'}
-            />
-            {isDesktopView ? (
+
+            <SectionDivider />
+
+            {isDesktopView && !isMobile ? (
               <Flex direction="column" align="center" gap={0}>
                 <Box
-                  display={ isMobile ? "none" : "block" }
                   className="desktopContainer"
                   w="100%"
                   h="75vh"
@@ -104,43 +96,18 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                   bg={panelBg}
                   p={2}
                 >
-                  {iframeError ? (
-                    <Flex direction="column" align="center" justify="center" gap={4} px={6} textAlign="center" h="100%">
-                        <Text fontSize="sm" opacity={0.85} color={mutedText}>
-                          Este sitio no permite mostrarse dentro de un iframe.
-                        </Text>
-                        <Link
-                          href={project?.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          color="green"
-                          fontSize="sm"
-                          fontWeight="semibold"
-                          textTransform="uppercase"
-                          letterSpacing="wide"
-                        >
-                          Abrir sitio
-                        </Link>
-                      </Flex>
-                  ) : (
-                    <Box w="100%" h="100%" borderRadius="md" overflow="hidden" position="relative">
-                      <Box
-                        as="iframe"
-                        src={project?.url || ""}
-                        title={`${project?.name || "Proyecto"} - Vista desktop`}
-                        border="0"
-                        loading="lazy"
-                        w={`calc(100% / ${desktopZoom})`}
-                        h={`calc(100% / ${desktopZoom})`}
-                        transform={`scale(${desktopZoom})`}
-                        transformOrigin="top left"
-                        onError={() => setIframeError(true)}
-                      />
-                    </Box>
-                  )}
+                  <MediaFrame
+                    item={{
+                      type: "iframe",
+                      src: project?.url,
+                      alt: `${project?.name || "Proyecto"} - Vista desktop`,
+                    }}
+                    zoom={zoom}
+                    h="100%"
+                  />
                 </Box>
                 <Box w="180px" h="10px" bg="green" borderBottomRadius="md" />
-                <Box w="290px" h="8px" bg="green"  mt={2} opacity={0.85} />
+                <Box w="290px" h="8px" bg="green" mt={2} opacity={0.85} />
               </Flex>
             ) : (
               <Flex justify="center">
@@ -167,41 +134,16 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                     zIndex={1}
                     opacity={0.8}
                   />
-                  {iframeError ? (
-                    <Flex direction="column" align="center" justify="center" gap={4} px={6} textAlign="center" h="100%">
-                      <Text fontSize="sm" opacity={0.85} color={mutedText}>
-                        Este sitio no permite mostrarse dentro de un iframe.
-                      </Text>
-                      <Link
-                        href={project?.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        color="green"
-                        fontSize="sm"
-                        fontWeight="semibold"
-                        textTransform="uppercase"
-                        letterSpacing="wide"
-                      >
-                        Abrir sitio
-                      </Link>
-                    </Flex>
-                  ) : (
-                    <Box w="100%" h="100%" borderRadius="2xl" overflow="hidden" position="relative" >
-                      <Box
-                        as="iframe"
-                        src={project?.url || ""}
-                        title={`${project?.name || "Proyecto"} - Vista mobile`}
-                        border="0"
-                        loading="lazy"
-                        display="block"
-                        w={`calc(100% / ${mobileZoom})`}
-                        h={`calc(100% / ${mobileZoom})`}
-                        transform={`scale(${mobileZoom})`}
-                        transformOrigin="top left"
-                        onError={() => setIframeError(true)}
-                      />
-                    </Box>
-                  )}
+                  <MediaFrame
+                    item={{
+                      type: "iframe",
+                      src: project?.url,
+                      alt: `${project?.name || "Proyecto"} - Vista mobile`,
+                    }}
+                    zoom={zoom}
+                    h="100%"
+                    borderRadius="2xl"
+                  />
                 </Box>
               </Flex>
             )}

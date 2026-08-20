@@ -11,6 +11,7 @@ import {
 import { MotionBox } from "./Motion.jsx";
 import { MdMailOutline, MdWhatsapp  } from "react-icons/md";
 import { FaLinkedin  } from "react-icons/fa";
+import { BRAND, mailtoLink, whatsappLink } from "../config/brand";
 
 const Contacto = () => {
 
@@ -19,13 +20,10 @@ const Contacto = () => {
   const shadowBox = colorMode === "dark" ? '0 4px 8px rgba(255, 255, 255, 0.1)' : '0 4px 8px rgba(0, 0, 0, 0.2)';
   const colorbg = colorMode === "dark" ? "#161515ce" : "beige";
 
-  const email = "matiasgunsett@gmail.com";
-  const subject = encodeURIComponent("Consulta desde tu Portfolio");
-  const body = encodeURIComponent(
-    "Hola Matias,\n\nTe contacto porque vi tu portfolio y me gustaría conversar sobre..."
+  const mailto = mailtoLink(
+    "Consulta por una landing page",
+    "Hola Matías,\n\nTe contacto porque vi tu portfolio. Soy (jugador / representante / club) y me gustaría consultarte por...",
   );
-
-  const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
 
   return (
     <Box id="contacto" position="relative" mb={10}>
@@ -82,7 +80,7 @@ const Contacto = () => {
                   fontWeight="semibold"
                   color="green"
                 >
-                  05
+                  06
                 </Text>
               </Flex>
               <Heading
@@ -95,7 +93,8 @@ const Contacto = () => {
                 HABLEMOS
               </Heading>
               <Text mt={4}  fontSize={{ base: "md", md: "lg" }}>
-                ¿Tenés un proyecto en mente? Me encantaría escuchar tu idea y explorar cómo puedo ayudarte a hacerla realidad.
+                ¿Sos jugador, representante o club? Contame el proyecto y armamos
+                juntos la presencia digital que le falta. Primera charla sin costo.
                 </Text>
             </GridItem>
 
@@ -104,7 +103,7 @@ const Contacto = () => {
                 {/* EMAIL */}
                 <MotionBox
                     as={Link}
-                    href={mailtoLink}
+                    href={mailto}
                     p={6}
                     border="1px solid"
                     bg={colorbg}
@@ -135,7 +134,7 @@ const Contacto = () => {
                       Email
                     </Text>
                     <Text fontSize={{ base: "xs", md: "lg" }} fontWeight="semibold">
-                      matiasgunsett@gmail.com
+                      {BRAND.email}
                     </Text>
                   </Box>
                 </Flex>
@@ -144,7 +143,7 @@ const Contacto = () => {
               {/* WHATSAPP */}
               <MotionBox
                 as={Link}
-                href="https://wa.link/710hd7"
+                href={whatsappLink()}
                 target="_blank"
                 rel="noopener noreferrer"
                 p={6}
@@ -178,7 +177,7 @@ const Contacto = () => {
                       WhatsApp
                     </Text>
                     <Text fontSize={{ base: "xs", md: "lg" }} fontWeight="semibold">
-                      +54 342 595-7222
+                      {BRAND.whatsapp.display}
                     </Text>
                   </Box>
                 </Flex>
@@ -187,7 +186,7 @@ const Contacto = () => {
               {/* LINKEDIN */}
               <MotionBox
                 as={Link}
-                href="https://linkedin.com/in/matiasgunsett"
+                href={BRAND.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 p={6}
@@ -221,7 +220,7 @@ const Contacto = () => {
                       LinkedIn
                     </Text>
                     <Text fontSize={{ base: "xs", md: "lg" }} fontWeight="semibold">
-                      linkedin.com/in/matiasgunsett
+                      {BRAND.social.linkedin.replace("https://", "")}
                     </Text>
                   </Box>
                 </Flex>

@@ -79,7 +79,7 @@ const Habilidades = () => {
                   fontWeight="semibold"
                   color="green"
                 >
-                  02
+                  04
                 </Text>
               </Flex>
               <Heading

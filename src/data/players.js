@@ -1,0 +1,57 @@
+/**
+ * Casos de landing pages para futbolistas profesionales.
+ *
+ * Esta es la sección protagonista del sitio. Para publicar un caso nuevo basta
+ * con agregar un objeto acá: no hay que tocar ningún componente.
+ *
+ * Convención de assets: todo el material va en `public/media/players/<slug>/`
+ * y se referencia por ruta absoluta ("/media/players/<slug>/cover.webp").
+ * No se importa desde `src/assets` para no inflar el bundle con videos.
+ *
+ * Formato de un caso:
+ *
+ *   {
+ *     slug:    "nombre-apellido",          // identificador único, sin espacios
+ *     status:  "live" | "coming",          // "coming" = teaser, sin material aún
+ *     year:    "2026",
+ *     url:     "https://...",              // landing en vivo (null si no está)
+ *     player: {
+ *       name:     "Nombre Apellido",
+ *       position: "Delantero",
+ *       club:     "Club Atlético ...",
+ *       country:  "Argentina",
+ *       number:   10,                      // opcional
+ *     },
+ *     cover:   "/media/players/<slug>/cover.webp",   // 4:5 o 3:4, ~1200px
+ *     media: [
+ *       { type: "video", src: "...reel.mp4", poster: "...reel.webp", orientation: "portrait" },
+ *       { type: "image", src: "...desktop-01.webp", orientation: "landscape", alt: "..." },
+ *     ],
+ *     metrics: [                           // máximo 3, siempre con período explícito
+ *       { value: "+120K", label: "Visitas en 30 días" },
+ *     ],
+ *     highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
+ *     testimonial: { quote: "...", author: "...", role: "..." } | null,
+ *     tech: ["React", "Framer Motion"],
+ *   }
+ *
+ * Regla de contenido: un caso sin métricas convierte mucho menos. Si todavía no
+ * hay números confirmados, dejarlo en status "coming" hasta tenerlos.
+ */
+export const players = [];
+
+/** Casos publicables, en el orden en que deben mostrarse. */
+export const livePlayers = players.filter((p) => p.status === "live");
+
+/** true cuando todavía no hay ningún caso cargado (estado inicial del sitio). */
+export const hasPlayers = players.length > 0;
+
+/**
+ * Resumen agregado para el strip del Hero. Suma solo casos "live" para no
+ * prometer material que aún no está publicado.
+ */
+export const playersSummary = {
+  count: livePlayers.length,
+  names: livePlayers.map((p) => p.player.name),
+  clubs: [...new Set(livePlayers.map((p) => p.player.club).filter(Boolean))],
+};

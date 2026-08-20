@@ -1,8 +1,11 @@
 import { Box, Heading, Text, Stack, Button, Flex } from "@chakra-ui/react";
 import { MotionBox, MotionImage } from "./Motion";
 import { useMotionValue, useTransform } from "framer-motion";
-import logoCelu from "../assets/logo-celu.png";
+import logoCelu from "../assets/logo-celu.webp";
+import logoCeluSmall from "../assets/logo-celu-640.webp";
 import { useEffect } from "react";
+import { BRAND } from "../config/brand";
+import { playersSummary } from "../data/players";
 
 // Botones de acción reutilizados en mobile y desktop
 const HeroActions = ({ onProjects, onContact, full }) => (
@@ -21,7 +24,7 @@ const HeroActions = ({ onProjects, onContact, full }) => (
       transition="all 0.2s ease"
       onClick={onProjects}
     >
-      Ver proyectos
+      Ver casos
     </Button>
     <Button
       bg="yellow"
@@ -42,15 +45,50 @@ const HeroActions = ({ onProjects, onContact, full }) => (
   </Flex>
 );
 
-const Eyebrow = () => (
-  <Flex align="center" gap={4} justify="center">
-    <Box w="40px" h="1px" bg="green" />
-    <Text fontSize="sm" letterSpacing="0.3em" textTransform="uppercase" color="green">
-      Portfolio
+const EYEBROW_TEXT = "Landing Pages · Fútbol Profesional";
+
+const Eyebrow = ({ center }) => (
+  <Flex align="center" gap={4} justify={center ? "center" : "flex-start"}>
+    <Box w={{ base: "20px", md: "40px" }} h="1px" bg="green" flexShrink={0} />
+    <Text
+      fontSize={{ base: "xs", md: "sm" }}
+      letterSpacing={{ base: "0.15em", md: "0.3em" }}
+      textTransform="uppercase"
+      color="green"
+    >
+      {EYEBROW_TEXT}
     </Text>
-    <Box w="40px" h="1px" bg="green" display={{ base: "block", md: "none" }} />
+    {center && <Box w="20px" h="1px" bg="green" display={{ base: "block", md: "none" }} flexShrink={0} />}
   </Flex>
 );
+
+/**
+ * Prueba social bajo el Hero: clubes de los jugadores con caso publicado.
+ * Se oculta solo mientras no haya casos cargados, para no mostrar un vacío.
+ */
+const ClubsStrip = ({ center }) => {
+  if (playersSummary.clubs.length === 0) return null;
+
+  return (
+    <Flex
+      align="center"
+      gap={{ base: 2, md: 4 }}
+      wrap="wrap"
+      justify={center ? "center" : "flex-start"}
+      pt={2}
+    >
+      <Text fontSize="xs" letterSpacing="0.2em" textTransform="uppercase" opacity={0.6}>
+        {playersSummary.count} {playersSummary.count === 1 ? "jugador" : "jugadores"}
+      </Text>
+      <Box w="1px" h={4} bg="whiteAlpha.400" />
+      {playersSummary.clubs.map((club) => (
+        <Text key={club} fontSize="xs" textTransform="uppercase" opacity={0.75} fontFamily="space">
+          {club}
+        </Text>
+      ))}
+    </Flex>
+  );
+};
 
 const Hero = () => {
 
@@ -110,7 +148,7 @@ const Hero = () => {
     requestAnimationFrame(step);
   };
 
-  const goProjects = () => scrollToSectionSlow("proyectos");
+  const goProjects = () => scrollToSectionSlow("casos");
   const goContact = () => scrollToSectionSlow("contacto");
 
   return (
@@ -168,7 +206,7 @@ const Hero = () => {
         zIndex={1}
         gap={4}
       >
-        <Eyebrow />
+        <Eyebrow center />
 
         {/* Composición en capas: nombre detrás, personaje delante */}
         <Box position="relative" w="100%" h="420px" display="flex" justifyContent="center">
@@ -201,24 +239,38 @@ const Hero = () => {
             justifyContent="center"
           >
             <MotionImage
-              src={logoCelu}
+              src={logoCeluSmall}
+              srcSet={`${logoCeluSmall} 640w, ${logoCelu} 1024w`}
+              sizes="(max-width: 480px) 100vw, 640px"
               alt="Logo Matías Gunsett"
               h="450px"
               maxW="100%"
               objectFit="contain"
+              fetchPriority="high"
               filter="drop-shadow(0 25px 40px rgba(0,0,0,0.35))"
             />
           </MotionBox>
         </Box>
 
-        <Stack spacing={6} align="center" w="100%">
-          <Flex align="center" gap={4} justify="center">
-            <Box w="30px" h="3px" bg="yellow" />
-            <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase">
-              Front·End  Developer
+        <Stack spacing={5} align="center" w="100%">
+          <Flex align="center" gap={3} justify="center">
+            <Box w="24px" h="3px" bg="yellow" flexShrink={0} />
+            <Text
+              fontSize={{ base: "sm", sm: "md" }}
+              letterSpacing="0.1em"
+              textTransform="uppercase"
+              fontWeight="semibold"
+            >
+              Webs para Futbolistas Profesionales
             </Text>
-            <Box w="30px" h="3px" bg="yellow" />
+            <Box w="24px" h="3px" bg="yellow" flexShrink={0} />
           </Flex>
+
+          <Text fontSize="xs" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65}>
+            {BRAND.roleSecondary}
+          </Text>
+
+          <ClubsStrip center />
 
           <HeroActions onProjects={goProjects} onContact={goContact} full />
         </Stack>
@@ -235,13 +287,8 @@ const Hero = () => {
         zIndex={1}
       >
         <Flex direction="row" align="center" justify="center">
-          <Stack spacing={8} maxW="5xl">
-            <Flex align="center" gap={4}>
-              <Box w="40px" h="1px" bg="green" />
-              <Text fontSize="sm" letterSpacing="0.3em" textTransform="uppercase" color="green">
-                Portfolio
-              </Text>
-            </Flex>
+          <Stack spacing={7} maxW="5xl">
+            <Eyebrow />
 
             <Heading fontSize={{ md: "7xl", lg: "8xl" }} lineHeight="1">
               MATÍAS <br />
@@ -249,11 +296,17 @@ const Hero = () => {
             </Heading>
 
             <Flex align="center" gap={4}>
-              <Box w="50px" h="3px" bg="yellow" />
-              <Text fontSize="xl" letterSpacing="0.15em" textTransform="uppercase">
-                Front-End Developer · React.js
+              <Box w="50px" h="3px" bg="yellow" flexShrink={0} />
+              <Text fontSize={{ md: "lg", lg: "xl" }} letterSpacing="0.12em" textTransform="uppercase" fontWeight="semibold">
+                Webs para Futbolistas Profesionales
               </Text>
             </Flex>
+
+            <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65} mt={-3}>
+              {BRAND.roleSecondary}
+            </Text>
+
+            <ClubsStrip />
 
             <HeroActions onProjects={goProjects} onContact={goContact} />
           </Stack>
@@ -265,10 +318,13 @@ const Hero = () => {
           >
             <MotionImage
               src={logoCelu}
+              srcSet={`${logoCeluSmall} 640w, ${logoCelu} 1024w`}
+              sizes="(max-width: 1280px) 480px, 600px"
               alt="Logo Matías Gunsett"
               w={{ md: "480px", lg: "600px" }}
               h={{ md: "560px", lg: "700px" }}
               objectFit="contain"
+              fetchPriority="high"
               style={{ rotateX, rotateY, x: translateX, y: translateY }}
               transition={{ type: "spring", stiffness: 80, damping: 20 }}
             />

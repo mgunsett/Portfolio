@@ -71,7 +71,7 @@ const Portfolio = () => {
                   fontWeight="semibold"
                   color="green"
                 >
-                  03
+                  05
                 </Text>
               </Flex>
               <Heading
@@ -81,8 +81,13 @@ const Portfolio = () => {
                 textTransform="uppercase"
                 lineHeight="1.2"
               >
-                PROYECTOS
+                OTROS TRABAJOS
               </Heading>
+              <Text mt={4} fontSize={{ base: "md", md: "lg" }} opacity={0.8} fontFamily="space" maxW="2xl">
+                E-commerce, plataformas y sitios corporativos. El respaldo técnico
+                detrás de cada landing: bases de datos, autenticación, pasarelas de
+                pago y paneles de administración.
+              </Text>
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 12 }}>
             <Grid 
