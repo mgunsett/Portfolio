@@ -15,6 +15,7 @@ import { BsFillThreadsFill } from "react-icons/bs";
 import instagram from "../assets/instagram.webp";
 import iconoGithub from "../assets/icono-github.webp";
 import { BRAND, displayName } from "../config/brand";
+import ledHorizontal from "../assets/led_horizontal.png";
 
 const NAV_LINKS = [
     { href: "#home", label: "Home" },
@@ -120,7 +121,12 @@ const Footer = () => {
                                     fontWeight="semibold"
                                     _hover={{ textDecoration: 'none', color: hoverColor }}
                                 >
-                                    {BRAND.partner.name}
+                                    <Image
+                                        src={ledHorizontal}
+                                        alt="LED Horizontal"
+                                        h="25px"
+                                        objectFit="contain"
+                                    />
                                 </Link>
                             </Box>
                         )}

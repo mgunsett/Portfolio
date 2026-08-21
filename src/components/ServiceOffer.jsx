@@ -59,9 +59,7 @@ const ServiceOffer = () => {
                 number="02"
                 title={
                   <>
-                    Cómo
-                    <br />
-                    Trabajamos
+                    Desarrollo
                   </>
                 }
                 subtitle="De la primera charla a la web publicada, en cuatro pasos claros."

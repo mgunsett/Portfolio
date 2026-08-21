@@ -20,7 +20,7 @@ const theme = extendTheme({
     claro: "#f8eedd",   
     background: "#0B0B0B",
     surface: "#111111",
-    grey: "#888888",
+    grey: "#686666",
     modalbg: "#faf4e5d8",
   },
   fonts: {

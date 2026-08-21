@@ -46,7 +46,7 @@ const Habilidades = () => {
           bgGradient="linear(to-r, transparent, green , transparent)"
           mb={12}
           m={'auto'}
-          mt={{ base: 4, md: 10 }}
+          mt={{ base: 4, md: 0 }}
         />
 
       <MotionBox

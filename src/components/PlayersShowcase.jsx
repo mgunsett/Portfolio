@@ -77,7 +77,7 @@ const PlayersShowcase = () => {
                     para Futbolistas
                   </>
                 }
-                subtitle={BRAND.claim}
+                
               />
             </GridItem>
 

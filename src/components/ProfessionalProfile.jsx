@@ -9,24 +9,13 @@ import {
 import { Fragment } from "react";
 import { MotionBox } from "./Motion";
 import { BRAND } from "../config/brand";
+import { useColorMode } from "@chakra-ui/react";
 
 const ProfessionalProfile = () => {
+  const { colorMode } = useColorMode();
+  const bg = colorMode === "dark" ? "surface" : "modalbg";
   return (
-    <Box id="perfil" position="relative">
-      <Box
-        position="absolute"
-        bottom={12}
-        left={12}
-        display={{ base: "none", lg: "block" }}
-      >
-        <Box
-          w={24}
-          h={24}
-          borderLeft="2px solid"
-          borderBottom="2px solid"
-          borderColor="yellow"
-        />
-      </Box>
+    <Box id="perfil" position="relative" bgColor={bg} mt={28}>
 
       <Box
           w={{ base: "80%" , md: "70%" }}
@@ -34,12 +23,11 @@ const ProfessionalProfile = () => {
           bgGradient="linear(to-r, transparent, green , transparent)"
           mb={12}
           m={'auto'}
-          mt={{ base: 0, md: 10 }}
         />
 
       <MotionBox
         as="section"
-        py={24}
+        py={28}
         px={{ base: 6, md: 12, lg: 24 }}
         mt={{ base: 4, md: 12 }}
         initial={{ opacity: 0, y: 30 }}
