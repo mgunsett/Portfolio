@@ -27,20 +27,7 @@ const Contacto = () => {
 
   return (
     <Box id="contacto" position="relative" mb={10}>
-        <Box
-        position="absolute"
-        bottom={12}
-        left={12}
-        display={{ base: "none", lg: "block" }}
-        >
-            <Box
-            w={24}
-            h={24}
-            borderLeft="2px solid"
-            borderBottom="2px solid"
-            borderColor="yellow"
-            />
-        </Box>
+        
          <Box
           w={{ base: "80%" , md: "70%" }}
           h="2px"
