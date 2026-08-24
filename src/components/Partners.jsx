@@ -1,6 +1,7 @@
 import { Box, Flex, Image, Link, Text, useColorMode } from "@chakra-ui/react";
 import { MotionBox } from "./Motion";
 import { BRAND } from "../config/brand";
+import ledHorizontal from "../assets/led_horizontal.png";
 
 /**
  * Franja de credibilidad: la colaboración con la agencia de marketing deportivo.
@@ -8,7 +9,7 @@ import { BRAND } from "../config/brand";
  */
 const Partners = () => {
   const { colorMode } = useColorMode();
-  const bg = colorMode === "dark" ? "surface" : "modalbg";
+  const bg = colorMode === "dark" ? "surface" : "gray";
   const { partner } = BRAND;
 
   if (!partner?.name) return null;
@@ -55,16 +56,7 @@ const Partners = () => {
               <Image src={partner.logo} alt={partner.name} h="40px" objectFit="contain" />
             )}
             <Box>
-              <Text
-                fontFamily='"Syne", sans-serif'
-                fontSize={{ base: "xl", md: "2xl" }}
-                fontWeight="800"
-                textTransform="uppercase"
-                lineHeight="1.1"
-                color="green"
-              >
-                {partner.name}
-              </Text>
+              <Image src={ledHorizontal} alt="LED Horizontal" h="40px" objectFit="contain" />
               <Text fontSize="xs" opacity={0.75} fontFamily="space" mt={1}>
                 {partner.role}
               </Text>

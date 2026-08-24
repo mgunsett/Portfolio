@@ -1,11 +1,101 @@
-import { Box, Heading, Text, Stack, Button, Flex } from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Button, Flex, useColorMode } from "@chakra-ui/react";
 import { MotionBox, MotionImage } from "./Motion";
 import { useMotionValue, useTransform } from "framer-motion";
-import logoCelu from "../assets/logo-celu.webp";
-import logoCeluSmall from "../assets/logo-celu-640.webp";
+import fondoPortfolio from "../assets/fondo_portfolio.webp";
 import { useEffect } from "react";
 import { BRAND } from "../config/brand";
 import { playersSummary } from "../data/players";
+
+// Colores base del tema, necesarios en los degradados (no se pueden usar tokens dentro de gradients)
+const BG_DARK = "#0B0B0B";
+const BG_LIGHT = "#F5F0E6";
+
+// Máscaras de difuminado del panel derecho: se aplican en dos capas anidadas
+// (vertical en el contenedor, horizontal en el interior) para no depender de mask-composite.
+const FADE_VERTICAL =
+  "linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%)";
+const FADE_HORIZONTAL =
+  "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 7%, rgba(0,0,0,0.7) 16%, #000 62%)";
+// Máscara del fondo mobile: elipse suave que disuelve los cuatro bordes
+const FADE_RADIAL =
+  "radial-gradient(ellipse 85% 60% at 50% 42%, #000 0%, rgba(0,0,0,0.8) 45%, transparent 80%)";
+
+// Velos que integran la imagen con el fondo del tema activo
+const VEIL_SIDE_DARK = `linear-gradient(to right, ${BG_DARK} 0%, rgba(11,11,11,0.6) 28%, rgba(11,11,11,0.1) 68%, rgba(11,11,11,0.35) 100%)`;
+const VEIL_SIDE_LIGHT = `linear-gradient(to right, ${BG_LIGHT} 0%, rgba(245, 240, 230, 0.29) 18%, rgba(245,240,230,0.4) 68%, rgba(245, 240, 230, 0.18) 100%)`;
+const VEIL_FULL_DARK = `radial-gradient(ellipse 70% 55% at 50% 45%, rgba(11,11,11,0.55) 0%, rgba(11,11,11,0.8) 100%)`;
+const VEIL_FULL_LIGHT = `radial-gradient(ellipse 70% 55% at 50% 45%, rgba(245, 240, 230, 0.19) 0%, rgba(245, 240, 230, 0.42) 100%)`;
+
+/**
+ * Imagen principal del Hero en desktop: panel a la derecha que ocupa todo el alto,
+ * difuminado hacia el fondo del tema en el borde izquierdo y en top/bottom.
+ */
+const HeroSideArt = ({ dark, style }) => (
+  <Box
+    display={{ base: "none", md: "block" }}
+    position="absolute"
+    top={0}
+    bottom={0}
+    right={0}
+    w={{ md: "58%", lg: "64%" }}
+    zIndex={0}
+    pointerEvents="none"
+    overflow="hidden"
+    sx={{ maskImage: FADE_VERTICAL, WebkitMaskImage: FADE_VERTICAL }}
+  >
+    <Box
+      position="absolute"
+      inset={0}
+      overflow="hidden"
+      sx={{ maskImage: FADE_HORIZONTAL, WebkitMaskImage: FADE_HORIZONTAL }}
+    >
+      <MotionImage
+        src={fondoPortfolio}
+        alt="Matías Gunsett trabajando en un vestuario de fútbol"
+        w="100%"
+        h="100%"
+        objectFit="cover"
+        objectPosition="50% 42%"
+        
+        filter={dark ? "saturate(1.05)" :  "saturate(1.05)"}
+        fetchPriority="high"
+        style={style}
+        transition={{ type: "spring", stiffness: 80, damping: 20 }}
+      />
+      <Box position="absolute" inset={0} bgImage={dark ? VEIL_SIDE_DARK : 'transparent'} />
+    </Box>
+  </Box>
+);
+
+/**
+ * Misma imagen en mobile, pero como fondo a sangre detrás de todo el contenido:
+ * opacidad baja + velo para que el texto siga siendo legible en ambos modos.
+ */
+const HeroMobileArt = ({ dark }) => (
+  <Box
+    display={{ base: "block", md: "none" }}
+    position="absolute"
+    inset={0}
+    zIndex={0}
+    pointerEvents="none"
+    aria-hidden="true"
+    overflow="hidden"
+    sx={{ maskImage: FADE_RADIAL, WebkitMaskImage: FADE_RADIAL }}
+  >
+    <Box
+      as="img"
+      src={fondoPortfolio}
+      alt=""
+      w="100%"
+      h="100%"
+      objectFit="cover"
+      objectPosition="50% 40%"
+      opacity={dark ? 0.4 : 0.24}
+      filter={dark ? "saturate(1.05)" : "brightness(1.2) contrast(0.85) saturate(0.85)"}
+    />
+    <Box position="absolute" inset={0} bgImage={dark ? VEIL_FULL_DARK : VEIL_FULL_LIGHT} />
+  </Box>
+);
 
 // Botones de acción reutilizados en mobile y desktop
 const HeroActions = ({ onProjects, onContact, full }) => (
@@ -91,15 +181,16 @@ const ClubsStrip = ({ center }) => {
 };
 
 const Hero = () => {
+  const { colorMode } = useColorMode();
+  const dark = colorMode === "dark";
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
-
-  const translateX = useTransform(mouseX, [-0.5, 0.5], [-20, 20]);
-  const translateY = useTransform(mouseY, [-0.5, 0.5], [-20, 20]);
+  // Parallax suave: solo desplazamiento y un leve escalado, para que el recorte
+  // nunca deje ver los bordes duros del panel.
+  const translateX = useTransform(mouseX, [-0.5, 0.5], [14, -14]);
+  const translateY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -157,39 +248,30 @@ const Hero = () => {
       minH="100vh"
       display="flex"
       alignItems="center"
-      px={{ base: 6, md: 12, lg: 24 }}
+      px={{ base: 6, md: 12, lg: 40 }}
       py={{ base: 12, md: 0 }}
       position="relative"
       overflow="hidden"
-      sx={{ perspective: "1000px" }}
     >
-      {/* Halos de color para profundidad */}
+      {/* Imagen principal: panel derecho en desktop, fondo a sangre en mobile */}
+      <HeroSideArt dark={dark} style={{ x: translateX, y: translateY, scale: 1.1 }} />
+      <HeroMobileArt dark={dark} />
+
+      {/* Halos de color para profundidad: van sobre la imagen para fundirla con el tema */}
       <Box
         position="absolute"
         top={{ base: "-8%", md: "0%" }}
         right={{ base: "-25%", md: "5%" }}
         w={{ base: "320px", md: "520px" }}
         h={{ base: "320px", md: "520px" }}
-        bg="green"
+        bg="#fff8f8af"
         opacity={0.18}
         filter="blur(90px)"
         borderRadius="full"
         pointerEvents="none"
         zIndex={0}
       />
-      <Box
-        position="absolute"
-        bottom={{ base: "0%", md: "10%" }}
-        left={{ base: "-20%", md: "30%" }}
-        w={{ base: "260px", md: "380px" }}
-        h={{ base: "260px", md: "380px" }}
-        bg="yellow"
-        opacity={0.12}
-        filter="blur(80px)"
-        borderRadius="full"
-        pointerEvents="none"
-        zIndex={0}
-      />
+      
 
       {/* ===================== MOBILE ===================== */}
       <MotionBox
@@ -197,60 +279,26 @@ const Hero = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        direction="column"
         flexDirection="column"
-        align="center"
+        alignItems="center"
         textAlign="center"
         w="100%"
         position="relative"
         zIndex={1}
-        gap={4}
+        gap={6}
       >
         <Eyebrow center />
 
-        {/* Composición en capas: nombre detrás, personaje delante */}
-        <Box position="relative" w="100%" h="420px" display="flex" justifyContent="center">
-          <Heading
-            position="absolute"
-            inset={0}
-            display="flex"
-            flexDirection="column"
-            justifyContent="flex-start"
-            alignItems="center"
-            fontSize={{ base: "7xl", sm: "8xl" }}
-            lineHeight="0.9"
-            letterSpacing="-0.02em"
-            whiteSpace="nowrap"
-            zIndex={0}
-            py={2}
-          >
-            <Box as="span">MATÍAS</Box>
-            <Box as="span" color="green">GUNSETT</Box>
-          </Heading>
-
-          <MotionBox
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            position="relative"
-            zIndex={2}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <MotionImage
-              src={logoCeluSmall}
-              srcSet={`${logoCeluSmall} 640w, ${logoCelu} 1024w`}
-              sizes="(max-width: 480px) 100vw, 640px"
-              alt="Logo Matías Gunsett"
-              h="450px"
-              maxW="100%"
-              objectFit="contain"
-              fetchPriority="high"
-              filter="drop-shadow(0 25px 40px rgba(0,0,0,0.35))"
-            />
-          </MotionBox>
-        </Box>
+        <Heading
+          fontSize={{ base: "6xl", sm: "7xl" }}
+          lineHeight="0.95"
+          letterSpacing="-0.02em"
+          textShadow={dark ? "0 4px 24px rgba(0,0,0,0.7)" : "0 4px 24px rgba(245,240,230,0.85)"}
+        >
+          MATÍAS
+          <br />
+          <Box as="span" color="green">GUNSETT</Box>
+        </Heading>
 
         <Stack spacing={5} align="center" w="100%">
           <Flex align="center" gap={3} justify="center">
@@ -286,50 +334,29 @@ const Hero = () => {
         position="relative"
         zIndex={1}
       >
-        <Flex direction="row" align="center" justify="center">
-          <Stack spacing={7} maxW="5xl">
-            <Eyebrow />
+        <Stack spacing={7} maxW={{ md: "50%", lg: "48%" }}>
+          <Eyebrow />
 
-            <Heading fontSize={{ md: "7xl", lg: "8xl" }} lineHeight="1">
-              MATÍAS <br />
-              <Box as="span" color="green">GUNSETT</Box>
-            </Heading>
+          <Heading fontSize={{ md: "6xl", lg: "7xl", xl: "8xl" }} lineHeight="1">
+            MATÍAS <br />
+            <Box as="span" color="green">GUNSETT</Box>
+          </Heading>
 
-            <Flex align="center" gap={4}>
-              <Box w="50px" h="3px" bg="yellow" flexShrink={0} />
-              <Text fontSize={{ md: "lg", lg: "xl" }} letterSpacing="0.12em" textTransform="uppercase" fontWeight="semibold">
-                Webs para Futbolistas Profesionales
-              </Text>
-            </Flex>
-
-            <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65} mt={-3}>
-              {BRAND.roleSecondary}
+          <Flex align="center" gap={4}>
+            
+            <Text fontSize={{ md: "md", lg: "lg", xl: "xl" }} letterSpacing="0.12em" textTransform="uppercase" fontWeight="semibold">
+              Webs para Deportistas Profesionales
             </Text>
+          </Flex>
 
-            <ClubsStrip />
+          <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65} mt={-3}>
+            {BRAND.roleSecondary}
+          </Text>
 
-            <HeroActions onProjects={goProjects} onContact={goContact} />
-          </Stack>
+          <ClubsStrip />
 
-          <MotionBox
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <MotionImage
-              src={logoCelu}
-              srcSet={`${logoCeluSmall} 640w, ${logoCelu} 1024w`}
-              sizes="(max-width: 1280px) 480px, 600px"
-              alt="Logo Matías Gunsett"
-              w={{ md: "480px", lg: "600px" }}
-              h={{ md: "560px", lg: "700px" }}
-              objectFit="contain"
-              fetchPriority="high"
-              style={{ rotateX, rotateY, x: translateX, y: translateY }}
-              transition={{ type: "spring", stiffness: 80, damping: 20 }}
-            />
-          </MotionBox>
-        </Flex>
+          <HeroActions onProjects={goProjects} onContact={goContact} />
+        </Stack>
       </MotionBox>
     </Box>
   );

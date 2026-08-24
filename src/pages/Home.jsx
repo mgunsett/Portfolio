@@ -22,8 +22,8 @@ const Home = () => {
       <SeoHead />
       <Hero />
       <PlayersShowcase />
-      <ServiceOffer />
       <Partners />
+      <ServiceOffer />
       <ProfessionalProfile />
       <Habilidades />
       <Portfolio />
