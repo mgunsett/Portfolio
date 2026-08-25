@@ -8,36 +8,6 @@ import PlayerCaseModal from "./PlayerCaseModal";
 import { players } from "../data/players";
 import { BRAND } from "../config/brand";
 
-/** Placeholder mientras no hay casos cargados: explica la propuesta en vez de dejar un hueco. */
-const EmptyState = () => (
-  <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={6}>
-    {[
-      {
-        title: "Presencia propia",
-        text: "Un dominio del jugador, no un perfil prestado en una red social ajena.",
-      },
-      {
-        title: "Pensada para compartir",
-        text: "Optimizada para mobile y para verse bien apenas se comparte el link.",
-      },
-      {
-        title: "Lista para representar",
-        text: "Trayectoria, estadísticas, video y contacto profesional en un solo lugar.",
-      },
-    ].map((item, i) => (
-      <Box key={i} border="1px solid" borderColor="green" p={{ base: 6, md: 8 }}>
-        <Box w={8} h="2px" bg="yellow" mb={4} />
-        <Text fontWeight="bold" textTransform="uppercase" fontSize="sm" letterSpacing="wide" mb={3}>
-          {item.title}
-        </Text>
-        <Text fontSize="sm" opacity={0.8} fontFamily="space">
-          {item.text}
-        </Text>
-      </Box>
-    ))}
-  </Grid>
-);
-
 const PlayersShowcase = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selected, setSelected] = useState(null);
@@ -66,23 +36,22 @@ const PlayersShowcase = () => {
         transition={{ duration: 0.6 }}
       >
         <Box maxW="6xl" mx="auto">
-          <Grid templateColumns={{ base: "1fr", md: "repeat(12, 1fr)" }} gap={{ base: 8, md: 12 }}>
-            <GridItem colSpan={{ base: 1, md: 12 }}>
-              <SectionHeader
-                number="01"
-                title={
-                  <>
-                    Landing Pages
-                    <br />
-                    para Futbolistas
-                  </>
-                }
-                
-              />
-            </GridItem>
+          {players.length > 0 ? (
+            <Grid templateColumns={{ base: "1fr", md: "repeat(12, 1fr)" }} gap={{ base: 8, md: 12 }}>
+              <GridItem colSpan={{ base: 1, md: 12 }}>
+                <SectionHeader
+                  number="01"
+                  title={
+                    <>
+                      Landing Pages
+                      <br />
+                      para Futbolistas
+                    </>
+                  }
+                />
+              </GridItem>
 
-            <GridItem colSpan={{ base: 1, md: 12 }}>
-              {players.length > 0 ? (
+              <GridItem colSpan={{ base: 1, md: 12 }}>
                 <Grid
                   templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
                   gap={6}
@@ -91,27 +60,18 @@ const PlayersShowcase = () => {
                     <PlayerCard key={p.slug} player={p} onOpen={handleOpen} />
                   ))}
                 </Grid>
-              ) : (
-                <EmptyState />
-              )}
-            </GridItem>
-
-            {players.length === 0 && (
-              <GridItem colSpan={{ base: 1, md: 12 }}>
-                <Flex align="center" gap={4}>
-                  <Box w="40px" h="1px" bg="green" />
-                  <Text
-                    fontSize="sm"
-                    letterSpacing="0.15em"
-                    textTransform="uppercase"
-                    opacity={0.7}
-                  >
-                    Casos en publicación
-                  </Text>
-                </Flex>
               </GridItem>
-            )}
-          </Grid>
+            </Grid>
+          ) : (
+            // Sin casos cargados todavía: el pitch ya lo hizo LandingPreview arriba,
+            // acá solo queda anunciar que están en camino.
+            <Flex align="center" gap={4}>
+              <Box w="40px" h="1px" bg="green" />
+              <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase" opacity={0.7}>
+                Casos en publicación
+              </Text>
+            </Flex>
+          )}
         </Box>
       </MotionBox>
 

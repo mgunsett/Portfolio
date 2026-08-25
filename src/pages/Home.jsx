@@ -1,6 +1,7 @@
 import PageWrapper from "../layouts/PageWrapper";
 import SeoHead from "../components/SeoHead";
 import Hero from "../components/Hero";
+import LandingPreview from "../components/LandingPreview";
 import PlayersShowcase from "../components/PlayersShowcase";
 import ServiceOffer from "../components/ServiceOffer";
 import Partners from "../components/Partners";
@@ -21,6 +22,7 @@ const Home = () => {
     <PageWrapper>
       <SeoHead />
       <Hero />
+      <LandingPreview />
       <PlayersShowcase />
       <Partners />
       <ServiceOffer />
