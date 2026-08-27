@@ -1,5 +1,112 @@
-import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
+
+/**
+ * Sitio en vivo embebido.
+ *
+ * `viewportWidth` hace que el sitio se renderice a ese ancho de CSS y se
+ * escale para entrar en el contenedor. Es lo que permite mostrar la landing a
+ * un viewport de teléfono real (390px) en vez de al ancho que quede: sin esto,
+ * un marco de 300px le da al sitio un viewport de 300px, más angosto que
+ * cualquier celular, y muchos layouts se rompen ahí abajo. Sin `viewportWidth`
+ * se conserva el comportamiento viejo de `zoom`.
+ *
+ * El overlay es un estado de carga, no un detector de errores: si el sitio
+ * bloquea el embebido con X-Frame-Options o CSP frame-ancestors, el iframe
+ * igual dispara `load` y no hay forma desde JS de distinguirlo de una carga
+ * buena. Por eso la salida no es automática sino el link a abrirlo en una
+ * pestaña, siempre visible mientras carga.
+ */
+const LiveSiteFrame = ({ item, zoom, viewportWidth, ...boxProps }) => {
+  const containerRef = useRef(null);
+  const iframeRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  // Solo hace falta medir cuando hay `viewportWidth`; con `zoom` la escala es
+  // fija. El setState sale del callback del observer y no del cuerpo del
+  // efecto, que es lo que evita el render en cascada.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!viewportWidth || !container) return;
+
+    const observer = new ResizeObserver(([entry]) =>
+      setContainerWidth(entry.contentRect.width),
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [viewportWidth]);
+
+  const scale = viewportWidth ? containerWidth / viewportWidth : zoom;
+  const mounted = scale > 0;
+
+  // El listener va por ref y no por la prop `onLoad`: Box es un componente de
+  // Chakra, no un <iframe> pelado, y no hay garantía de que reenvíe el handler
+  // al nodo. Suscribirse al elemento real saca esa duda del medio.
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    const handleLoad = () => setLoaded(true);
+    iframe.addEventListener("load", handleLoad);
+    return () => iframe.removeEventListener("load", handleLoad);
+  }, [mounted]);
+
+  return (
+    <Box ref={containerRef} position="relative" {...boxProps}>
+      {/* Con `viewportWidth` se espera a tener la medida: montarlo antes haría
+          que el iframe cargue a una escala que cambia al instante siguiente. */}
+      {mounted && (
+        <Box
+          ref={iframeRef}
+          as="iframe"
+          src={item.src}
+          title={item.alt || "Vista del sitio"}
+          border="0"
+          loading="lazy"
+          position="absolute"
+          top={0}
+          left={0}
+          w={viewportWidth ? `${viewportWidth}px` : `calc(100% / ${scale})`}
+          h={`calc(100% / ${scale})`}
+          transform={`scale(${scale})`}
+          transformOrigin="top left"
+        />
+      )}
+
+      {!loaded && (
+        <Flex
+          position="absolute"
+          inset={0}
+          direction="column"
+          align="center"
+          justify="center"
+          gap={4}
+          px={6}
+          textAlign="center"
+          bg="blackAlpha.800"
+        >
+          <Spinner size="md" color="green" thickness="2px" speed="0.8s" />
+          <Text fontSize="xs" opacity={0.8} fontFamily="space">
+            Cargando el sitio…
+          </Text>
+          <Link
+            href={item.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            color="green"
+            fontSize="xs"
+            fontWeight="semibold"
+            textTransform="uppercase"
+            letterSpacing="wide"
+          >
+            Abrir en una pestaña ↗
+          </Link>
+        </Flex>
+      )}
+    </Box>
+  );
+};
 
 /**
  * Renderiza una pieza de media de un caso: video, imagen o iframe del sitio en vivo.
@@ -11,10 +118,9 @@ import { useEffect, useRef, useState } from "react";
  * Respeta `prefers-reduced-motion`: si el usuario la tiene activada, el video
  * queda quieto en su poster con los controles disponibles.
  */
-const MediaFrame = ({ item, zoom = 0.72, ...boxProps }) => {
+const MediaFrame = ({ item, zoom = 0.72, viewportWidth, ...boxProps }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
-  const [iframeError, setIframeError] = useState(false);
 
   const isPortrait = item?.orientation === "portrait";
 
@@ -102,54 +208,14 @@ const MediaFrame = ({ item, zoom = 0.72, ...boxProps }) => {
   }
 
   if (item.type === "iframe") {
-    if (iframeError) {
-      return (
-        <Flex
-          {...frame}
-          direction="column"
-          align="center"
-          justify="center"
-          gap={4}
-          px={6}
-          py={10}
-          textAlign="center"
-          bg="transparent"
-          {...boxProps}
-        >
-          <Text fontSize="sm" opacity={0.85}>
-            Este sitio no permite mostrarse dentro de un iframe.
-          </Text>
-          <Link
-            href={item.src}
-            target="_blank"
-            rel="noopener noreferrer"
-            color="green"
-            fontSize="sm"
-            fontWeight="semibold"
-            textTransform="uppercase"
-            letterSpacing="wide"
-          >
-            Abrir sitio
-          </Link>
-        </Flex>
-      );
-    }
-
     return (
-      <Box {...frame} position="relative" {...boxProps}>
-        <Box
-          as="iframe"
-          src={item.src}
-          title={item.alt || "Vista del sitio"}
-          border="0"
-          loading="lazy"
-          w={`calc(100% / ${zoom})`}
-          h={`calc(100% / ${zoom})`}
-          transform={`scale(${zoom})`}
-          transformOrigin="top left"
-          onError={() => setIframeError(true)}
-        />
-      </Box>
+      <LiveSiteFrame
+        item={item}
+        zoom={zoom}
+        viewportWidth={viewportWidth}
+        {...frame}
+        {...boxProps}
+      />
     );
   }
 

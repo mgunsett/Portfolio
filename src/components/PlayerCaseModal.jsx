@@ -19,6 +19,7 @@ import {
 import { FiExternalLink, FiMonitor, FiSmartphone } from "react-icons/fi";
 import { useState } from "react";
 import MediaFrame from "./MediaFrame";
+import PhoneFrame from "./PhoneFrame";
 import SectionDivider from "./SectionDivider";
 
 /**
@@ -192,37 +193,23 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
                   <Box w="290px" h="8px" bg="green" mt={2} opacity={0.85} />
                 </Flex>
               ) : (
+                // Mismo mockup que la card de la grilla (PhoneFrame), pero con
+                // el sitio en vivo adentro en vez del screenshot: acá el
+                // usuario ya hizo clic, así que se justifica cargar la landing
+                // entera. `viewportWidth={390}` la hace renderizar a ancho de
+                // iPhone real y no al ancho que quede el marco.
                 <Flex justify="center" mb={8}>
-                  <Box
-                    w={{ base: "90%", sm: "340px" }}
-                    h={{ base: "560px", sm: "590px" }}
-                    border="1px solid"
-                    borderColor="green"
-                    borderRadius="3xl"
-                    bg={panelBg}
-                    p={2}
-                    overflow="hidden"
-                    position="relative"
-                  >
-                    <Box
-                      w="90px"
-                      h="6px"
-                      bg="white"
-                      borderRadius="full"
-                      position="absolute"
-                      top={3}
-                      left="50%"
-                      transform="translateX(-50%)"
-                      zIndex={1}
-                      opacity={0.8}
-                    />
+                  <PhoneFrame maxW={{ base: "280px", sm: "300px" }}>
                     <MediaFrame
                       item={{ type: "iframe", src: player.url, alt: `${info.name} — vista mobile` }}
-                      zoom={zoom}
+                      viewportWidth={390}
+                      position="absolute"
+                      inset={0}
+                      w="100%"
                       h="100%"
-                      borderRadius="2xl"
+                      borderRadius={0}
                     />
-                  </Box>
+                  </PhoneFrame>
                 </Flex>
               )}
             </>

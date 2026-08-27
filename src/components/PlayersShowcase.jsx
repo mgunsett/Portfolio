@@ -56,16 +56,29 @@ const PlayersShowcase = () => {
               <GridItem colSpan={{ base: 1, md: 12 }}>
                 {/*
                   A partir de xl la grilla se corre a la derecha y baja: ese
-                  hueco es el que ocupa el avatar apoyado en la primera card
-                  (pl = cuerpo, pt = cabeza y hombros asomando por arriba).
-                  De paso achica las cards, que con pocos casos quedaban
-                  desproporcionadas frente al espacio vacío de la derecha.
+                  hueco es el que ocupa el avatar apoyado en el teléfono de la
+                  primera card (pl = cuerpo, pt = cabeza y hombros asomando por
+                  arriba). De paso achica las cards, que con pocos casos
+                  quedaban desproporcionadas frente al espacio vacío de la
+                  derecha.
+
+                  Los valores salen de la geometría de PlayerCard: con un
+                  teléfono de 260px de ancho (PHONE_MAX_W) el avatar mide ~766px
+                  de alto, sobresale ~276px hacia la izquierda del teléfono y
+                  ~203px por encima. pl/pt son esas medidas redondeadas hacia
+                  arriba, así que si cambia PHONE_MAX_W hay que recalcularlos.
+                */}
+                {/*
+                  El salto a dos columnas es en `md` y no en `sm`: con el
+                  teléfono como card, a 500px de ancho cada columna quedaba en
+                  ~198px y la métrica se le encimaba al CTA. En un celular real
+                  entra un solo mockup a 260px, que además se lee.
                 */}
                 <Grid
-                  templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
-                  gap={6}
-                  pl={{ base: 0, xl: 44, "2xl": 48 }}
-                  pt={{ base: 0, xl: 32 }}
+                  templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+                  gap={{ base: 14, md: 10, lg: 8 }}
+                  pl={{ base: 0, xl: 52, "2xl": 56 }}
+                  pt={{ base: 0, xl: 52 }}
                 >
                   {players.map((p, i) => (
                     <PlayerCard

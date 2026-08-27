@@ -40,6 +40,10 @@
  */
 import guido from "../../public/media/players/guido_mainero.webp";
 import guido1 from "../../public/media/players/guido_mainero1.webp";
+import gonzalo from "../../public/media/players/gonzalo_piovi.jpeg";
+import gonzalo1 from "../../public/media/players/gonzalo_piovi1.jpeg";
+import ronaldo from "../../public/media/players/ronaldo_martinez.png";
+import ronaldo1 from "../../public/media/players/ronaldo_martinez1.png";
 
 
 export const players = [
@@ -51,7 +55,7 @@ export const players = [
     player: {
       name: "Guido Mainero",
       position: "Delantero",
-      club: "Club Atlético Platense",
+      club: "Platense",
       country: "Argentina",
       number: 7,                      // opcional
     },
@@ -79,10 +83,10 @@ export const players = [
       country: "Argentina",
       number: 33,                      // opcional
     },
-    cover: guido1,   // 4:5 o 3:4, ~1200px
+    cover: gonzalo1,   // 4:5 o 3:4, ~1200px
     media: [
       { type: "video", src: "...reel.mp4", poster: "...reel.webp", orientation: "portrait" },
-      { type: "image", src: guido1, orientation: "landscape", alt: "web gonzalo piovi" },
+      { type: "image", src: gonzalo, orientation: "landscape", alt: "web gonzalo piovi" },
     ],
     metrics: [                           // máximo 3, siempre con período explícito
       { value: "+120K", label: "Visitas en 30 días" },
@@ -92,21 +96,21 @@ export const players = [
     tech: ["React", "Framer Motion"],
   },
   {
-    slug: "gonzalo_piovi",          // identificador único, sin espacios
+    slug: "ronaldo_martinez",          // identificador único, sin espacios
     status: "live",          // "coming" = teaser, sin material aún
     year: "2026",
-    url: "https://gonzalopiovi.com",              // landing en vivo (null si no está)
+    url: "https://ronaldomartinez.com",              // landing en vivo (null si no está)
     player: {
-      name: "Gonzalo Piovi",
-      position: "Defensor",
+      name: "Ronaldo Martinez",
+      position: "Delantero",
       club: "Cruz Azul",
       country: "Argentina",
-      number: 33,                      // opcional
+      number: 9,                      // opcional
     },
-    cover: guido1,   // 4:5 o 3:4, ~1200px
+    cover: ronaldo,   // 4:5 o 3:4, ~1200px
     media: [
       { type: "video", src: "...reel.mp4", poster: "...reel.webp", orientation: "portrait" },
-      { type: "image", src: guido1, orientation: "landscape", alt: "web gonzalo piovi" },
+      { type: "image", src: ronaldo1, orientation: "landscape", alt: "web ronaldo martinez" },
     ],
     metrics: [                           // máximo 3, siempre con período explícito
       { value: "+120K", label: "Visitas en 30 días" },
