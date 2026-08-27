@@ -27,7 +27,7 @@ const FEATURES = [
   },
   {
     title: "Versión mobile",
-    text: "Misma experiencia en el celular",
+    text: "Diseño optimizado para dispositivos móviles",
     side: "right",
   },
 ];
@@ -42,9 +42,10 @@ const FeatureCard = ({ title, text, side, delay }) => {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
-      border="1px solid"
+      borderLeft={ isLeft ? "none" : "1px solid" }
+      borderRight={ isLeft ? "1px solid" : "none" }
       borderColor="green"
-      p={{ base: 5, md: 6 }}
+      p={{ base: 5, md: 4 }}
       position="relative"
       w="100%"
     >
@@ -70,13 +71,14 @@ const FeatureCard = ({ title, text, side, delay }) => {
           bg="yellow"
         />
       </Box>
-
-      <Text fontWeight="bold" textTransform="uppercase" fontSize="sm" letterSpacing="wide" color="green" mb={2}>
-        {title}
-      </Text>
-      <Text fontSize="sm" opacity={0.85} fontFamily="space">
-        {text}
-      </Text>
+      <Flex direction="column"  textAlign={isLeft ? "right" : "left"}>
+        <Text fontWeight="bold" textTransform="uppercase" fontSize="sm" letterSpacing="wide" color="green" mb={2}>
+          {title}
+        </Text>
+        <Text fontSize="sm" opacity={0.85} fontFamily="space">
+          {text}
+        </Text>
+      </Flex> 
     </MotionBox>
   );
 };
@@ -123,7 +125,7 @@ const LandingPreview = () => {
             gap={{ base: 8, md: 8 }}
           >
             <GridItem order={{ base: 2, md: 1 }}>
-              <Flex direction="column" justify="space-between" h="100%" gap={{ base: 6, md: 16 }}>
+              <Flex direction="column" justify="space-between" h="100%" gap={{ base: 6, md: 16 }} mr={16  }>
                 <FeatureCard {...leftFeatures[0]} delay={0.1} />
                 <FeatureCard {...leftFeatures[1]} delay={0.3} />
               </Flex>

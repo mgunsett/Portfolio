@@ -38,7 +38,84 @@
  * Regla de contenido: un caso sin métricas convierte mucho menos. Si todavía no
  * hay números confirmados, dejarlo en status "coming" hasta tenerlos.
  */
-export const players = [];
+import guido from "../../public/media/players/guido_mainero.webp";
+import guido1 from "../../public/media/players/guido_mainero1.webp";
+
+
+export const players = [
+  {
+    slug: "guido_mainero",          // identificador único, sin espacios
+    status: "live",          // "coming" = teaser, sin material aún
+    year: "2026",
+    url: "https://guidomainero.com",              // landing en vivo (null si no está)
+    player: {
+      name: "Guido Mainero",
+      position: "Delantero",
+      club: "Club Atlético Platense",
+      country: "Argentina",
+      number: 7,                      // opcional
+    },
+    cover: guido,   // 4:5 o 3:4, ~1200px
+    media: [
+      { type: "video", src: "...reel.mp4", poster: "...reel.webp", orientation: "portrait" },
+      { type: "image", src: guido1, orientation: "landscape", alt: "web guido mainero" },
+    ],
+    metrics: [                           // máximo 3, siempre con período explícito
+      { value: "+120K", label: "Visitas en 30 días" },
+    ],
+    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
+    testimonial: { quote: "...", author: "...", role: "..." } | null,
+    tech: ["React", "Framer Motion"],
+  },
+  {
+    slug: "gonzalo_piovi",          // identificador único, sin espacios
+    status: "live",          // "coming" = teaser, sin material aún
+    year: "2026",
+    url: "https://gonzalopiovi.com",              // landing en vivo (null si no está)
+    player: {
+      name: "Gonzalo Piovi",
+      position: "Defensor",
+      club: "Cruz Azul",
+      country: "Argentina",
+      number: 33,                      // opcional
+    },
+    cover: guido1,   // 4:5 o 3:4, ~1200px
+    media: [
+      { type: "video", src: "...reel.mp4", poster: "...reel.webp", orientation: "portrait" },
+      { type: "image", src: guido1, orientation: "landscape", alt: "web gonzalo piovi" },
+    ],
+    metrics: [                           // máximo 3, siempre con período explícito
+      { value: "+120K", label: "Visitas en 30 días" },
+    ],
+    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
+    testimonial: { quote: "...", author: "...", role: "..." } | null,
+    tech: ["React", "Framer Motion"],
+  },
+  {
+    slug: "gonzalo_piovi",          // identificador único, sin espacios
+    status: "live",          // "coming" = teaser, sin material aún
+    year: "2026",
+    url: "https://gonzalopiovi.com",              // landing en vivo (null si no está)
+    player: {
+      name: "Gonzalo Piovi",
+      position: "Defensor",
+      club: "Cruz Azul",
+      country: "Argentina",
+      number: 33,                      // opcional
+    },
+    cover: guido1,   // 4:5 o 3:4, ~1200px
+    media: [
+      { type: "video", src: "...reel.mp4", poster: "...reel.webp", orientation: "portrait" },
+      { type: "image", src: guido1, orientation: "landscape", alt: "web gonzalo piovi" },
+    ],
+    metrics: [                           // máximo 3, siempre con período explícito
+      { value: "+120K", label: "Visitas en 30 días" },
+    ],
+    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
+    testimonial: { quote: "...", author: "...", role: "..." } | null,
+    tech: ["React", "Framer Motion"],
+  },
+];
 
 /** Casos publicables, en el orden en que deben mostrarse. */
 export const livePlayers = players.filter((p) => p.status === "live");

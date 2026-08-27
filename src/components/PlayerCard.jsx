@@ -1,5 +1,38 @@
 import { Badge, Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { MotionFlex, MotionBox } from "./Motion";
+import matiAvatar from "../assets/mati_avatar.webp";
+
+/**
+ * Avatar apoyado sobre la esquina superior izquierda de la card.
+ *
+ * La geometría sale del render: el antebrazo apoya al 31% de la altura del
+ * avatar, o sea que el 69% restante del cuerpo cuelga por debajo del punto de
+ * apoyo. Para que ese punto caiga sobre el borde superior y los pies lleguen
+ * a la base de la card, el avatar tiene que medir 1 / 0.69 ≈ 136% del alto de
+ * la card; el excedente (~36%) es la cabeza y los hombros asomando por arriba.
+ *
+ * `w="auto"` deja que el ancho salga del aspect ratio, y `right="82%"` hace
+ * que solo el antebrazo pise la card: el cuerpo cae en el margen que le
+ * reserva la grilla (ver `pl` en PlayersShowcase). Debajo de xl no hay margen
+ * lateral suficiente, así que no se muestra.
+ */
+const LeaningAvatar = () => (
+  <Image
+    src={matiAvatar}
+    alt=""
+    aria-hidden="true"
+    display={{ base: "none", xl: "block" }}
+    position="absolute"
+    right="82%"
+    bottom={0}
+    h="136%"
+    w="auto"
+    maxW="none"
+    zIndex={3}
+    pointerEvents="none"
+    filter="drop-shadow(0 18px 30px rgba(0, 0, 0, 0.55))"
+  />
+);
 
 /**
  * Card de un caso de jugador.
@@ -7,8 +40,11 @@ import { MotionFlex, MotionBox } from "./Motion";
  * En status "coming" mantiene exactamente el mismo esqueleto y proporciones,
  * con un overlay de "Próximamente": la grilla nunca se ve incompleta mientras
  * se termina de reunir el material de un caso.
+ *
+ * `withAvatar` reserva el efecto del avatar apoyado para una sola card de la
+ * grilla (la primera): repetido en todas perdería la gracia.
  */
-const PlayerCard = ({ player, onOpen }) => {
+const PlayerCard = ({ player, onOpen, withAvatar = false }) => {
   const isComing = player.status === "coming";
   const headlineMetric = player.metrics?.[0];
 
@@ -23,12 +59,11 @@ const PlayerCard = ({ player, onOpen }) => {
       border="1px solid"
       borderColor="green"
       position="relative"
-      overflow="hidden"
+      overflow={withAvatar ? "visible" : "hidden"}
       cursor={isComing ? "default" : "pointer"}
       initial="rest"
       whileHover={isComing ? "rest" : "hover"}
       animate="rest"
-      variants={{ rest: { y: 0 }, hover: { y: -6 } }}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {/* Cover */}
@@ -172,6 +207,9 @@ const PlayerCard = ({ player, onOpen }) => {
           </Text>
         )}
       </Flex>
+
+      {/* Último en el DOM: se apoya por delante del cover */}
+      {withAvatar && <LeaningAvatar />}
     </MotionFlex>
   );
 };

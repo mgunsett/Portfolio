@@ -23,7 +23,9 @@ const PlayersShowcase = () => {
   };
 
   return (
-    <Box id="casos" position="relative">
+    // overflowX="clip" (y no "hidden") recorta el avatar apoyado si el margen
+    // lateral se queda corto, sin crear un contenedor de scroll horizontal.
+    <Box id="casos" position="relative" overflowX="clip">
       <SectionDivider mt={10} mb={12} />
 
       <MotionBox
@@ -52,12 +54,26 @@ const PlayersShowcase = () => {
               </GridItem>
 
               <GridItem colSpan={{ base: 1, md: 12 }}>
+                {/*
+                  A partir de xl la grilla se corre a la derecha y baja: ese
+                  hueco es el que ocupa el avatar apoyado en la primera card
+                  (pl = cuerpo, pt = cabeza y hombros asomando por arriba).
+                  De paso achica las cards, que con pocos casos quedaban
+                  desproporcionadas frente al espacio vacío de la derecha.
+                */}
                 <Grid
                   templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
                   gap={6}
+                  pl={{ base: 0, xl: 44, "2xl": 48 }}
+                  pt={{ base: 0, xl: 32 }}
                 >
-                  {players.map((p) => (
-                    <PlayerCard key={p.slug} player={p} onOpen={handleOpen} />
+                  {players.map((p, i) => (
+                    <PlayerCard
+                      key={p.slug}
+                      player={p}
+                      onOpen={handleOpen}
+                      withAvatar={i === 0}
+                    />
                   ))}
                 </Grid>
               </GridItem>
