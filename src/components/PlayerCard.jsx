@@ -1,7 +1,7 @@
 import { Badge, Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { MotionBox, MotionFlex, MotionImage } from "./Motion";
-import PhoneFrame from "./PhoneFrame";
+import PhoneFrame, { ISLAND_SAFE_TOP } from "./PhoneFrame";
 import matiAvatar from "../assets/mati_avatar.webp";
 
 /**
@@ -22,13 +22,13 @@ const PHONE_MAX_W = "260px";
  * arriba.
  *
  * Se mide contra el teléfono y no contra la card entera a propósito: con el
- * bloque de datos debajo, ese 136% sobre la card completa dispararía el avatar
- * a casi 1000px de alto.
+ * encabezado arriba, ese 136% sobre la card completa dispararía el avatar a
+ * casi 1000px de alto.
  *
  * `w="auto"` deja que el ancho salga del aspect ratio, y `right="82%"` hace
  * que solo el antebrazo pise el teléfono: el cuerpo cae en el margen que le
- * reserva la grilla. Debajo de xl no hay margen lateral suficiente, así que no
- * se muestra.
+ * reserva la grilla. Debajo de xl no hay margen lateral suficiente; ahí el
+ * avatar aparece una sola vez, junto al encabezado de la sección.
  */
 const LeaningAvatar = () => (
   <MotionImage
@@ -49,21 +49,127 @@ const LeaningAvatar = () => (
 );
 
 /**
+ * Encabezado de la card, arriba del teléfono.
+ *
+ * Toma el gesto de las features de LandingPreview —línea fina verde rematada
+ * por un punto amarillo— pero acostado: acá la línea corre por debajo del texto
+ * y a lo ancho de la card, así queda señalando el mockup que viene abajo en vez
+ * de acompañar un texto al costado.
+ *
+ * Lleva lo mínimo indispensable para identificar el caso: posición, club y
+ * nombre. Las métricas, el material y las tecnologías viven en el modal, que es
+ * donde el visitante ya decidió prestar atención; repetirlos acá llenaba la
+ * grilla de números compitiendo entre sí.
+ *
+ * Dos medidas lo sostienen:
+ *
+ * - `flex="1"` + `justify="flex-end"`: el bloque crece hasta llenar el alto que
+ *   la grilla le da a la card y ancla su contenido abajo. Así un nombre que
+ *   corta en dos renglones se come el aire de arriba y todos los teléfonos de
+ *   la fila siguen arrancando a la misma altura, sin reservar renglones vacíos.
+ *
+ * - `mb` generoso: además de aire, es lo que mantiene el texto y la línea por
+ *   encima del antebrazo del avatar, que en xl apoya justo sobre el canto
+ *   superior del teléfono de la primera card.
+ */
+const CardHeader = ({ player, showCta }) => (
+  <Flex
+    direction="column"
+    justify="flex-end"
+    flex="1"
+    w="100%"
+    mb={{ base: 10, md: 12, xl: 16 }}
+  >
+    <Text
+      fontSize="xs"
+      letterSpacing="0.2em"
+      textTransform="uppercase"
+      fontWeight="semibold"
+      color="green"
+      mb={2}
+    >
+      {[player.player.position, player.player.club].filter(Boolean).join(" · ")}
+    </Text>
+
+    <Heading
+      as="h3"
+      fontFamily='"Syne", sans-serif'
+      fontSize={{ base: "xl", md: "2xl" }}
+      textTransform="uppercase"
+      color="beige"
+      lineHeight="1.1"
+    >
+      {player.player.name}
+    </Heading>
+
+    <Flex align="center" gap={4} mt={4}>
+      {/* La línea y su punto: el remate que apunta al mockup de abajo. */}
+      <Box position="relative" flex="1" h="1px" bg="green">
+        <Box
+          position="absolute"
+          left={0}
+          top="50%"
+          transform="translateY(-50%)"
+          w="6px"
+          h="6px"
+          borderRadius="full"
+          bg="yellow"
+        />
+      </Box>
+
+      {showCta && (
+        <Flex
+          align="center"
+          gap={1}
+          fontSize="xs"
+          fontWeight="semibold"
+          letterSpacing="0.1em"
+          textTransform="uppercase"
+          color="green"
+          whiteSpace="nowrap"
+        >
+          Ver caso
+          <MotionBox
+            as="span"
+            variants={{ rest: { x: 0 }, hover: { x: 4 } }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+          >
+            →
+          </MotionBox>
+        </Flex>
+      )}
+    </Flex>
+  </Flex>
+);
+
+/**
  * Teléfono con el screenshot del home mobile de la landing en la pantalla.
  *
- * La captura entra a ancho completo y alto natural. Si es más larga que la
- * pantalla —lo esperable en un screenshot de página completa— el sobrante se
- * mide con un ResizeObserver y en hover la imagen se desplaza exactamente esa
- * distancia: se ve como si alguien scrolleara el sitio.
+ * La captura entra a ancho completo y alto natural, pero con un piso: nunca
+ * mide menos que el alto libre de la pantalla. Ese piso está porque las
+ * capturas no vienen todas en 9:19.5 —hay de 485x909 y de 422x909— y las más
+ * anchas, a ancho completo, se quedaban cortas de alto y dejaban una franja de
+ * fondo abajo, mientras la del ratio justo llenaba el mockup.
  *
- * `objectFit="contain"` y no "cover" porque el recorte acá es caro: las
- * capturas son más anchas que una pantalla 19.5:9 y con "cover" se perdían los
- * costados del diseño (títulos cortados al medio). Contain las muestra
- * enteras; el sobrante de abajo lo tapa una copia borroneada de la misma
- * captura, así no queda una franja negra con costura visible.
+ * Cuando una captura no llega, el `minH` estira la caja y `objectFit="cover"`
+ * la escala por alto: se recortan unos cinco puntos porcentuales de cada
+ * costado, bastante menos molesto que la banda vacía. Lo definitivo, igual, es
+ * exportar las capturas ya en 9:19.5.
  *
- * En esas capturas cortas no hay recorrido para scrollear, así que el hover cae
- * de vuelta a un zoom suave.
+ * Si la captura es más larga que la pantalla —lo esperable en un screenshot de
+ * página completa— el sobrante se mide con un ResizeObserver y en hover la
+ * imagen se desplaza exactamente esa distancia: se ve como si alguien
+ * scrolleara el sitio. Ahí "cover" no recorta nada, porque la caja ya tiene el
+ * aspecto natural de la imagen.
+ *
+ * En las capturas que no dan recorrido para scrollear, el hover cae de vuelta a
+ * un zoom suave.
+ *
+ * La captura arranca `ISLAND_SAFE_TOP` más abajo del canto de la pantalla: es
+ * una imagen fija, no un sitio que scrollea bajo la isla, así que si empezara
+ * en 0 la Dynamic Island le comería el header. Ese aire lo rellena el fondo
+ * borroneado, y el recorrido del hover lo suma para que la captura igual
+ * termine mostrándose entera.
  */
 const ScreenshotPhone = ({ player, isComing }) => {
   const screenRef = useRef(null);
@@ -76,7 +182,9 @@ const ScreenshotPhone = ({ player, isComing }) => {
     if (!screen || !shot) return;
 
     const measure = () =>
-      setScrollable(Math.max(0, shot.offsetHeight - screen.offsetHeight));
+      setScrollable(
+        Math.max(0, shot.offsetHeight + ISLAND_SAFE_TOP - screen.offsetHeight)
+      );
 
     measure();
     const observer = new ResizeObserver(measure);
@@ -89,8 +197,9 @@ const ScreenshotPhone = ({ player, isComing }) => {
     <PhoneFrame maxW="none" screenRef={screenRef}>
       {player.cover ? (
         <>
-          {/* Fondo ambiente: la misma captura, borroneada, para rellenar el
-              sobrante que deja "contain" sin que se note el corte. */}
+          {/* Fondo ambiente: la misma captura, borroneada. Con el `minH` de
+              abajo lo único que le queda descubierto es la banda de la isla,
+              que así no es un rectángulo negro plano. */}
           <Image
             src={player.cover}
             alt=""
@@ -110,24 +219,29 @@ const ScreenshotPhone = ({ player, isComing }) => {
             src={player.cover}
             alt={"Home mobile de la landing de " + player.player.name}
             position="absolute"
-            top={0}
+            top={ISLAND_SAFE_TOP + "px"}
             left={0}
             w="100%"
             h="auto"
-            objectFit="contain"
+            minH={"calc(100% - " + ISLAND_SAFE_TOP + "px)"}
+            objectFit="cover"
             objectPosition="top center"
             transformOrigin="top center"
             loading="lazy"
-            sx={{
-              // La máscara se mide sobre el alto real de la imagen, así que el
-              // degradado cae justo donde termina la captura y se funde con el
-              // fondo borroneado. En una captura larga queda fuera de pantalla
-              // hasta que el hover termina de scrollear.
-              maskImage:
-                "linear-gradient(to bottom, #000 calc(100% - 40px), transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to bottom, #000 calc(100% - 40px), transparent 100%)",
-            }}
+            sx={
+              // El fundido del canto inferior solo tiene sentido en la captura
+              // larga, donde ese borde entra en cuadro recién al final del
+              // scroll del hover. En una que ya llega al canto de la pantalla se
+              // comería 40px de diseño contra el fondo.
+              scrollable > 0
+                ? {
+                    maskImage:
+                      "linear-gradient(to bottom, #000 calc(100% - 40px), transparent 100%)",
+                    WebkitMaskImage:
+                      "linear-gradient(to bottom, #000 calc(100% - 40px), transparent 100%)",
+                  }
+                : undefined
+            }
             variants={{
               rest: { y: 0, scale: 1 },
               hover: scrollable > 0 ? { y: -scrollable } : { scale: 1.06 },
@@ -181,14 +295,15 @@ const ScreenshotPhone = ({ player, isComing }) => {
  * Card de un caso de jugador: el teléfono es la card.
  *
  * En vez de un cover recortado a 4:5, se muestra el home mobile real de la
- * landing dentro de un mockup de iPhone, y los datos del jugador van debajo
- * para no tapar el diseño que se está mostrando.
+ * landing dentro de un mockup de iPhone. La ficha va arriba y en una sola
+ * línea: abajo tapaba el diseño que se está mostrando y estiraba cada card a
+ * una pantalla entera de alto en mobile.
  *
  * Acá va el screenshot y no el sitio en vivo a propósito: son tres landings
  * completas, y embeberlas en la grilla costaría una carga de sitio por card
  * (varios segundos en negro mientras corren sus animaciones de entrada) y
  * contaría una visita en el analytics de cada jugador por cada hover, que es
- * justo la métrica que la card publica. El sitio en vivo va en el modal, donde
+ * justo la métrica que el caso publica. El sitio en vivo va en el modal, donde
  * el usuario ya hizo clic (ver PlayerCaseModal).
  *
  * En status "coming" mantiene exactamente el mismo esqueleto y proporciones,
@@ -200,7 +315,6 @@ const ScreenshotPhone = ({ player, isComing }) => {
  */
 const PlayerCard = ({ player, onOpen, withAvatar = false }) => {
   const isComing = player.status === "coming";
-  const headlineMetric = player.metrics?.[0];
 
   return (
     <MotionFlex
@@ -212,14 +326,17 @@ const PlayerCard = ({ player, onOpen, withAvatar = false }) => {
       textAlign="left"
       position="relative"
       w="100%"
+      h="100%"
       cursor={isComing ? "default" : "pointer"}
       initial="rest"
       whileHover={isComing ? "rest" : "hover"}
       animate="rest"
     >
+      <CardHeader player={player} showCta={!isComing} />
+
       {/*
-        Escenario del teléfono: además del mockup contiene el dorsal fantasma y
-        el avatar apoyado, que se miden contra esta caja y no contra la card.
+        Escenario del teléfono: además del mockup contiene el avatar apoyado,
+        que se mide contra esta caja y no contra la card.
       */}
       <MotionBox
         position="relative"
@@ -229,10 +346,14 @@ const PlayerCard = ({ player, onOpen, withAvatar = false }) => {
         variants={{ rest: { y: 0 }, hover: { y: -8 } }}
         transition={{ duration: 0.35, ease: "easeOut" }}
       >
-        {/* Halo verde de marca detrás del teléfono */}
+        {/*
+          Halo verde de marca detrás del teléfono. Va con `inset={0}` y no
+          desbordado hacia afuera: el blur lo expande igual, y una caja más
+          grande que la card le sumaba scroll horizontal al carrusel mobile.
+        */}
         <Box
           position="absolute"
-          inset="-14%"
+          inset={0}
           bg="green"
           opacity={0.25}
           filter="blur(70px)"
@@ -241,111 +362,11 @@ const PlayerCard = ({ player, onOpen, withAvatar = false }) => {
           zIndex={0}
         />
 
-        {/*
-          Dorsal fantasma: se apoya sobre el canto superior del teléfono, sin
-          pasarse de su ancho. Si se sale hacia la derecha lo tapa el teléfono
-          de la card siguiente, que pinta después.
-        */}
-        {player.player.number && (
-          <Text
-            position="absolute"
-            bottom="calc(100% - 26px)"
-            right="6px"
-            fontFamily='"Syne", sans-serif'
-            fontSize={{ base: "6xl", md: "7xl" }}
-            fontWeight="bold"
-            lineHeight="0.8"
-            color="yellow"
-            opacity={0.3}
-            zIndex={0}
-            pointerEvents="none"
-          >
-            {player.player.number}
-          </Text>
-        )}
-
         <ScreenshotPhone player={player} isComing={isComing} />
 
         {/* Último en el DOM: se apoya por delante del teléfono */}
         {withAvatar && <LeaningAvatar />}
       </MotionBox>
-
-      {/* Datos del jugador, alineados al canto izquierdo del teléfono */}
-      <Box w="100%" maxW={PHONE_MAX_W} mx="auto" mt={{ base: 6, md: 7 }}>
-        <Text
-          fontSize="xs"
-          letterSpacing="0.2em"
-          textTransform="uppercase"
-          color="yellow"
-          mb={2}
-        >
-          {[player.player.position, player.player.club].filter(Boolean).join(" · ")}
-        </Text>
-
-        {/*
-          `minH` de dos renglones: los nombres largos ("Ronaldo Martinez")
-          cortan en dos líneas y si no, la regla verde y la métrica de esa card
-          quedaban más abajo que las del resto de la fila.
-        */}
-        <Heading
-          as="h3"
-          fontFamily='"Syne", sans-serif'
-          fontSize={{ base: "xl", md: "2xl" }}
-          textTransform="uppercase"
-          color="beige"
-          lineHeight="1.1"
-          minH="2.2em"
-        >
-          {player.player.name}
-        </Heading>
-
-        <Flex
-          mt={4}
-          pt={4}
-          borderTop="1px solid"
-          borderColor="green"
-          justify="space-between"
-          align="center"
-          gap={3}
-        >
-          {headlineMetric ? (
-            <Box>
-              <Text fontSize="2xl" fontWeight="bold" color="green" lineHeight="1">
-                {headlineMetric.value}
-              </Text>
-              <Text fontSize="xs" opacity={0.75} fontFamily="space" mt={1}>
-                {headlineMetric.label}
-              </Text>
-            </Box>
-          ) : (
-            <Text fontSize="xs" opacity={0.6} fontFamily="space">
-              {player.year}
-            </Text>
-          )}
-
-          {!isComing && (
-            <Flex
-              align="center"
-              gap={1}
-              fontSize="sm"
-              fontWeight="semibold"
-              letterSpacing="wide"
-              textTransform="uppercase"
-              color="green"
-              whiteSpace="nowrap"
-            >
-              Ver caso
-              <MotionBox
-                as="span"
-                variants={{ rest: { x: 0 }, hover: { x: 4 } }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-              >
-                →
-              </MotionBox>
-            </Flex>
-          )}
-        </Flex>
-      </Box>
     </MotionFlex>
   );
 };

@@ -1,12 +1,12 @@
-import { Box, Flex, Grid, GridItem, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Image, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { MotionBox } from "./Motion";
 import SectionDivider from "./SectionDivider";
 import SectionHeader from "./SectionHeader";
-import PlayerCard from "./PlayerCard";
+import PlayersRail from "./PlayersRail";
 import PlayerCaseModal from "./PlayerCaseModal";
 import { players } from "../data/players";
-import { BRAND } from "../config/brand";
+import matiAvatar from "../assets/mati_avatar.webp";
 
 const PlayersShowcase = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,54 +41,70 @@ const PlayersShowcase = () => {
           {players.length > 0 ? (
             <Grid templateColumns={{ base: "1fr", md: "repeat(12, 1fr)" }} gap={{ base: 8, md: 12 }}>
               <GridItem colSpan={{ base: 1, md: 12 }}>
-                <SectionHeader
-                  number="01"
-                  title={
-                    <>
-                      Landing Pages
-                      <br />
-                      para Futbolistas
-                    </>
-                  }
-                />
+                {/*
+                  Hasta xl el avatar presenta la sección desde acá: apoya el
+                  antebrazo sobre la línea vertical del encabezado, que es el
+                  mismo gesto que en xl hace sobre el canto del teléfono de la
+                  primera card. Por eso los dos usos son excluyentes —nunca hay
+                  dos avatares en pantalla— y por eso la línea existe: sin algo
+                  vertical donde apoyarse, la pose queda flotando.
+
+                  Asoma desde afuera del padding de la sección (`ml` negativo)
+                  para no comerle ancho al título, que en un celular angosto
+                  entra justo.
+                */}
+                <Flex align="flex-end" gap={{ base: 3, md: 5 }}>
+                  <Image
+                    src={matiAvatar}
+                    alt=""
+                    aria-hidden="true"
+                    display={{ base: "block", xl: "none" }}
+                    h={{ base: "185px", md: "250px" }}
+                    w="auto"
+                    maxW="none"
+                    ml={{ base: -6, md: -4 }}
+                    flexShrink={0}
+                    filter="drop-shadow(0 18px 30px rgba(0, 0, 0, 0.55))"
+                  />
+
+                  <Box
+                    borderLeft={{ base: "1px solid", xl: "none" }}
+                    borderColor="green"
+                    pl={{ base: 5, xl: 0 }}
+                  >
+                    <SectionHeader
+                      number="01"
+                      title={
+                        <>
+                          Destacados
+                        </>
+                      }
+                      subtitle="Algunas de las Landing's más visitadas actualmente"
+                    />
+                  </Box>
+                </Flex>
               </GridItem>
 
               <GridItem colSpan={{ base: 1, md: 12 }}>
                 {/*
-                  A partir de xl la grilla se corre a la derecha y baja: ese
-                  hueco es el que ocupa el avatar apoyado en el teléfono de la
-                  primera card (pl = cuerpo, pt = cabeza y hombros asomando por
-                  arriba). De paso achica las cards, que con pocos casos
-                  quedaban desproporcionadas frente al espacio vacío de la
-                  derecha.
+                  A partir de xl el bloque de casos se corre a la derecha y
+                  baja: ese hueco es el que ocupa el avatar apoyado en el
+                  teléfono de la primera card (pl = cuerpo, pt = cabeza y
+                  hombros asomando por arriba). De paso achica las cards, que
+                  con pocos casos quedaban desproporcionadas frente al espacio
+                  vacío de la derecha.
 
                   Los valores salen de la geometría de PlayerCard: con un
                   teléfono de 260px de ancho (PHONE_MAX_W) el avatar mide ~766px
                   de alto, sobresale ~276px hacia la izquierda del teléfono y
-                  ~203px por encima. pl/pt son esas medidas redondeadas hacia
-                  arriba, así que si cambia PHONE_MAX_W hay que recalcularlos.
+                  ~203px por encima. El `pt` es esa medida menos el encabezado
+                  de la card (~92px), que ya empuja el teléfono hacia abajo; si
+                  cambia PHONE_MAX_W o el alto del encabezado, hay que
+                  recalcularlos.
                 */}
-                {/*
-                  El salto a dos columnas es en `md` y no en `sm`: con el
-                  teléfono como card, a 500px de ancho cada columna quedaba en
-                  ~198px y la métrica se le encimaba al CTA. En un celular real
-                  entra un solo mockup a 260px, que además se lee.
-                */}
-                <Grid
-                  templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
-                  gap={{ base: 14, md: 10, lg: 8 }}
-                  pl={{ base: 0, xl: 52, "2xl": 56 }}
-                  pt={{ base: 0, xl: 52 }}
-                >
-                  {players.map((p, i) => (
-                    <PlayerCard
-                      key={p.slug}
-                      player={p}
-                      onOpen={handleOpen}
-                      withAvatar={i === 0}
-                    />
-                  ))}
-                </Grid>
+                <Box pl={{ base: 0, xl: 52, "2xl": 56 }} pt={{ base: 0, xl: 28 }}>
+                  <PlayersRail players={players} onOpen={handleOpen} />
+                </Box>
               </GridItem>
             </Grid>
           ) : (

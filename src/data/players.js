@@ -41,8 +41,8 @@
 import guido from "../../public/media/players/guido_mainero.webp";
 import guido1 from "../../public/media/players/guido_mainero1.webp";
 import gonzalo from "../../public/media/players/gonzalo_piovi.jpeg";
-import gonzalo1 from "../../public/media/players/gonzalo_piovi1.jpeg";
-import ronaldo from "../../public/media/players/ronaldo_martinez.png";
+import gonzalo1 from "../../public/media/players/gonzalo_piovi1.webp";
+import ronaldo from "../../public/media/players/ronaldo_martinez.webp";
 import ronaldo1 from "../../public/media/players/ronaldo_martinez1.png";
 
 

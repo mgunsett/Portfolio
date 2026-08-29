@@ -8,6 +8,16 @@ import { Box } from "@chakra-ui/react";
  */
 export const SCREEN_RATIO = "9 / 19.5";
 
+/**
+ * Aire (px) que hay que dejar libre arriba de la pantalla para que la Dynamic
+ * Island no pise el contenido: su `top` (9px) + su alto (19px) + un respiro.
+ *
+ * Lo usa quien mete contenido plano en la pantalla: un screenshot no scrollea
+ * por debajo de la isla como lo haria un sitio real, asi que ahi la isla lo
+ * taparia.
+ */
+export const ISLAND_SAFE_TOP = 34;
+
 /** Botón físico del canto del teléfono: sobresale 2px de la carcasa. */
 const SideButton = ({ side, top, h }) => (
   <Box

@@ -81,6 +81,20 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
               >
                 {info.name}
               </Heading>
+              {/* El dorsal salió de la card para no competir con el mockup;
+                  acá adentro tiene lugar como acento, sin robarle el foco al
+                  nombre. */}
+              {info.number && (
+                <Text
+                  fontFamily={'"Syne", sans-serif'}
+                  fontSize={{ base: "lg", md: "2xl" }}
+                  fontWeight="bold"
+                  color="yellow"
+                  opacity={0.85}
+                >
+                  #{info.number}
+                </Text>
+              )}
               <Text fontSize="sm" opacity={0.6}>
                 {player.year}
               </Text>

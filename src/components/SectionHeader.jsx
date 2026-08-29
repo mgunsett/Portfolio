@@ -28,7 +28,6 @@ const SectionHeader = ({ number, title, subtitle, dotColor = "yellow" }) => (
     >
       {title}
     </Heading>
-
     {subtitle && (
       <Text mt={4} fontSize={{ base: "md", md: "lg" }} opacity={0.8} fontFamily="space">
         {subtitle}
