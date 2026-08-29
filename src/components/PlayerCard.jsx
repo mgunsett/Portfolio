@@ -76,69 +76,55 @@ const CardHeader = ({ player, showCta }) => (
   <Flex
     direction="column"
     justify="flex-end"
+    alignItems="center"
     flex="1"
     w="100%"
-    mb={{ base: 10, md: 12, xl: 16 }}
+    mb={{ base: 10, md: 12, xl: 12}}
   >
-    <Text
-      fontSize="xs"
-      letterSpacing="0.2em"
-      textTransform="uppercase"
-      fontWeight="semibold"
-      color="green"
-      mb={2}
-    >
-      {[player.player.position, player.player.club].filter(Boolean).join(" · ")}
-    </Text>
-
-    <Heading
-      as="h3"
-      fontFamily='"Syne", sans-serif'
-      fontSize={{ base: "xl", md: "2xl" }}
-      textTransform="uppercase"
-      color="beige"
-      lineHeight="1.1"
-    >
-      {player.player.name}
-    </Heading>
-
-    <Flex align="center" gap={4} mt={4}>
+    <Flex direction="column" alignItems="center" gap={1}>
+      <Text
+        fontSize="xs"
+        letterSpacing="0.2em"
+        textTransform="uppercase"
+        fontWeight="semibold"
+        color="green"
+        mb={2}
+      >
+        {[player.player.position, player.player.club].filter(Boolean).join(" · ")}
+      </Text>
+      <Heading
+        as="h3"
+        fontFamily='"Syne", sans-serif'
+        fontSize={{ base: "xl", md: "2xl" }}
+        textTransform="uppercase"
+        
+        lineHeight="1.1"
+      >
+        {player.player.name}
+      </Heading>
+    </Flex>
       {/* La línea y su punto: el remate que apunta al mockup de abajo. */}
-      <Box position="relative" flex="1" h="1px" bg="green">
+      <Flex
+        direction="column"
+        justify="center"
+        alignItems="center"
+        borderTop="1px solid"
+        borderColor="green" 
+        w="160px"
+        mt={4}
+      >
         <Box
-          position="absolute"
-          left={0}
-          top="50%"
-          transform="translateY(-50%)"
+          w="1px"
+          h="40px"
+          bg="green"
+        />
+        <Box  
           w="6px"
           h="6px"
           borderRadius="full"
           bg="yellow"
         />
-      </Box>
-
-      {showCta && (
-        <Flex
-          align="center"
-          gap={1}
-          fontSize="xs"
-          fontWeight="semibold"
-          letterSpacing="0.1em"
-          textTransform="uppercase"
-          color="green"
-          whiteSpace="nowrap"
-        >
-          Ver caso
-          <MotionBox
-            as="span"
-            variants={{ rest: { x: 0 }, hover: { x: 4 } }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-          >
-            →
-          </MotionBox>
-        </Flex>
-      )}
-    </Flex>
+      </Flex>
   </Flex>
 );
 
@@ -197,9 +183,6 @@ const ScreenshotPhone = ({ player, isComing }) => {
     <PhoneFrame maxW="none" screenRef={screenRef}>
       {player.cover ? (
         <>
-          {/* Fondo ambiente: la misma captura, borroneada. Con el `minH` de
-              abajo lo único que le queda descubierto es la banda de la isla,
-              que así no es un rectángulo negro plano. */}
           <Image
             src={player.cover}
             alt=""
@@ -346,11 +329,7 @@ const PlayerCard = ({ player, onOpen, withAvatar = false }) => {
         variants={{ rest: { y: 0 }, hover: { y: -8 } }}
         transition={{ duration: 0.35, ease: "easeOut" }}
       >
-        {/*
-          Halo verde de marca detrás del teléfono. Va con `inset={0}` y no
-          desbordado hacia afuera: el blur lo expande igual, y una caja más
-          grande que la card le sumaba scroll horizontal al carrusel mobile.
-        */}
+        {/* Halo verde de marca detrás del teléfono */}
         <Box
           position="absolute"
           inset={0}

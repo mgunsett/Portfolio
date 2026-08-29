@@ -101,7 +101,7 @@ export const players = [
     year: "2026",
     url: "https://ronaldomartinez.com",              // landing en vivo (null si no está)
     player: {
-      name: "Ronaldo Martinez",
+      name: "Rony Martinez",
       position: "Delantero",
       club: "Cruz Azul",
       country: "Argentina",

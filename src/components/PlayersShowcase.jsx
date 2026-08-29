@@ -59,7 +59,7 @@ const PlayersShowcase = () => {
                     alt=""
                     aria-hidden="true"
                     display={{ base: "block", xl: "none" }}
-                    h={{ base: "185px", md: "250px" }}
+                    h={{ base: "185px", md: "230px" }}
                     w="auto"
                     maxW="none"
                     ml={{ base: -6, md: -4 }}
@@ -85,24 +85,8 @@ const PlayersShowcase = () => {
                 </Flex>
               </GridItem>
 
-              <GridItem colSpan={{ base: 1, md: 12 }}>
-                {/*
-                  A partir de xl el bloque de casos se corre a la derecha y
-                  baja: ese hueco es el que ocupa el avatar apoyado en el
-                  teléfono de la primera card (pl = cuerpo, pt = cabeza y
-                  hombros asomando por arriba). De paso achica las cards, que
-                  con pocos casos quedaban desproporcionadas frente al espacio
-                  vacío de la derecha.
-
-                  Los valores salen de la geometría de PlayerCard: con un
-                  teléfono de 260px de ancho (PHONE_MAX_W) el avatar mide ~766px
-                  de alto, sobresale ~276px hacia la izquierda del teléfono y
-                  ~203px por encima. El `pt` es esa medida menos el encabezado
-                  de la card (~92px), que ya empuja el teléfono hacia abajo; si
-                  cambia PHONE_MAX_W o el alto del encabezado, hay que
-                  recalcularlos.
-                */}
-                <Box pl={{ base: 0, xl: 52, "2xl": 56 }} pt={{ base: 0, xl: 28 }}>
+              <GridItem colSpan={{ base: 2, md: 12 }}>
+                <Box pl={{ base: 0, xl: 52, "2xl": 56 }} pt={{ base: 0, xl: 16 }}>
                   <PlayersRail players={players} onOpen={handleOpen} />
                 </Box>
               </GridItem>
