@@ -1,11 +1,13 @@
 import { Box, Heading, Text, Stack, Flex, useColorMode } from "@chakra-ui/react";
 import { MotionBox } from "./Motion";
-import { HeroSideArt, HeroMobileArt, HeroHalo } from "./HeroArt";
+import { HeroAvatar, HeroHalo } from "./HeroArt";
 import { useHeroParallax } from "../hooks/useHeroParallax";
 import { Eyebrow, HeroActions, HeroMetaStrip } from "./HeroKit";
 import { BRAND } from "../config/brand";
 
 const EYEBROW_TEXT = "Front-End Developer · React.js";
+const CLAIM = "Interfaces y Aplicaciones Web a Medida";
+const AVATAR_ALT = "Ilustración 3D de Matías Gunsett programando en su notebook";
 
 const ACTIONS = [
   { label: "Ver proyectos", sectionId: "proyectos", variant: "primary" },
@@ -18,14 +20,21 @@ const STATS = BRAND.stats.map(({ value, label }) => `${value} ${label}`);
 /**
  * Hero de la página principal: Matías como Front-End Developer.
  *
- * Comparte imagen, parallax y tipografía con el Hero de Sportfolio, pero apoya
- * el panel del lado opuesto y habla del perfil general en vez del servicio
- * deportivo, que queda nombrado como especialidad y se explora en /sportfolio.
+ * El avatar (blob verde + figura) no es un fondo — es parte de la
+ * composición. En mobile
+ * parte el nombre en dos (MATÍAS arriba, GUNSETT abajo) y se planta en el
+ * medio; en desktop se apoya a la izquierda como figura contenida, con el
+ * texto alineado a la derecha. El Hero de Sportfolio sigue con la foto de
+ * fondo a sangre (HeroSideArt), para que las dos páginas no se lean iguales.
  */
 const HeroPortfolio = () => {
   const { colorMode } = useColorMode();
   const dark = colorMode === "dark";
   const parallax = useHeroParallax();
+
+  // El parallax del panel lateral escala 1.1 para tapar los bordes del recorte;
+  // acá la figura va suelta, así que solo nos quedamos con el desplazamiento.
+  const avatarParallax = { ...parallax, scale: 1 };
 
   return (
     <Box
@@ -33,20 +42,12 @@ const HeroPortfolio = () => {
       minH="100vh"
       display="flex"
       alignItems="center"
-      justifyContent={{ md: "flex-end" }}
-      px={{ base: 6, md: 12, lg: 40 }}
-      py={{ base: 12, md: 0 }}
+      px={{ base: 6, md: 8, lg: 16, xl: 24 }}
+      py={{ base: 10, md: 0 }}
       pt={{ base: 24, md: 0 }}
       position="relative"
       overflow="hidden"
     >
-      <HeroSideArt
-        dark={dark}
-        style={parallax}
-        side="left"
-        alt="Matías Gunsett, desarrollador front-end, trabajando"
-      />
-      <HeroMobileArt dark={dark} />
       <HeroHalo side="left" />
 
       {/* ===================== MOBILE ===================== */}
@@ -59,24 +60,36 @@ const HeroPortfolio = () => {
         alignItems="center"
         textAlign="center"
         w="100%"
+        maxW="520px"
+        mx="auto"
         position="relative"
         zIndex={1}
-        gap={6}
+        gap={5}
       >
         <Eyebrow text={EYEBROW_TEXT} center />
 
+        {/* Un único Heading envuelve nombre + avatar: partirlo en dos headings
+            dejaría "MATÍAS" y "GUNSETT" como títulos sueltos. El avatar va con
+            alt vacío porque acá es parte del logotipo, no información nueva. */}
         <Heading
-          fontSize={{ base: "6xl", sm: "7xl" }}
-          lineHeight="0.95"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          gap={3}
+          w="100%"
+          fontSize="clamp(2.5rem, 12.5vw, 4.25rem)"
+          lineHeight="0.9"
           letterSpacing="-0.02em"
           textShadow={dark ? "0 4px 24px rgba(0,0,0,0.7)" : "0 4px 24px rgba(245,240,230,0.85)"}
         >
-          MATÍAS
-          <br />
+          <Box as="span">MATÍAS</Box>
+
+          <HeroAvatar w="min(68vw, 290px)" dark={dark} />
+
           <Box as="span" color="green">GUNSETT</Box>
         </Heading>
 
-        <Stack spacing={5} align="center" w="100%">
+        <Stack spacing={4} align="center" w="100%">
           <Flex align="center" gap={3} justify="center">
             <Box w="24px" h="3px" bg="yellow" flexShrink={0} />
             <Text
@@ -85,7 +98,7 @@ const HeroPortfolio = () => {
               textTransform="uppercase"
               fontWeight="semibold"
             >
-              Interfaces y Aplicaciones Web a Medida
+              {CLAIM}
             </Text>
             <Box w="24px" h="3px" bg="yellow" flexShrink={0} />
           </Flex>
@@ -101,47 +114,78 @@ const HeroPortfolio = () => {
       </MotionBox>
 
       {/* ===================== DESKTOP ===================== */}
-      <MotionBox
-        display={{ base: "none", md: "block" }}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+      <Flex
+        display={{ base: "none", md: "flex" }}
         w="100%"
+        maxW="1100px"
+        mx="auto"
+        align="center"
+        gap={{ md: 6, lg: 8, xl: 10 }}
         position="relative"
         zIndex={1}
       >
-        <Stack spacing={7} maxW={{ md: "50%", lg: "48%" }} ml="auto" textAlign={{ md: "right" }}>
-          <Flex justify={{ md: "flex-end" }}>
-            <Eyebrow text={EYEBROW_TEXT} />
-          </Flex>
+        <MotionBox
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          flexShrink={0}
+        >
+          <HeroAvatar
+            w={{
+              md: "clamp(220px, 32vw, 340px)",
+              lg: "clamp(300px, 34vw, 420px)",
+              xl: "clamp(380px, 32vw, 460px)",
+            }}
+            style={avatarParallax}
+            alt={AVATAR_ALT}
+            dark={dark}
+          />
+        </MotionBox>
 
-          <Heading fontSize={{ md: "6xl", lg: "7xl", xl: "8xl" }} lineHeight="1">
-            MATÍAS <br />
-            <Box as="span" color="green">GUNSETT</Box>
-          </Heading>
+        <MotionBox
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          flex="1"
+          minW={0}
+        >
+          <Stack spacing={7} textAlign="right">
+            <Flex justify="flex-end">
+              <Eyebrow text={EYEBROW_TEXT} />
+            </Flex>
 
-          <Text
-            fontSize={{ md: "md", lg: "lg", xl: "xl" }}
-            letterSpacing="0.12em"
-            textTransform="uppercase"
-            fontWeight="semibold"
-          >
-            Interfaces y Aplicaciones Web a Medida
-          </Text>
+            <Heading
+              fontSize={{ md: "5xl", lg: "6xl", xl: "7xl" }}
+              lineHeight="1"
+              letterSpacing="-0.02em"
+            >
+              MATÍAS <br />
+              <Box as="span" color="green">GUNSETT</Box>
+            </Heading>
 
-          <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65} mt={-3}>
-            Especialidad · {BRAND.role}
-          </Text>
+            <Text
+              fontSize={{ md: "sm", lg: "md", xl: "xl" }}
+              letterSpacing="0.12em"
+              textTransform="uppercase"
+              fontWeight="semibold"
+            >
+              {CLAIM}
+            </Text>
 
-          <Flex justify={{ md: "flex-end" }}>
-            <HeroMetaStrip items={STATS} />
-          </Flex>
+            <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65} mt={-3}>
+              Especialidad · {BRAND.role}
+            </Text>
 
-          <Flex justify={{ md: "flex-end" }}>
-            <HeroActions actions={ACTIONS} />
-          </Flex>
-        </Stack>
-      </MotionBox>
+            <Flex justify="flex-end">
+              <HeroMetaStrip items={STATS} />
+            </Flex>
+
+            <Flex justify="flex-end">
+              <HeroActions actions={ACTIONS} />
+            </Flex>
+          </Stack>
+        </MotionBox>
+      </Flex>
     </Box>
   );
 };

@@ -1,6 +1,8 @@
 import { Box } from "@chakra-ui/react";
-import { MotionImage } from "./Motion";
+import { MotionBox, MotionImage } from "./Motion";
 import fondoPortfolio from "../assets/fondo_portfolio.webp";
+import avatarBlob from "../assets/fondo_avatar.webp";
+import avatarFigure from "../assets/mati_avatar2.webp";
 
 // Colores base del tema, necesarios en los degradados (no se pueden usar tokens dentro de gradients)
 const BG_DARK = "#0B0B0B";
@@ -113,4 +115,78 @@ export const HeroHalo = ({ side = "right" }) => (
     pointerEvents="none"
     zIndex={0}
   />
+);
+
+/**
+ * Avatar del Hero del Portfolio: el blob verde de fondo y la figura de Matías
+ * encima, montados como dos capas en vez de una imagen ya compuesta.
+ *
+ * El blob (fondo_avatar.webp, 2100x2100) define la caja y su alto; la figura
+ * se apoya encima en posición absoluta.
+ *
+ * Los porcentajes de FIGURE no son arbitrarios: replican las proporciones
+ * medidas sobre el gif_avatar original (figura al 76% del alto del blob,
+ * apoyada al 19% del borde izquierdo), ya descontando el padding transparente
+ * de mati_avatar2.webp — ese archivo mide 640x960 pero la figura real ocupa
+ * 593x707 a partir de (36,156). Si se reemplaza el recorte del personaje,
+ * estos tres valores hay que recalcularlos.
+ */
+const FIGURE = { width: "68.8%", left: "15.1%", bottom: "2.6%" };
+
+export const HeroAvatar = ({ w, style, alt = "", dark }) => (
+  <MotionBox
+    as="span"
+    display="block"
+    position="relative"
+    w={w}
+    maxW="100%"
+    flexShrink={0}
+    style={style}
+    transition={{ type: "spring", stiffness: 80, damping: 20 }}
+  >
+    {/* Sombra difusa que apoya la figura sobre el fondo del tema */}
+    <Box
+      as="span"
+      display="block"
+      position="absolute"
+      left="12%"
+      right="12%"
+      bottom="-1%"
+      h="14%"
+      borderRadius="full"
+      bg={dark ? "rgba(0,0,0,0.65)" : "rgba(45,90,71,0.22)"}
+      filter="blur(30px)"
+      pointerEvents="none"
+      aria-hidden="true"
+    />
+
+    {/* position relative para que la sombra absoluta quede por detrás */}
+    <img
+      src={avatarBlob}
+      alt=""
+      aria-hidden="true"
+      width={2100}
+      height={2100}
+      decoding="async"
+      fetchPriority="high"
+      style={{ position: "relative", display: "block", width: "100%", height: "auto" }}
+    />
+
+    <img
+      src={avatarFigure}
+      alt={alt}
+      aria-hidden={alt === "" ? "true" : undefined}
+      width={640}
+      height={960}
+      decoding="async"
+      fetchPriority="high"
+      style={{
+        position: "absolute",
+        left: FIGURE.left,
+        bottom: FIGURE.bottom,
+        width: FIGURE.width,
+        height: "auto",
+      }}
+    />
+  </MotionBox>
 );
