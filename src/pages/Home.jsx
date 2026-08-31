@@ -1,35 +1,33 @@
 import PageWrapper from "../layouts/PageWrapper";
 import SeoHead from "../components/SeoHead";
-import Hero from "../components/Hero";
-import LandingPreview from "../components/LandingPreview";
-import PlayersShowcase from "../components/PlayersShowcase";
-import ServiceOffer from "../components/ServiceOffer";
-import Partners from "../components/Partners";
+import HeroPortfolio from "../components/HeroPortfolio";
 import ProfessionalProfile from "../components/ProfessionalProfile";
 import Habilidades from "../components/Habilidades";
 import Portfolio from "../components/Portfolio";
 import Contacto from "../components/Contacto";
 import Footer from "../components/Footer";
+import { BRAND, displayName } from "../config/brand";
 
 /**
- * Orden pensado para convertir: primero la prueba (casos de jugadores),
- * después la oferta, después la credibilidad prestada del partner, y recién
- * ahí quién es Matías. El trabajo de desarrollo general queda como respaldo
- * técnico antes del contacto.
+ * Página principal: el portfolio personal de Matías como Front-End Developer.
+ *
+ * Recorrido: quién es, con qué trabaja, qué entregó y cómo contactarlo. La
+ * línea de servicio deportiva no vive acá — se nombra como especialidad y se
+ * explora entera en /sportfolio, a la que se llega desde el botón del Navbar.
  */
 const Home = () => {
   return (
     <PageWrapper>
-      <SeoHead />
-      <Hero />
-      <LandingPreview />
-      <PlayersShowcase />
-      <Partners />
-      <ServiceOffer />
-      <ProfessionalProfile />
-      <Habilidades />
-      <Portfolio />
-      <Contacto />
+      <SeoHead
+        title={`${displayName()} | ${BRAND.roleSecondary}`}
+        description={BRAND.claimDev}
+        path="/"
+      />
+      <HeroPortfolio />
+      <ProfessionalProfile number="01" />
+      <Habilidades number="02" />
+      <Portfolio number="03" />
+      <Contacto variant="portfolio" number="04" />
       <Footer />
     </PageWrapper>
   );

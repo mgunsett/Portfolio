@@ -14,23 +14,17 @@ import logoClaro3 from "../assets/logo-claro3.png";
 import { BsFillThreadsFill } from "react-icons/bs";
 import instagram from "../assets/instagram.webp";
 import iconoGithub from "../assets/icono-github.webp";
+import { Link as RouterLink } from "react-router-dom";
 import { BRAND, displayName } from "../config/brand";
 import ledHorizontal from "../assets/led_horizontal.png";
-
-const NAV_LINKS = [
-    { href: "#home", label: "Home" },
-    { href: "#casos", label: "Casos" },
-    { href: "#servicio", label: "Servicio" },
-    { href: "#perfil", label: "Perfil" },
-    { href: "#habilidades", label: "Habilidades" },
-    { href: "#proyectos", label: "Otros trabajos" },
-    { href: "#contacto", label: "Contacto" },
-];
+import { useSiteNav } from "../hooks/useSiteNav";
+import { scrollToSection } from "../utils/scrollToSection";
 
 const Footer = () => {
 
     const currentYear = new Date().getFullYear();
     const { colorMode } = useColorMode();
+    const { links, switchTo } = useSiteNav();
 
     const bg = colorMode === "dark" ? "surface" : "modalbg";
     const color = colorMode === "dark" ? "beige" : "background";
@@ -56,20 +50,46 @@ const Footer = () => {
                     <Box>
                         <Heading as="h3" size="lg">Links</Heading>
                         <List mt={2} spacing={2}>
-                            {NAV_LINKS.map((item) => (
-                                <ListItem key={item.href} display="flex" alignItems="center" gap={2}>
+                            {links.map((link) => (
+                                <ListItem key={link.id} display="flex" alignItems="center" gap={2}>
                                     <Box
                                         w={{ base: 2, md: 3 }}
                                         h={{ base: 2, md: 3 }}
-                                        bg={item.href === "#home" ? hoverColor : "green"}
+                                        bg={link.id === "home" ? hoverColor : "green"}
                                         borderRadius="full"
                                         flexShrink={0}
                                     />
-                                    <Link href={item.href} _hover={{ textDecoration: 'none', color: hoverColor }}>
-                                        {item.label}
+                                    <Link
+                                        href={`#${link.id}`}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            scrollToSection(link.id);
+                                        }}
+                                        _hover={{ textDecoration: 'none', color: hoverColor }}
+                                    >
+                                        {link.label}
                                     </Link>
                                 </ListItem>
                             ))}
+
+                            {/* Salto a la otra página del sitio */}
+                            <ListItem display="flex" alignItems="center" gap={2} pt={3}>
+                                <Box
+                                    w={{ base: 2, md: 3 }}
+                                    h={{ base: 2, md: 3 }}
+                                    bg={hoverColor}
+                                    borderRadius="full"
+                                    flexShrink={0}
+                                />
+                                <Link
+                                    as={RouterLink}
+                                    to={switchTo.to}
+                                    fontWeight="bold"
+                                    _hover={{ textDecoration: 'none', color: hoverColor }}
+                                >
+                                    {switchTo.label} &#8594;
+                                </Link>
+                            </ListItem>
                         </List>
                     </Box>
 

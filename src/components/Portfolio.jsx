@@ -15,7 +15,7 @@ import { projects } from "../data/projects";
 import ModalProyects from "./ModalProyects.jsx";
 import { useState } from "react";
 
-const Portfolio = () => {
+const Portfolio = ({ number = "03" }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -71,7 +71,7 @@ const Portfolio = () => {
                   fontWeight="semibold"
                   color="green"
                 >
-                  05
+                  {number}
                 </Text>
               </Flex>
               <Heading

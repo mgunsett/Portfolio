@@ -54,7 +54,8 @@ const FeatureCard = ({ title, text, side, delay }) => {
         display={{ base: "none", md: "block" }}
         position="absolute"
         top="50%"
-        {...(isLeft ? { right: "-33px" } : { left: "-33px" })}
+        right={isLeft ? "-33px" : "auto"}
+        left={isLeft ? "auto" : "-33px"}
         transform="translateY(-50%)"
         w="32px"
         h="1px"
@@ -108,7 +109,7 @@ const LandingPreview = () => {
       >
         <Box maxW="6xl" mx="auto">
           <SectionHeader
-            number="00"
+            number="01"
             title={
               <>
                 Así se ve
@@ -116,16 +117,17 @@ const LandingPreview = () => {
                 una landing
               </>
             }
-            subtitle="Antes de los casos: esto es lo que un jugador se lleva. Pensada para desktop y mobile, con su información siempre al día."
+            subtitle="Compuesta por secciones de Estadísticas, Highlights, Galeria de Fotos, Trayectoria y un seguimiento partido a partido. 📈"
           />
 
           <Grid
-            mt={{ base: 12, md: 16 }}
-            templateColumns={{ base: "1fr", md: "230px 1fr 230px" }}
+            mt={{ base: 12, md: 36 }}
+            mb={{ base: 12, md: 16 }}
+            templateColumns={{ base: "1fr", md: "200px 1fr 200px" }}
             gap={{ base: 8, md: 8 }}
           >
             <GridItem order={{ base: 2, md: 1 }}>
-              <Flex direction="column" justify="space-between" h="100%" gap={{ base: 6, md: 16 }} mr={16  }>
+              <Flex direction="column" justify="space-between" h="100%" gap={{ base: 6, md: 16 }} mr={8}>
                 <FeatureCard {...leftFeatures[0]} delay={0.1} />
                 <FeatureCard {...leftFeatures[1]} delay={0.3} />
               </Flex>
@@ -138,8 +140,8 @@ const LandingPreview = () => {
                 top="50%"
                 left="50%"
                 transform="translate(-50%, -50%)"
-                w={{ base: "260px", md: "420px" }}
-                h={{ base: "260px", md: "420px" }}
+                w={{ base: "260px", md: "440px" }}
+                h={{ base: "260px", md: "440px" }}
                 bg="green"
                 opacity={0.3}
                 filter="blur(100px)"
@@ -152,7 +154,8 @@ const LandingPreview = () => {
                 alt="Vista previa de una landing page para futbolista, en desktop, mobile y detalle de resultados, estadísticas y videos"
                 position="relative"
                 zIndex={1}
-                w="100%"
+                w={{ base: "260px", md: "800px" }}
+                h={{ base: "260px", md: "480px" }}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}

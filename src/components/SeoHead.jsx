@@ -13,44 +13,54 @@ const setMeta = (attr, key, content) => {
   tag.setAttribute("content", content);
 };
 
-/**
- * Meta tags, Open Graph y datos estructurados, derivados de `brand.js`.
- *
- * Sin dependencias extra: escribe directo en el head. Cuando se defina la
- * sub-marca en BRAND.service, el título y el JSON-LD la toman solos.
- */
-const SeoHead = () => {
-  useEffect(() => {
-    const title = `${displayName()} | ${BRAND.role}`;
-    const description = BRAND.claim;
-    const ogImage = `${BRAND.siteUrl}/og-image.jpg`;
+/** Crea o actualiza un <link> por rel. */
+const setLink = (rel, href) => {
+  let tag = document.head.querySelector(`link[rel="${rel}"]`);
+  if (!tag) {
+    tag = document.createElement("link");
+    tag.setAttribute("rel", rel);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("href", href);
+};
 
-    document.title = title;
+/**
+ * Meta tags, Open Graph y datos estructurados de la página activa.
+ *
+ * Cada página pasa su título, descripción y ruta; el resto sale de `brand.js`.
+ * Sin dependencias extra: escribe directo en el head y se vuelve a ejecutar en
+ * cada cambio de ruta, porque las páginas se montan y desmontan.
+ */
+const SeoHead = ({
+  title,
+  description = BRAND.claim,
+  path = "/",
+  image = "/og-image.jpg",
+}) => {
+  useEffect(() => {
+    const fullTitle = title ?? `${displayName()} | ${BRAND.role}`;
+    const url = `${BRAND.siteUrl}${path === "/" ? "" : path}`;
+    const ogImage = `${BRAND.siteUrl}${image}`;
+
+    document.title = fullTitle;
 
     setMeta("name", "description", description);
     setMeta("name", "theme-color", "#0B0B0B");
 
     setMeta("property", "og:type", "website");
     setMeta("property", "og:site_name", displayName());
-    setMeta("property", "og:title", title);
+    setMeta("property", "og:title", fullTitle);
     setMeta("property", "og:description", description);
-    setMeta("property", "og:url", BRAND.siteUrl);
+    setMeta("property", "og:url", url);
     setMeta("property", "og:image", ogImage);
     setMeta("property", "og:locale", "es_AR");
 
     setMeta("name", "twitter:card", "summary_large_image");
-    setMeta("name", "twitter:title", title);
+    setMeta("name", "twitter:title", fullTitle);
     setMeta("name", "twitter:description", description);
     setMeta("name", "twitter:image", ogImage);
 
-    // Canonical
-    let canonical = document.head.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute("href", BRAND.siteUrl);
+    setLink("canonical", url);
 
     // Datos estructurados: la persona y el servicio que ofrece.
     const jsonLd = {
@@ -60,15 +70,15 @@ const SeoHead = () => {
           "@type": "Person",
           name: BRAND.person,
           url: BRAND.siteUrl,
-          jobTitle: BRAND.role,
+          jobTitle: BRAND.roleSecondary,
           email: `mailto:${BRAND.email}`,
           sameAs: Object.values(BRAND.social).filter(Boolean),
         },
         {
           "@type": "ProfessionalService",
           name: displayName(),
-          description: BRAND.claim,
-          url: BRAND.siteUrl,
+          description,
+          url,
           areaServed: "Argentina",
           serviceType: BRAND.role,
           provider: { "@type": "Person", name: BRAND.person },
@@ -83,7 +93,7 @@ const SeoHead = () => {
       document.head.appendChild(script);
     }
     script.textContent = JSON.stringify(jsonLd);
-  }, []);
+  }, [title, description, path, image]);
 
   return null;
 };

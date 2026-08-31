@@ -37,9 +37,9 @@ const LeaningAvatar = () => (
     aria-hidden="true"
     display={{ base: "none", xl: "block" }}
     position="absolute"
-    right="82%"
+    right="72%"
     bottom={0}
-    h="136%"
+    h="133%"
     w="auto"
     maxW="none"
     zIndex={3}

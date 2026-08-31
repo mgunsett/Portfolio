@@ -21,6 +21,11 @@ export const BRAND = {
     "Sitios web para jugadores profesionales: presencia digital propia, " +
     "pensada para representar, difundir y abrir puertas.",
 
+  // Claim de la página principal: el perfil general, no la línea deportiva.
+  claimDev:
+    "Desarrollador Front-End especializado en React: interfaces y " +
+    "aplicaciones web a medida, rápidas y pensadas para el usuario final.",
+
   email: "matiasgunsett@gmail.com",
 
   whatsapp: {

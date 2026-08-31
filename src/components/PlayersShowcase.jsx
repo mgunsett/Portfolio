@@ -73,7 +73,7 @@ const PlayersShowcase = () => {
                     pl={{ base: 5, xl: 0 }}
                   >
                     <SectionHeader
-                      number="01"
+                      number="02"
                       title={
                         <>
                           Destacados

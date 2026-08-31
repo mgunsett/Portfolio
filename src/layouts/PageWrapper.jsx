@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { MotionBox } from "../components/Motion";
 
 const variants = {
@@ -15,6 +16,12 @@ const variants = {
 };
 
 const PageWrapper = ({ children }) => {
+  // Cada página entra desde arriba: sin esto, al saltar entre Portfolio y
+  // Sportfolio se conserva el scroll de la anterior y se cae en medio del contenido.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <MotionBox
       variants={variants}

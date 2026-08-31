@@ -13,17 +13,35 @@ import { MdMailOutline, MdWhatsapp  } from "react-icons/md";
 import { FaLinkedin  } from "react-icons/fa";
 import { BRAND, mailtoLink, whatsappLink } from "../config/brand";
 
-const Contacto = () => {
+/**
+ * La sección vive en las dos páginas, así que el texto y el asunto del mail
+ * cambian según de dónde venga el visitante: un club no consulta lo mismo que
+ * alguien que llegó por el perfil de desarrollo.
+ */
+const COPY = {
+  sportfolio: {
+    text: "¿Sos jugador, representante o club? Contame el proyecto y armamos juntos la presencia digital que le falta. Primera charla sin costo.",
+    mailSubject: "Consulta por una landing page",
+    mailBody:
+      "Hola Matías,\n\nTe contacto porque vi tu portfolio. Soy (jugador / representante / club) y me gustaría consultarte por...",
+  },
+  portfolio: {
+    text: "¿Tenés un proyecto web en mente? Contame qué necesitás y lo vemos juntos: desde una landing hasta una aplicación completa. Primera charla sin costo.",
+    mailSubject: "Consulta desde tu portfolio",
+    mailBody:
+      "Hola Matías,\n\nTe contacto porque vi tu portfolio y me gustaría consultarte por...",
+  },
+};
+
+const Contacto = ({ variant = "sportfolio", number = "04" }) => {
+  const copy = COPY[variant] ?? COPY.sportfolio;
 
   const { colorMode } = useColorMode();
 
   const shadowBox = colorMode === "dark" ? '0 4px 8px rgba(255, 255, 255, 0.1)' : '0 4px 8px rgba(0, 0, 0, 0.2)';
   const colorbg = colorMode === "dark" ? "#161515ce" : "beige";
 
-  const mailto = mailtoLink(
-    "Consulta por una landing page",
-    "Hola Matías,\n\nTe contacto porque vi tu portfolio. Soy (jugador / representante / club) y me gustaría consultarte por...",
-  );
+  const mailto = mailtoLink(copy.mailSubject, copy.mailBody);
 
   return (
     <Box id="contacto" position="relative" mb={10}>
@@ -67,7 +85,7 @@ const Contacto = () => {
                   fontWeight="semibold"
                   color="green"
                 >
-                  06
+                  {number}
                 </Text>
               </Flex>
               <Heading
@@ -79,10 +97,9 @@ const Contacto = () => {
               >
                 HABLEMOS
               </Heading>
-              <Text mt={4}  fontSize={{ base: "md", md: "lg" }}>
-                ¿Sos jugador, representante o club? Contame el proyecto y armamos
-                juntos la presencia digital que le falta. Primera charla sin costo.
-                </Text>
+              <Text mt={4} fontSize={{ base: "md", md: "lg" }}>
+                {copy.text}
+              </Text>
             </GridItem>
 
             <GridItem colSpan={{ base: 1, md: 7 }} pl={{ md: 12 }}>

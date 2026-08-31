@@ -56,7 +56,7 @@ const ServiceOffer = () => {
           <Grid templateColumns={{ base: "1fr", md: "repeat(12, 1fr)" }} gap={{ base: 10, md: 12 }}>
             <GridItem colSpan={{ base: 1, md: 5 }}>
               <SectionHeader
-                number="02"
+                number="03"
                 title={
                   <>
                     Desarrollo

@@ -31,7 +31,7 @@ import claude from '../assets/icono-claude.webp';
 import './styleComponents.css';
 
 
-const Habilidades = () => {
+const Habilidades = ({ number = "02" }) => {
     const { colorMode } = useColorMode();
     
     const shadowFilter = colorMode === "dark"
@@ -79,7 +79,7 @@ const Habilidades = () => {
                   fontWeight="semibold"
                   color="green"
                 >
-                  04
+                  {number}
                 </Text>
               </Flex>
               <Heading

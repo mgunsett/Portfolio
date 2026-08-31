@@ -11,7 +11,7 @@ import { MotionBox } from "./Motion";
 import { BRAND } from "../config/brand";
 import { useColorMode } from "@chakra-ui/react";
 
-const ProfessionalProfile = () => {
+const ProfessionalProfile = ({ number = "01" }) => {
   const { colorMode } = useColorMode();
   const bg = colorMode === "dark" ? "surface" : "modalbg";
   return (
@@ -55,7 +55,7 @@ const ProfessionalProfile = () => {
                   fontWeight="semibold"
                   color="green"
                 >
-                  03
+                  {number}
                 </Text>
               </Flex>
               <Heading

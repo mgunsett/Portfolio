@@ -103,7 +103,7 @@ export const players = [
     player: {
       name: "Rony Martinez",
       position: "Delantero",
-      club: "Cruz Azul",
+      club: "Talleres",
       country: "Argentina",
       number: 9,                      // opcional
     },

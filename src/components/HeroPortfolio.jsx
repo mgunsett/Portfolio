@@ -4,25 +4,25 @@ import { HeroSideArt, HeroMobileArt, HeroHalo } from "./HeroArt";
 import { useHeroParallax } from "../hooks/useHeroParallax";
 import { Eyebrow, HeroActions, HeroMetaStrip } from "./HeroKit";
 import { BRAND } from "../config/brand";
-import { playersSummary } from "../data/players";
 
-const EYEBROW_TEXT = "Landing Pages · Fútbol Profesional";
+const EYEBROW_TEXT = "Front-End Developer · React.js";
 
 const ACTIONS = [
-  { label: "Ver casos", sectionId: "casos", variant: "primary" },
+  { label: "Ver proyectos", sectionId: "proyectos", variant: "primary" },
   { label: "Contacto", sectionId: "contacto", variant: "secondary" },
 ];
 
-/** Prueba social: clubes de los jugadores con caso publicado. */
-const clubsLead = () =>
-  `${playersSummary.count} ${playersSummary.count === 1 ? "jugador" : "jugadores"}`;
+/** Las métricas del perfil se muestran como "3+ Años de experiencia". */
+const STATS = BRAND.stats.map(({ value, label }) => `${value} ${label}`);
 
 /**
- * Hero de la página Sportfolio: la línea de servicio de landings para
- * futbolistas. El título es el mismo que el del Portfolio a propósito — es la
- * misma marca personal — pero el eyebrow, el claim y los CTAs son deportivos.
+ * Hero de la página principal: Matías como Front-End Developer.
+ *
+ * Comparte imagen, parallax y tipografía con el Hero de Sportfolio, pero apoya
+ * el panel del lado opuesto y habla del perfil general en vez del servicio
+ * deportivo, que queda nombrado como especialidad y se explora en /sportfolio.
  */
-const Hero = () => {
+const HeroPortfolio = () => {
   const { colorMode } = useColorMode();
   const dark = colorMode === "dark";
   const parallax = useHeroParallax();
@@ -33,6 +33,7 @@ const Hero = () => {
       minH="100vh"
       display="flex"
       alignItems="center"
+      justifyContent={{ md: "flex-end" }}
       px={{ base: 6, md: 12, lg: 40 }}
       py={{ base: 12, md: 0 }}
       pt={{ base: 24, md: 0 }}
@@ -42,11 +43,11 @@ const Hero = () => {
       <HeroSideArt
         dark={dark}
         style={parallax}
-        side="right"
-        alt="Matías Gunsett trabajando en un vestuario de fútbol"
+        side="left"
+        alt="Matías Gunsett, desarrollador front-end, trabajando"
       />
       <HeroMobileArt dark={dark} />
-      <HeroHalo side="right" />
+      <HeroHalo side="left" />
 
       {/* ===================== MOBILE ===================== */}
       <MotionBox
@@ -84,16 +85,16 @@ const Hero = () => {
               textTransform="uppercase"
               fontWeight="semibold"
             >
-              Webs para Futbolistas Profesionales
+              Interfaces y Aplicaciones Web a Medida
             </Text>
             <Box w="24px" h="3px" bg="yellow" flexShrink={0} />
           </Flex>
 
           <Text fontSize="xs" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65}>
-            {BRAND.roleSecondary}
+            Especialidad · {BRAND.role}
           </Text>
 
-          <HeroMetaStrip lead={clubsLead()} items={playersSummary.clubs} center />
+          <HeroMetaStrip items={STATS} center />
 
           <HeroActions actions={ACTIONS} full />
         </Stack>
@@ -109,8 +110,10 @@ const Hero = () => {
         position="relative"
         zIndex={1}
       >
-        <Stack spacing={7} maxW={{ md: "50%", lg: "48%" }}>
-          <Eyebrow text={EYEBROW_TEXT} />
+        <Stack spacing={7} maxW={{ md: "50%", lg: "48%" }} ml="auto" textAlign={{ md: "right" }}>
+          <Flex justify={{ md: "flex-end" }}>
+            <Eyebrow text={EYEBROW_TEXT} />
+          </Flex>
 
           <Heading fontSize={{ md: "6xl", lg: "7xl", xl: "8xl" }} lineHeight="1">
             MATÍAS <br />
@@ -123,20 +126,24 @@ const Hero = () => {
             textTransform="uppercase"
             fontWeight="semibold"
           >
-            Webs para Deportistas Profesionales
+            Interfaces y Aplicaciones Web a Medida
           </Text>
 
           <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65} mt={-3}>
-            {BRAND.roleSecondary}
+            Especialidad · {BRAND.role}
           </Text>
 
-          <HeroMetaStrip lead={clubsLead()} items={playersSummary.clubs} />
+          <Flex justify={{ md: "flex-end" }}>
+            <HeroMetaStrip items={STATS} />
+          </Flex>
 
-          <HeroActions actions={ACTIONS} />
+          <Flex justify={{ md: "flex-end" }}>
+            <HeroActions actions={ACTIONS} />
+          </Flex>
         </Stack>
       </MotionBox>
     </Box>
   );
 };
 
-export default Hero;
+export default HeroPortfolio;
