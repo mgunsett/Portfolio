@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import { MotionBox, MotionImage } from "./Motion";
 import fondoPortfolio from "../assets/fondo_portfolio.webp";
 import avatarBlob from "../assets/fondo_avatar.webp";
@@ -21,9 +21,8 @@ const FADE_RADIAL =
 // Velos que integran la imagen con el fondo del tema activo
 const veilSideDark = (side) =>
   `linear-gradient(to ${side === "left" ? "left" : "right"}, ${BG_DARK} 0%, rgba(11,11,11,0.6) 28%, rgba(11,11,11,0.1) 68%, rgba(11,11,11,0.35) 100%)`;
-const VEIL_FULL_DARK =
-  "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(11,11,11,0.55) 0%, rgba(11,11,11,0.8) 100%)";
-const VEIL_FULL_LIGHT = `radial-gradient(ellipse 70% 55% at 50% 45%, rgba(245, 240, 230, 0.19) 0%, rgba(245, 240, 230, 0.42) 100%)`;
+
+
 
 /**
  * Imagen principal del Hero en desktop: panel lateral que ocupa todo el alto,
@@ -85,6 +84,7 @@ export const HeroMobileArt = ({ dark }) => (
     sx={{ maskImage: FADE_RADIAL, WebkitMaskImage: FADE_RADIAL }}
   >
     <Box
+      
       as="img"
       src={fondoPortfolio}
       alt=""
@@ -92,10 +92,8 @@ export const HeroMobileArt = ({ dark }) => (
       h="100%"
       objectFit="cover"
       objectPosition="50% 40%"
-      opacity={dark ? 0.4 : 0.24}
-      filter={dark ? "saturate(1.05)" : "brightness(1.2) contrast(0.85) saturate(0.85)"}
     />
-    <Box position="absolute" inset={0} bgImage={dark ? VEIL_FULL_DARK : VEIL_FULL_LIGHT} />
+    <Box position="absolute" inset={0}  />
   </Box>
 );
 
@@ -131,13 +129,13 @@ export const HeroHalo = ({ side = "right" }) => (
  * 593x707 a partir de (36,156). Si se reemplaza el recorte del personaje,
  * estos tres valores hay que recalcularlos.
  */
-const FIGURE = { width: "68.8%", left: "15.1%", bottom: "2.6%" };
+const FIGURE = { width: "95.8%", left: "10.1%", bottom: "-12.6%" };
 
 export const HeroAvatar = ({ w, style, alt = "", dark }) => (
   <MotionBox
     as="span"
     display="block"
-    position="relative"
+    position={{ base: "absolute", md: "relative" }}
     w={w}
     maxW="100%"
     flexShrink={0}
@@ -161,7 +159,7 @@ export const HeroAvatar = ({ w, style, alt = "", dark }) => (
     />
 
     {/* position relative para que la sombra absoluta quede por detrás */}
-    <img
+    <Image
       src={avatarBlob}
       alt=""
       aria-hidden="true"
@@ -172,21 +170,17 @@ export const HeroAvatar = ({ w, style, alt = "", dark }) => (
       style={{ position: "relative", display: "block", width: "100%", height: "auto" }}
     />
 
-    <img
+    <Image
       src={avatarFigure}
       alt={alt}
       aria-hidden={alt === "" ? "true" : undefined}
-      width={640}
-      height={960}
       decoding="async"
       fetchPriority="high"
-      style={{
-        position: "absolute",
-        left: FIGURE.left,
-        bottom: FIGURE.bottom,
-        width: FIGURE.width,
-        height: "auto",
-      }}
+      position="absolute"
+      left={FIGURE.left}
+      bottom={FIGURE.bottom}
+      width={FIGURE.width}
+      height="auto"
     />
   </MotionBox>
 );

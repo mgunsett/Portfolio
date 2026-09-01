@@ -14,7 +14,7 @@ export const BRAND = {
   // Mientras sea null, el sitio se presenta solo con el nombre personal.
   service: null,
 
-  role: "Landing Pages para Futbolistas Profesionales",
+  role: "Landing Deportiva",
   roleSecondary: "Front-End Developer · React.js",
 
   claim:
@@ -57,8 +57,8 @@ export const BRAND = {
    */
   stats: [
     { value: "3+", label: "Años de experiencia" },
-    { value: "10+", label: "Proyectos entregados" },
-    { value: "11+", label: "Clientes" },
+    { value: "30+", label: "Proyectos entregados" },
+    { value: "27+", label: "Clientes" },
   ],
 };
 

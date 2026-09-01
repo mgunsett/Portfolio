@@ -91,12 +91,13 @@ const Navbar = () => {
         transition="background-color 0.35s ease, border-color 0.35s ease"
       >
         <Flex
-          h={{ base: "64px", md: "76px" }}
+          h={{ base: "64px", md: "60px" }}
           align="center"
           justify="space-between"
           px={{ base: 5, md: 12, lg: 24 }}
           maxW="8xl"
           mx="auto"
+          role="group"
         >
           <Button
             onClick={() => setOpen((v) => !v)}
@@ -106,9 +107,8 @@ const Navbar = () => {
             px={3}
             h={11}
             gap={3}
-            borderRadius="xl"
             color="currentColor"
-            _hover={{ bg: dark ? "whiteAlpha.100" : "blackAlpha.100", color: dark ? "yellow" : "green" }}
+            _groupHover={{ color: dark ? "yellow" : "green", bg:'transparent' }}
             _active={{ transform: "scale(0.97)" }}
           >
             <HamburgerBars open={open} />
@@ -119,6 +119,7 @@ const Navbar = () => {
               letterSpacing="0.2em"
               textTransform="uppercase"
               fontWeight="semibold"
+              _groupHover={{ color: dark ? "green" : "black" }}
             >
               Menú
             </Box>
@@ -127,22 +128,25 @@ const Navbar = () => {
           <Button
             as={RouterLink}
             to={switchTo.to}
-            bg="green"
-            color="beige"
+            mt={2}
+            bg={dark ? "transparent" : "green"}
+            color='beige'
             h={11}
-            px={{ base: 5, md: 7 }}
-            fontSize={{ base: "xs", md: "sm" }}
+            px={{ base: 2, md: 4 }}
+            py={{ base: 4, md: 4 }}
+            fontSize={{ base: "10px", md: "xs" }}
             letterSpacing="0.12em"
             textTransform="uppercase"
-            fontWeight="bold"
-            borderRadius="full"
-            boxShadow="0 10px 30px -12px rgba(45,90,71,0.8)"
-            _hover={{ bg: "yellow", color: "background", transform: "translateY(-2px)", textDecoration: "none" }}
+            fontWeight="medium"
+            borderRadius="md"
+            borderColor="green"
+            borderWidth="1px"
+            boxShadow={{ dark: "0 10px 30px -12px rgba(45,90,71,0.8)", light: "0 10px 30px -12px rgba(0,0,0,0.1)" }}
+            _hover={{ bg: 'yellow', color: dark? "background" : "black", transform: "translateY(-2px)", textDecoration: "none", borderColor: "yellow" }}
             _active={{ transform: "translateY(0)" }}
             transition="all 0.25s ease"
           >
-            {switchTo.label}
-            <Box as="span" ml={2} aria-hidden="true">&#8594;</Box>
+            {switchTo.label}   
           </Button>
         </Flex>
       </Box>

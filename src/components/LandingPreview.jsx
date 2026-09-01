@@ -127,7 +127,7 @@ const LandingPreview = () => {
             gap={{ base: 8, md: 8 }}
           >
             <GridItem order={{ base: 2, md: 1 }}>
-              <Flex direction="column" justify="space-between" h="100%" gap={{ base: 6, md: 16 }} mr={8}>
+              <Flex direction="column" justify="space-between" h="100%" gap={{ base: 6, md: 16 }} mr={{ base: 0, md: 8  }}>
                 <FeatureCard {...leftFeatures[0]} delay={0.1} />
                 <FeatureCard {...leftFeatures[1]} delay={0.3} />
               </Flex>
@@ -154,8 +154,8 @@ const LandingPreview = () => {
                 alt="Vista previa de una landing page para futbolista, en desktop, mobile y detalle de resultados, estadísticas y videos"
                 position="relative"
                 zIndex={1}
-                w={{ base: "260px", md: "800px" }}
-                h={{ base: "260px", md: "480px" }}
+                w={{ base: "420px", md: "800px" }}
+                h={{ base: "240px", md: "480px" }}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}

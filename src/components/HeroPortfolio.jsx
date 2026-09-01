@@ -5,8 +5,8 @@ import { useHeroParallax } from "../hooks/useHeroParallax";
 import { Eyebrow, HeroActions, HeroMetaStrip } from "./HeroKit";
 import { BRAND } from "../config/brand";
 
-const EYEBROW_TEXT = "Front-End Developer · React.js";
-const CLAIM = "Interfaces y Aplicaciones Web a Medida";
+const EYEBROW_TEXT = "Portfolio";
+const CLAIM = "Front-End Dev · React.js";
 const AVATAR_ALT = "Ilustración 3D de Matías Gunsett programando en su notebook";
 
 const ACTIONS = [
@@ -14,26 +14,13 @@ const ACTIONS = [
   { label: "Contacto", sectionId: "contacto", variant: "secondary" },
 ];
 
-/** Las métricas del perfil se muestran como "3+ Años de experiencia". */
 const STATS = BRAND.stats.map(({ value, label }) => `${value} ${label}`);
 
-/**
- * Hero de la página principal: Matías como Front-End Developer.
- *
- * El avatar (blob verde + figura) no es un fondo — es parte de la
- * composición. En mobile
- * parte el nombre en dos (MATÍAS arriba, GUNSETT abajo) y se planta en el
- * medio; en desktop se apoya a la izquierda como figura contenida, con el
- * texto alineado a la derecha. El Hero de Sportfolio sigue con la foto de
- * fondo a sangre (HeroSideArt), para que las dos páginas no se lean iguales.
- */
 const HeroPortfolio = () => {
   const { colorMode } = useColorMode();
   const dark = colorMode === "dark";
   const parallax = useHeroParallax();
 
-  // El parallax del panel lateral escala 1.1 para tapar los bordes del recorte;
-  // acá la figura va suelta, así que solo nos quedamos con el desplazamiento.
   const avatarParallax = { ...parallax, scale: 1 };
 
   return (
@@ -42,7 +29,7 @@ const HeroPortfolio = () => {
       minH="100vh"
       display="flex"
       alignItems="center"
-      px={{ base: 6, md: 8, lg: 16, xl: 24 }}
+      px={{ base: 6, md: 8, lg: 10, xl: 20 }}
       py={{ base: 10, md: 0 }}
       pt={{ base: 24, md: 0 }}
       position="relative"
@@ -75,7 +62,7 @@ const HeroPortfolio = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          gap={3}
+          gap={0}
           w="100%"
           fontSize="clamp(2.5rem, 12.5vw, 4.25rem)"
           lineHeight="0.9"
@@ -83,10 +70,9 @@ const HeroPortfolio = () => {
           textShadow={dark ? "0 4px 24px rgba(0,0,0,0.7)" : "0 4px 24px rgba(245,240,230,0.85)"}
         >
           <Box as="span">MATÍAS</Box>
-
+          <Box as="span" color="green">GUNSETT</Box>
           <HeroAvatar w="min(68vw, 290px)" dark={dark} />
 
-          <Box as="span" color="green">GUNSETT</Box>
         </Heading>
 
         <Stack spacing={4} align="center" w="100%">
