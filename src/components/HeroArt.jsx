@@ -6,7 +6,6 @@ import avatarFigure from "../assets/mati_avatar2.webp";
 
 // Colores base del tema, necesarios en los degradados (no se pueden usar tokens dentro de gradients)
 const BG_DARK = "#0B0B0B";
-const BG_LIGHT = "#F5F0E6";
 
 // Máscaras de difuminado del panel lateral: se aplican en dos capas anidadas
 // (vertical en el contenedor, horizontal en el interior) para no depender de mask-composite.
@@ -84,7 +83,6 @@ export const HeroMobileArt = ({ dark }) => (
     sx={{ maskImage: FADE_RADIAL, WebkitMaskImage: FADE_RADIAL }}
   >
     <Box
-      
       as="img"
       src={fondoPortfolio}
       alt=""

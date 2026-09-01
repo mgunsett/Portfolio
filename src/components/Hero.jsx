@@ -60,41 +60,44 @@ const Hero = () => {
         w="100%"
         position="relative"
         zIndex={1}
-        gap={6}
+        gap={80}
       >
-        <Eyebrow text={EYEBROW_TEXT} center />
+        <Flex flexDirection="column" alignItems="center" textAlign="center" gap={2}>
+          <Eyebrow text={EYEBROW_TEXT} center color={dark ? "beige" : "green"} />
 
-        <Heading
-          fontSize={{ base: "6xl", sm: "7xl" }}
-          lineHeight="0.95"
-          letterSpacing="-0.02em"
-          textShadow={dark ? "0 4px 24px rgba(0,0,0,0.7)" : "0 4px 24px rgba(245,240,230,0.85)"}
-        >
-          MATÍAS
-          <br />
-          <Box as="span" color="green">GUNSETT</Box>
-        </Heading>
-
-        <Stack spacing={5} align="center" w="100%">
-          <Flex align="center" gap={3} justify="center">
-            <Box w="24px" h="3px" bg="yellow" flexShrink={0} />
+          <Heading
+            fontSize={{ base: "6xl", sm: "7xl" }}
+            lineHeight="0.95"
+            letterSpacing="-0.02em"
+            color={dark ? "green" : "yellow"}
+            textShadow={dark ? "0 4px 24px rgba(0,0,0,0.7)" : "none"}
+            mb={20}
+          >
+            MATÍAS
+          </Heading>
+        </Flex>
+        <Stack spacing={4} align="center" w="100%">
+          <Heading
+            fontSize={{ base: "6xl", sm: "7xl" }}
+            lineHeight="0.95"
+            letterSpacing="-0.02em"
+            color={dark ? "beige" : "green"}
+            textShadow={dark ? "0 4px 24px rgba(0,0,0,0.7)" : "0 4px 24px rgba(245,240,230,0.85)"}
+          >
+            GUNSETT
+          </Heading>
+          <Flex align="center" gap={0} justify="center">
+            <Box w="24px" h="3px" bg={dark ? "yellow" : "black"} flexShrink={0} />
             <Text
               fontSize={{ base: "sm", sm: "md" }}
               letterSpacing="0.1em"
               textTransform="uppercase"
               fontWeight="semibold"
             >
-              Webs para Futbolistas Profesionales
+              Webs para Deportistas Profesionales
             </Text>
-            <Box w="24px" h="3px" bg="yellow" flexShrink={0} />
+            <Box w="24px" h="3px" bg={dark ? "yellow" : "black"} flexShrink={0} />
           </Flex>
-
-          <Text fontSize="xs" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65}>
-            {BRAND.roleSecondary}
-          </Text>
-
-          <HeroMetaStrip lead={clubsLead()} items={playersSummary.clubs} center />
-
           <HeroActions actions={ACTIONS} full />
         </Stack>
       </MotionBox>

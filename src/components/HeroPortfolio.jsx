@@ -44,38 +44,31 @@ const HeroPortfolio = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         flexDirection="column"
+        justifyContent="center"
         alignItems="center"
-        textAlign="center"
         w="100%"
-        maxW="520px"
-        mx="auto"
         position="relative"
         zIndex={1}
-        gap={5}
+        gap={8}
       >
         <Eyebrow text={EYEBROW_TEXT} center />
-
-        {/* Un único Heading envuelve nombre + avatar: partirlo en dos headings
-            dejaría "MATÍAS" y "GUNSETT" como títulos sueltos. El avatar va con
-            alt vacío porque acá es parte del logotipo, no información nueva. */}
         <Heading
           display="flex"
           flexDirection="column"
           alignItems="center"
           gap={0}
           w="100%"
-          fontSize="clamp(2.5rem, 12.5vw, 4.25rem)"
+          mb={56}
+          fontSize='85px'
           lineHeight="0.9"
           letterSpacing="-0.02em"
           textShadow={dark ? "0 4px 24px rgba(0,0,0,0.7)" : "0 4px 24px rgba(245,240,230,0.85)"}
         >
-          <Box as="span">MATÍAS</Box>
-          <Box as="span" color="green">GUNSETT</Box>
-          <HeroAvatar w="min(68vw, 290px)" dark={dark} />
-
+          <Box as="span" color='green'>MATÍAS</Box>
+          <Box as="span">GUNSETT</Box>
         </Heading>
-
-        <Stack spacing={4} align="center" w="100%">
+        <HeroAvatar w="min(68vw, 320px)" dark={dark} />
+        <Stack spacing={4} align="center" w="100%" mt={20}>
           <Flex align="center" gap={3} justify="center">
             <Box w="24px" h="3px" bg="yellow" flexShrink={0} />
             <Text
@@ -103,7 +96,7 @@ const HeroPortfolio = () => {
       <Flex
         display={{ base: "none", md: "flex" }}
         w="100%"
-        maxW="1100px"
+        maxW="1250px"
         mx="auto"
         align="center"
         gap={{ md: 6, lg: 8, xl: 10 }}
@@ -141,7 +134,7 @@ const HeroPortfolio = () => {
             </Flex>
 
             <Heading
-              fontSize={{ md: "5xl", lg: "6xl", xl: "7xl" }}
+              fontSize={{ md: "6xl", lg: "7xl", xl: "8xl" }}
               lineHeight="1"
               letterSpacing="-0.02em"
             >

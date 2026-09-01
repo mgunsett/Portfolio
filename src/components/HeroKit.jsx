@@ -46,19 +46,19 @@ export const HeroActions = ({ actions, full }) => (
 );
 
 /** Línea + texto en versalitas verde arriba del título. */
-export const Eyebrow = ({ text, center }) => (
+export const Eyebrow = ({ text, center, color }) => (
   <Flex align="center" gap={4} justify={center ? "center" : "flex-start"}>
-    <Box w={{ base: "20px", md: "40px" }} h="1px" bg="green" flexShrink={0} />
+    <Box w={{ base: "20px", md: "40px" }} h="1px" bg={color ?? "green"} flexShrink={0} />
     <Text
       fontSize={{ base: "xs", md: "sm" }}
       letterSpacing={{ base: "0.15em", md: "0.3em" }}
       textTransform="uppercase"
-      color="green"
+      color={color ?? "green"}
     >
       {text}
     </Text>
     {center && (
-      <Box w="20px" h="1px" bg="green" display={{ base: "block", md: "none" }} flexShrink={0} />
+      <Box w="20px" h="1px" bg={color ?? "green"} display={{ base: "block", md: "none" }} flexShrink={0} />
     )}
   </Flex>
 );
