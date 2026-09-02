@@ -1,0 +1,9 @@
+@media screen and (max-width: 390px) {
+    .hero-portfolio-heading-mobile {
+        font-size: 60px !important;
+    }
+    .hero-portfolio-avatar-mobile {
+        width: min(88vw, 370px) !important;
+        top: 24% !important;
+    }
+}

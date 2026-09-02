@@ -4,6 +4,7 @@ import { HeroAvatar, HeroHalo } from "./HeroArt";
 import { useHeroParallax } from "../hooks/useHeroParallax";
 import { Eyebrow, HeroActions, HeroMetaStrip } from "./HeroKit";
 import { BRAND } from "../config/brand";
+import "../style/style.css";
 
 const EYEBROW_TEXT = "Portfolio";
 const CLAIM = "Front-End Dev · React.js";
@@ -53,13 +54,14 @@ const HeroPortfolio = () => {
       >
         <Eyebrow text={EYEBROW_TEXT} center />
         <Heading
+          className="hero-portfolio-heading-mobile"
           display="flex"
           flexDirection="column"
           alignItems="center"
           gap={0}
           w="100%"
           mb={56}
-          fontSize='85px'
+          fontSize='75px'
           lineHeight="0.9"
           letterSpacing="-0.02em"
           textShadow={dark ? "0 4px 24px rgba(0,0,0,0.7)" : "0 4px 24px rgba(245,240,230,0.85)"}
@@ -67,7 +69,7 @@ const HeroPortfolio = () => {
           <Box as="span" color='green'>MATÍAS</Box>
           <Box as="span">GUNSETT</Box>
         </Heading>
-        <HeroAvatar w="min(68vw, 320px)" dark={dark} />
+        <HeroAvatar  w="min(78vw, 420px)" dark={dark} />
         <Stack spacing={4} align="center" w="100%" mt={20}>
           <Flex align="center" gap={3} justify="center">
             <Box w="24px" h="3px" bg="yellow" flexShrink={0} />
@@ -111,9 +113,9 @@ const HeroPortfolio = () => {
         >
           <HeroAvatar
             w={{
-              md: "clamp(220px, 32vw, 340px)",
-              lg: "clamp(300px, 34vw, 420px)",
-              xl: "clamp(380px, 32vw, 460px)",
+              md: "clamp(220px, 32vw, 400px)",
+              lg: "clamp(300px, 34vw, 500px)",
+              xl: "clamp(380px, 32vw, 600px)",
             }}
             style={avatarParallax}
             alt={AVATAR_ALT}

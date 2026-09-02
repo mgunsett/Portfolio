@@ -22,14 +22,6 @@ const veilSideDark = (side) =>
   `linear-gradient(to ${side === "left" ? "left" : "right"}, ${BG_DARK} 0%, rgba(11,11,11,0.6) 28%, rgba(11,11,11,0.1) 68%, rgba(11,11,11,0.35) 100%)`;
 
 
-
-/**
- * Imagen principal del Hero en desktop: panel lateral que ocupa todo el alto,
- * difuminado hacia el fondo del tema en su borde interno y en top/bottom.
- *
- * `side` decide de qué lado se apoya: el Hero deportivo usa la derecha y el
- * del Portfolio la izquierda, para que las dos páginas no se lean iguales.
- */
 export const HeroSideArt = ({ dark, style, side = "right", alt }) => (
   <Box
     display={{ base: "none", md: "block" }}
@@ -112,25 +104,12 @@ export const HeroHalo = ({ side = "right" }) => (
     zIndex={0}
   />
 );
-
-/**
- * Avatar del Hero del Portfolio: el blob verde de fondo y la figura de Matías
- * encima, montados como dos capas en vez de una imagen ya compuesta.
- *
- * El blob (fondo_avatar.webp, 2100x2100) define la caja y su alto; la figura
- * se apoya encima en posición absoluta.
- *
- * Los porcentajes de FIGURE no son arbitrarios: replican las proporciones
- * medidas sobre el gif_avatar original (figura al 76% del alto del blob,
- * apoyada al 19% del borde izquierdo), ya descontando el padding transparente
- * de mati_avatar2.webp — ese archivo mide 640x960 pero la figura real ocupa
- * 593x707 a partir de (36,156). Si se reemplaza el recorte del personaje,
- * estos tres valores hay que recalcularlos.
- */
+ 
 const FIGURE = { width: "95.8%", left: "10.1%", bottom: "-12.6%" };
 
 export const HeroAvatar = ({ w, style, alt = "", dark }) => (
   <MotionBox
+    className="hero-portfolio-avatar-mobile"
     as="span"
     display="block"
     position={{ base: "absolute", md: "relative" }}
