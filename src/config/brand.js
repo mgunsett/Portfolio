@@ -12,7 +12,7 @@ export const BRAND = {
 
   // ← Nombre de la sub-marca. Ej: "Player Page", "Dorsal", "Ficha 10".
   // Mientras sea null, el sitio se presenta solo con el nombre personal.
-  service: null,
+  service: 'SportFolio',
 
   role: "Landing Deportiva",
   roleSecondary: "Front-End Developer · React.js",
@@ -49,7 +49,7 @@ export const BRAND = {
     logo: null, // ruta en /public cuando esté disponible el logo autorizado
   },
 
-  siteUrl: "https://matiasgunsett.com",
+  siteUrl: "https://matiasgunsett.netlify.app",
 
   /**
    * Métricas del perfil profesional. Se editan acá, no en el componente.

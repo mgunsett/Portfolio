@@ -5,7 +5,7 @@ import SectionDivider from "./SectionDivider";
 import SectionHeader from "./SectionHeader";
 import PlayersRail from "./PlayersRail";
 import PlayerCaseModal from "./PlayerCaseModal";
-import { players } from "../data/players";
+import { featuredPlayers } from "../data/players";
 import matiAvatar from "../assets/mati_avatar.webp";
 
 const PlayersShowcase = () => {
@@ -23,8 +23,6 @@ const PlayersShowcase = () => {
   };
 
   return (
-    // overflowX="clip" (y no "hidden") recorta el avatar apoyado si el margen
-    // lateral se queda corto, sin crear un contenedor de scroll horizontal.
     <Box id="casos" position="relative" overflowX="clip">
       <SectionDivider mt={10} mb={12} />
 
@@ -38,21 +36,9 @@ const PlayersShowcase = () => {
         transition={{ duration: 0.6 }}
       >
         <Box maxW="6xl" mx="auto">
-          {players.length > 0 ? (
+          {featuredPlayers.length > 0 ? (
             <Grid templateColumns={{ base: "1fr", md: "repeat(12, 1fr)" }} gap={{ base: 8, md: 12 }}>
               <GridItem colSpan={{ base: 1, md: 12 }}>
-                {/*
-                  Hasta xl el avatar presenta la sección desde acá: apoya el
-                  antebrazo sobre la línea vertical del encabezado, que es el
-                  mismo gesto que en xl hace sobre el canto del teléfono de la
-                  primera card. Por eso los dos usos son excluyentes —nunca hay
-                  dos avatares en pantalla— y por eso la línea existe: sin algo
-                  vertical donde apoyarse, la pose queda flotando.
-
-                  Asoma desde afuera del padding de la sección (`ml` negativo)
-                  para no comerle ancho al título, que en un celular angosto
-                  entra justo.
-                */}
                 <Flex align="flex-end" gap={{ base: 3, md: 5 }}>
                   <Image
                     src={matiAvatar}
@@ -87,13 +73,11 @@ const PlayersShowcase = () => {
 
               <GridItem colSpan={{ base: 2, md: 12 }}>
                 <Box pl={{ base: 0, xl: 52, "2xl": 56 }} pt={{ base: 0, xl: 16 }}>
-                  <PlayersRail players={players} onOpen={handleOpen} />
+                  <PlayersRail players={featuredPlayers} onOpen={handleOpen} />
                 </Box>
               </GridItem>
             </Grid>
           ) : (
-            // Sin casos cargados todavía: el pitch ya lo hizo LandingPreview arriba,
-            // acá solo queda anunciar que están en camino.
             <Flex align="center" gap={4}>
               <Box w="40px" h="1px" bg="green" />
               <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase" opacity={0.7}>

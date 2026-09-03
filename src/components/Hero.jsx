@@ -6,7 +6,7 @@ import { Eyebrow, HeroActions, HeroMetaStrip } from "./HeroKit";
 import { BRAND } from "../config/brand";
 import { playersSummary } from "../data/players";
 
-const EYEBROW_TEXT = "Landing Pages · Fútbol Profesional";
+const EYEBROW_TEXT = "Sportfolio · Landing Pages";
 
 const ACTIONS = [
   { label: "Ver casos", sectionId: "casos", variant: "primary" },
@@ -128,11 +128,6 @@ const Hero = () => {
           >
             Webs para Deportistas Profesionales
           </Text>
-
-          <Text fontSize="sm" letterSpacing="0.15em" textTransform="uppercase" opacity={0.65} mt={-3}>
-            {BRAND.roleSecondary}
-          </Text>
-
           <HeroMetaStrip lead={clubsLead()} items={playersSummary.clubs} />
 
           <HeroActions actions={ACTIONS} />

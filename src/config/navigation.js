@@ -26,7 +26,8 @@ export const SPORTFOLIO_NAV = [
   { id: "preview", number: "01", label: "La landing" },
   { id: "casos", number: "02", label: "Casos" },
   { id: "servicio", number: "03", label: "Servicio" },
-  { id: "contacto", number: "04", label: "Contacto" },
+  { id: "mas-proyectos", number: "04", label: "Más proyectos" },
+  { id: "contacto", number: "05", label: "Contacto" },
 ];
 
 export const NAV_BY_ROUTE = {

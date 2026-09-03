@@ -1,5 +1,10 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { scrollToSection } from "../utils/scrollToSection";
+import { useColorMode } from "@chakra-ui/react";
+const useDarkMode = () => {
+  const { colorMode } = useColorMode();
+  return colorMode === "dark";
+};
 
 /** Estilos de los dos botones del Hero, compartidos por las dos páginas. */
 const VARIANTS = {
@@ -80,18 +85,19 @@ export const HeroMetaStrip = ({ lead, items, center }) => {
     >
       {lead && (
         <>
-          <Text fontSize="xs" letterSpacing="0.2em" textTransform="uppercase" opacity={0.6}>
-            {lead}
+          <Text fontSize="xs" letterSpacing="0.2em" color={useDarkMode() ? "yellow" : "green"} textTransform="uppercase" opacity={0.6}>
+            +20 JUGADORES
           </Text>
-          <Box w="1px" h={4} bg="whiteAlpha.400" />
+          <Box w="2px" h={4} bg={useDarkMode() ? "yellow" : "green"} />
         </>
       )}
 
       {items.map((item) => (
-        <Text key={item} fontSize="xs" textTransform="uppercase" opacity={0.75} fontFamily="space">
+        <Text key={item} fontSize="xs" color={useDarkMode() ? "yellow" : "green"} textTransform="uppercase" opacity={0.75} fontFamily="space">
           {item}
         </Text>
       ))}
+      y más...
     </Flex>
   );
 };

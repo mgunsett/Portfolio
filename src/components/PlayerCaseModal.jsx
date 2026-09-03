@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { FiExternalLink, FiMonitor, FiSmartphone } from "react-icons/fi";
 import { useState } from "react";
+import LaptopFrame from "./LaptopFrame";
 import MediaFrame from "./MediaFrame";
 import PhoneFrame from "./PhoneFrame";
 import SectionDivider from "./SectionDivider";
@@ -26,11 +27,10 @@ import SectionDivider from "./SectionDivider";
  * Detalle de un caso de jugador: galería (videos y capturas), sitio en vivo
  * dentro del frame desktop/mobile, métricas, highlights y testimonio.
  *
- * El frame con bisel verde y el fallback de iframe replican los de
- * ModalProyects, que sigue usándose para los proyectos de desarrollo.
+ * Los mockups (LaptopFrame / PhoneFrame) y el fallback de iframe son los
+ * mismos que usa ModalProyects para los proyectos de desarrollo.
  */
 const PlayerCaseModal = ({ isOpen, onClose, player }) => {
-  const zoom = 0.72;
   const { colorMode } = useColorMode();
   const isMobile = useBreakpointValue({ base: true, sm: false, md: false });
   // La vista arranca según el breakpoint y solo cambia si el usuario la togglea.
@@ -47,7 +47,6 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
   const modalBg = colorMode === "dark" ? "surface" : "modalbg";
   const textColor = colorMode === "dark" ? "beige" : "background";
   const inactiveBg = colorMode === "dark" ? "whiteAlpha.100" : "blackAlpha.100";
-  const panelBg = colorMode === "dark" ? "black" : "white";
 
   if (!player) return null;
 
@@ -125,26 +124,7 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
             </Grid>
           )}
 
-          {/* Galería de material propio */}
-          {media.length > 0 && (
-            <Grid
-              templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
-              gap={4}
-              mb={8}
-            >
-              {media.map((item, i) => (
-                <MediaFrame
-                  key={i}
-                  item={item}
-                  gridColumn={
-                    item.orientation === "landscape" ? { md: "span 2" } : undefined
-                  }
-                />
-              ))}
-            </Grid>
-          )}
-
-          {/* Sitio en vivo dentro del frame */}
+           {/* Sitio en vivo dentro del frame */}
           {hasLiveSite && (
             <>
               <Flex align="center" justify="center" gap={3} mb={2}>
@@ -186,32 +166,20 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
               <SectionDivider mb={4} />
 
               {isDesktopView && !isMobile ? (
-                <Flex direction="column" align="center" mb={8}>
-                  <Box
-                    w="100%"
-                    h="70vh"
-                    border="2px solid"
-                    borderColor="green"
-                    borderTopRadius="xl"
-                    borderBottomRadius="md"
-                    bg={panelBg}
-                    p={2}
-                  >
+                <Flex justify="center" mb={10}>
+                  <LaptopFrame maxW="min(94%, calc(60vh * 1.6))" url={player.url}>
                     <MediaFrame
                       item={{ type: "iframe", src: player.url, alt: `${info.name} — vista desktop` }}
-                      zoom={zoom}
+                      viewportWidth={1440}
+                      position="absolute"
+                      inset={0}
+                      w="100%"
                       h="100%"
+                      borderRadius={0}
                     />
-                  </Box>
-                  <Box w="180px" h="10px" bg="green" borderBottomRadius="md" />
-                  <Box w="290px" h="8px" bg="green" mt={2} opacity={0.85} />
+                  </LaptopFrame>
                 </Flex>
               ) : (
-                // Mismo mockup que la card de la grilla (PhoneFrame), pero con
-                // el sitio en vivo adentro en vez del screenshot: acá el
-                // usuario ya hizo clic, así que se justifica cargar la landing
-                // entera. `viewportWidth={390}` la hace renderizar a ancho de
-                // iPhone real y no al ancho que quede el marco.
                 <Flex justify="center" mb={8}>
                   <PhoneFrame maxW={{ base: "280px", sm: "300px" }}>
                     <MediaFrame
@@ -228,34 +196,7 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
               )}
             </>
           )}
-
-          {/* Qué incluyó el trabajo */}
-          {highlights.length > 0 && (
-            <Box mb={8}>
-              <Text
-                fontSize="sm"
-                letterSpacing="0.2em"
-                textTransform="uppercase"
-                color="green"
-                fontWeight="semibold"
-                mb={4}
-              >
-                Qué incluyó
-              </Text>
-              <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={3}>
-                {highlights.map((h, i) => (
-                  <Flex key={i} align="flex-start" gap={3}>
-                    <Box w={2} h={2} bg="yellow" borderRadius="full" mt={2} flexShrink={0} />
-                    <Text fontSize="sm" opacity={0.85} fontFamily="space">
-                      {h}
-                    </Text>
-                  </Flex>
-                ))}
-              </Grid>
-            </Box>
-          )}
-
-          {/* Testimonio */}
+          {/*----------------------------------- Testimonio
           {testimonial && (
             <Box
               borderLeft="3px solid"
@@ -272,26 +213,7 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
                 {testimonial.role ? ` · ${testimonial.role}` : ""}
               </Text>
             </Box>
-          )}
-
-          {/* Stack */}
-          {tech.length > 0 && (
-            <Flex wrap="wrap" gap={2}>
-              {tech.map((t, i) => (
-                <Badge
-                  key={i}
-                  fontSize="xs"
-                  px={3}
-                  py={1}
-                  bg="yellow"
-                  color="#0B0B0B"
-                  textTransform="none"
-                >
-                  {t}
-                </Badge>
-              ))}
-            </Flex>
-          )}
+          )} */}
         </ModalBody>
       </ModalContent>
     </Modal>

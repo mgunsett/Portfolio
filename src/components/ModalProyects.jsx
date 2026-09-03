@@ -1,5 +1,4 @@
 import {
-  Box,
   Flex,
   Link,
   IconButton,
@@ -14,12 +13,13 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FiMonitor, FiSmartphone, FiExternalLink } from "react-icons/fi";
+import LaptopFrame from "./LaptopFrame";
 import MediaFrame from "./MediaFrame";
+import PhoneFrame from "./PhoneFrame";
 import SectionDivider from "./SectionDivider";
 
 /** Vista previa de un proyecto de desarrollo dentro de un frame desktop/mobile. */
 const ModalProyects = ({ isOpen, onClose, project }) => {
-  const zoom = 0.72;
   const { colorMode } = useColorMode();
   const isMobile = useBreakpointValue({ base: true, sm: false, md: false });
 
@@ -36,7 +36,6 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
   const modalBg = colorMode === "dark" ? "surface" : "modalbg";
   const textColor = colorMode === "dark" ? "beige" : "background";
   const inactiveButtonBg = colorMode === "dark" ? "whiteAlpha.100" : "blackAlpha.100";
-  const panelBg = colorMode === "dark" ? "black" : "white";
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size="6xl">
@@ -84,67 +83,40 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
             <SectionDivider />
 
             {isDesktopView && !isMobile ? (
-              <Flex direction="column" align="center" gap={0}>
-                <Box
-                  className="desktopContainer"
-                  w="100%"
-                  h="75vh"
-                  border="2px solid"
-                  borderColor="green"
-                  borderTopRadius="xl"
-                  borderBottomRadius="md"
-                  bg={panelBg}
-                  p={2}
-                >
+              <Flex justify="center" mb={6}>
+                <LaptopFrame maxW="min(94%, calc(60vh * 1.6))" url={project?.url}>
                   <MediaFrame
                     item={{
                       type: "iframe",
                       src: project?.url,
                       alt: `${project?.name || "Proyecto"} - Vista desktop`,
                     }}
-                    zoom={zoom}
+                    viewportWidth={1440}
+                    position="absolute"
+                    inset={0}
+                    w="100%"
                     h="100%"
+                    borderRadius={0}
                   />
-                </Box>
-                <Box w="180px" h="10px" bg="green" borderBottomRadius="md" />
-                <Box w="290px" h="8px" bg="green" mt={2} opacity={0.85} />
+                </LaptopFrame>
               </Flex>
             ) : (
-              <Flex justify="center">
-                <Box
-                  w={{ base: "90%", sm: "340px" }}
-                  h={{ base: "560px", sm: "590px" }}
-                  border="1px solid"
-                  borderColor="green"
-                  borderRadius="3xl"
-                  bg={panelBg}
-                  p={2}
-                  overflow="hidden"
-                  position="relative"
-                >
-                  <Box
-                    w="90px"
-                    h="6px"
-                    bg="white"
-                    borderRadius="full"
-                    position="absolute"
-                    top={3}
-                    left="50%"
-                    transform="translateX(-50%)"
-                    zIndex={1}
-                    opacity={0.8}
-                  />
+              <Flex justify="center" mb={4}>
+                <PhoneFrame maxW={{ base: "280px", sm: "300px" }}>
                   <MediaFrame
                     item={{
                       type: "iframe",
                       src: project?.url,
                       alt: `${project?.name || "Proyecto"} - Vista mobile`,
                     }}
-                    zoom={zoom}
+                    viewportWidth={390}
+                    position="absolute"
+                    inset={0}
+                    w="100%"
                     h="100%"
-                    borderRadius="2xl"
+                    borderRadius={0}
                   />
-                </Box>
+                </PhoneFrame>
               </Flex>
             )}
           </Flex>

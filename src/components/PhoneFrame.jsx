@@ -45,7 +45,7 @@ const SideButton = ({ side, top, h }) => (
  * el modal calcula la escala del iframe—.
  */
 const PhoneFrame = ({ maxW = "260px", screenRef, screenProps, children, ...rest }) => (
-  <Box position="relative" w="100%" maxW={maxW} {...rest}>
+  <Box position="relative" w="80%" maxW={maxW} {...rest}>
     <SideButton side="left" top="16%" h="3.5%" />
     <SideButton side="left" top="24%" h="7%" />
     <SideButton side="left" top="33%" h="7%" />

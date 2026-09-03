@@ -5,6 +5,7 @@ import LandingPreview from "../components/LandingPreview";
 import PlayersShowcase from "../components/PlayersShowcase";
 import Partners from "../components/Partners";
 import ServiceOffer from "../components/ServiceOffer";
+import MoreProjects from "../components/MoreProjects";
 import Contacto from "../components/Contacto";
 import Footer from "../components/Footer";
 import { BRAND, displayName } from "../config/brand";
@@ -14,8 +15,10 @@ import { BRAND, displayName } from "../config/brand";
  *
  * Es una página del portfolio, pero se entra y se recorre como si fuera un
  * sitio propio. Orden pensado para convertir: primero qué es el producto,
- * después la prueba (casos de jugadores), la credibilidad prestada del partner
- * y recién ahí la oferta, con el contacto como cierre.
+ * después la prueba (los casos destacados), la credibilidad prestada del
+ * partner y recién ahí la oferta. "Más proyectos" cierra con el volumen de
+ * trabajo entregado —el argumento de que esto no es un caso aislado— y deja al
+ * visitante a un scroll del contacto.
  */
 const Sportfolio = () => {
   return (
@@ -30,7 +33,8 @@ const Sportfolio = () => {
       <PlayersShowcase />
       <Partners />
       <ServiceOffer />
-      <Contacto variant="sportfolio" number="04" />
+      <MoreProjects number="04" />
+      <Contacto variant="sportfolio" number="05" />
       <Footer />
     </PageWrapper>
   );

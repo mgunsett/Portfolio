@@ -39,7 +39,7 @@ const LeaningAvatar = () => (
     position="absolute"
     right="72%"
     bottom={0}
-    h="133%"
+    h="130%"
     w="auto"
     maxW="none"
     zIndex={3}
@@ -48,30 +48,6 @@ const LeaningAvatar = () => (
   />
 );
 
-/**
- * Encabezado de la card, arriba del teléfono.
- *
- * Toma el gesto de las features de LandingPreview —línea fina verde rematada
- * por un punto amarillo— pero acostado: acá la línea corre por debajo del texto
- * y a lo ancho de la card, así queda señalando el mockup que viene abajo en vez
- * de acompañar un texto al costado.
- *
- * Lleva lo mínimo indispensable para identificar el caso: posición, club y
- * nombre. Las métricas, el material y las tecnologías viven en el modal, que es
- * donde el visitante ya decidió prestar atención; repetirlos acá llenaba la
- * grilla de números compitiendo entre sí.
- *
- * Dos medidas lo sostienen:
- *
- * - `flex="1"` + `justify="flex-end"`: el bloque crece hasta llenar el alto que
- *   la grilla le da a la card y ancla su contenido abajo. Así un nombre que
- *   corta en dos renglones se come el aire de arriba y todos los teléfonos de
- *   la fila siguen arrancando a la misma altura, sin reservar renglones vacíos.
- *
- * - `mb` generoso: además de aire, es lo que mantiene el texto y la línea por
- *   encima del antebrazo del avatar, que en xl apoya justo sobre el canto
- *   superior del teléfono de la primera card.
- */
 const CardHeader = ({ player, showCta }) => (
   <Flex
     direction="column"
@@ -79,11 +55,12 @@ const CardHeader = ({ player, showCta }) => (
     alignItems="center"
     flex="1"
     w="100%"
-    mb={{ base: 10, md: 12, xl: 12}}
+    mb={{ base: 2, md: 6, xl: 6}}
+    ml={{ base: 0, xl: "-8%" }}
   >
     <Flex direction="column" alignItems="center" gap={1}>
       <Text
-        fontSize="xs"
+        fontSize="8px"
         letterSpacing="0.2em"
         textTransform="uppercase"
         fontWeight="semibold"
@@ -95,9 +72,8 @@ const CardHeader = ({ player, showCta }) => (
       <Heading
         as="h3"
         fontFamily='"Syne", sans-serif'
-        fontSize={{ base: "xl", md: "2xl" }}
+        fontSize={{ base: "md", md: "lg" }}
         textTransform="uppercase"
-        
         lineHeight="1.1"
       >
         {player.player.name}
@@ -110,7 +86,7 @@ const CardHeader = ({ player, showCta }) => (
         alignItems="center"
         borderTop="1px solid"
         borderColor="green" 
-        w="160px"
+        w="140px"
         mt={4}
       >
         <Box
@@ -128,35 +104,6 @@ const CardHeader = ({ player, showCta }) => (
   </Flex>
 );
 
-/**
- * Teléfono con el screenshot del home mobile de la landing en la pantalla.
- *
- * La captura entra a ancho completo y alto natural, pero con un piso: nunca
- * mide menos que el alto libre de la pantalla. Ese piso está porque las
- * capturas no vienen todas en 9:19.5 —hay de 485x909 y de 422x909— y las más
- * anchas, a ancho completo, se quedaban cortas de alto y dejaban una franja de
- * fondo abajo, mientras la del ratio justo llenaba el mockup.
- *
- * Cuando una captura no llega, el `minH` estira la caja y `objectFit="cover"`
- * la escala por alto: se recortan unos cinco puntos porcentuales de cada
- * costado, bastante menos molesto que la banda vacía. Lo definitivo, igual, es
- * exportar las capturas ya en 9:19.5.
- *
- * Si la captura es más larga que la pantalla —lo esperable en un screenshot de
- * página completa— el sobrante se mide con un ResizeObserver y en hover la
- * imagen se desplaza exactamente esa distancia: se ve como si alguien
- * scrolleara el sitio. Ahí "cover" no recorta nada, porque la caja ya tiene el
- * aspecto natural de la imagen.
- *
- * En las capturas que no dan recorrido para scrollear, el hover cae de vuelta a
- * un zoom suave.
- *
- * La captura arranca `ISLAND_SAFE_TOP` más abajo del canto de la pantalla: es
- * una imagen fija, no un sitio que scrollea bajo la isla, así que si empezara
- * en 0 la Dynamic Island le comería el header. Ese aire lo rellena el fondo
- * borroneado, y el recorrido del hover lo suma para que la captura igual
- * termine mostrándose entera.
- */
 const ScreenshotPhone = ({ player, isComing }) => {
   const screenRef = useRef(null);
   const shotRef = useRef(null);
@@ -274,28 +221,6 @@ const ScreenshotPhone = ({ player, isComing }) => {
   );
 };
 
-/**
- * Card de un caso de jugador: el teléfono es la card.
- *
- * En vez de un cover recortado a 4:5, se muestra el home mobile real de la
- * landing dentro de un mockup de iPhone. La ficha va arriba y en una sola
- * línea: abajo tapaba el diseño que se está mostrando y estiraba cada card a
- * una pantalla entera de alto en mobile.
- *
- * Acá va el screenshot y no el sitio en vivo a propósito: son tres landings
- * completas, y embeberlas en la grilla costaría una carga de sitio por card
- * (varios segundos en negro mientras corren sus animaciones de entrada) y
- * contaría una visita en el analytics de cada jugador por cada hover, que es
- * justo la métrica que el caso publica. El sitio en vivo va en el modal, donde
- * el usuario ya hizo clic (ver PlayerCaseModal).
- *
- * En status "coming" mantiene exactamente el mismo esqueleto y proporciones,
- * con un overlay de "Próximamente": la grilla nunca se ve incompleta mientras
- * se termina de reunir el material de un caso.
- *
- * `withAvatar` reserva el efecto del avatar apoyado para una sola card de la
- * grilla (la primera): repetido en todas perdería la gracia.
- */
 const PlayerCard = ({ player, onOpen, withAvatar = false }) => {
   const isComing = player.status === "coming";
 
@@ -316,11 +241,6 @@ const PlayerCard = ({ player, onOpen, withAvatar = false }) => {
       animate="rest"
     >
       <CardHeader player={player} showCta={!isComing} />
-
-      {/*
-        Escenario del teléfono: además del mockup contiene el avatar apoyado,
-        que se mide contra esta caja y no contra la card.
-      */}
       <MotionBox
         position="relative"
         w="100%"
