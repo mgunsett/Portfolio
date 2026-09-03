@@ -54,76 +54,12 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
   const hasLiveSite = Boolean(player.url);
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} size="6xl" scrollBehavior="inside">
+    <Modal isOpen={isOpen} onClose={handleClose} size="6xl">
       <ModalOverlay bg="blackAlpha.700" />
       <ModalContent bg={modalBg} color={textColor} m={4}>
         <ModalCloseButton _hover={{ bg: "red.600", opacity: 0.5 }} />
 
         <ModalBody pb={10} pt={12}>
-          {/* Cabecera del caso */}
-          <Box mb={6}>
-            <Text
-              fontSize="xs"
-              letterSpacing="0.2em"
-              textTransform="uppercase"
-              color="green"
-              mb={2}
-            >
-              {[info.position, info.club, info.country].filter(Boolean).join(" · ")}
-            </Text>
-            <Flex align="baseline" gap={4} wrap="wrap">
-              <Heading
-                fontFamily='"Syne", sans-serif'
-                fontSize={{ base: "2xl", md: "4xl" }}
-                textTransform="uppercase"
-                lineHeight="1.1"
-              >
-                {info.name}
-              </Heading>
-              {/* El dorsal salió de la card para no competir con el mockup;
-                  acá adentro tiene lugar como acento, sin robarle el foco al
-                  nombre. */}
-              {info.number && (
-                <Text
-                  fontFamily={'"Syne", sans-serif'}
-                  fontSize={{ base: "lg", md: "2xl" }}
-                  fontWeight="bold"
-                  color="yellow"
-                  opacity={0.85}
-                >
-                  #{info.number}
-                </Text>
-              )}
-              <Text fontSize="sm" opacity={0.6}>
-                {player.year}
-              </Text>
-            </Flex>
-          </Box>
-
-          {/* Métricas: la prueba del resultado, arriba de todo */}
-          {metrics.length > 0 && (
-            <Grid
-              templateColumns={{ base: "repeat(2, 1fr)", md: `repeat(${metrics.length}, 1fr)` }}
-              gap={6}
-              mb={8}
-              py={6}
-              borderTop="1px solid"
-              borderBottom="1px solid"
-              borderColor="whiteAlpha.300"
-            >
-              {metrics.map((m, i) => (
-                <Box key={i}>
-                  <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color="green" lineHeight="1">
-                    {m.value}
-                  </Text>
-                  <Text fontSize="xs" opacity={0.8} fontFamily="space" mt={2}>
-                    {m.label}
-                  </Text>
-                </Box>
-              ))}
-            </Grid>
-          )}
-
            {/* Sitio en vivo dentro del frame */}
           {hasLiveSite && (
             <>

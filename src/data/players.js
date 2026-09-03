@@ -4,8 +4,18 @@ import gonzalo from "../../public/media/players/gonzalo_piovi.jpeg";
 import gonzalo1 from "../../public/media/players/gonzalo_piovi1.webp";
 import ronaldo from "../../public/media/players/ronaldo_martinez.webp";
 import ronaldo1 from "../../public/media/players/ronaldo_martinez1.png";
-import miguel from "../assets/masJugadores/miguel_rondelli.png";
-
+import miguelRondeli from "../assets/masJugadores/miguel_rondelli.webp";
+import andresZanini from "../assets/masJugadores/andres_zanini.webp";
+import ezequielPiovi from "../assets/masJugadores/ezequiel_piovi.webp";
+import facundoCallejo from "../assets/masJugadores/facundo_callejo.webp";
+import hectorFertoli from "../assets/masJugadores/hector_fertoli.webp";
+import ivanColman from "../assets/masJugadores/ivan_colman.webp";
+import jpRuizGomez from "../assets/masJugadores/jp_ruizgomez.webp";
+import julianAquino from "../assets/masJugadores/julian_aquino.webp";
+import lisandroAlzugaray from "../assets/masJugadores/lisandro_alzugaray.webp";
+import luisRamos from "../assets/masJugadores/luis_ramos.webp";
+import matiasDiBenedetto from "../assets/masJugadores/matias_dibenedetto.webp";
+import nicolasSilva from "../assets/masJugadores/nicolas_silva.webp";
 /**
  * Todos los casos publicados, en un solo array.
  *
@@ -112,9 +122,9 @@ export const players = [
       // imprime el "#" cuando hay número.
       number: null,
     },
-    cover: miguel,   // captura desktop, apaisada
+    cover: miguelRondeli,   // captura desktop, apaisada
     media: [
-      { type: "image", src: miguel, orientation: "landscape", alt: "web miguel rondelli" },
+      { type: "image", src: miguelRondeli, orientation: "landscape", alt: "web miguel rondelli" },
     ],
     metrics: [
       { value: "+30K", label: "Visitas en 30 días" },
@@ -124,6 +134,121 @@ export const players = [
     testimonial: null,
     tech: ["React", "Framer Motion"],
   },
+  {
+    slug: "andres_zanini",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://andres-zanini.netlify.app",
+    player: {
+      name: "Andrés Zanini",
+      position: "Delantero",
+      club: "FBC Melgar",
+      country: "Argentina",
+      number: 10,
+    },
+    cover: andresZanini,
+    media: [
+      { type: "image", src: andresZanini, orientation: "landscape", alt: "web andres zanini" },
+    ],
+    metrics: [
+      { value: "+30K", label: "Visitas en 30 días" },
+      { value: "Resultados actualizados", label: "Seguimiento continuo" },
+    ],
+    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
+    testimonial: null,
+    tech: ["React", "Framer Motion"],
+  },
+  {
+    slug: "ezequiel_piovi",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://ezequiel-piovi.netlify.app",
+    player: {
+      name: "Ezequiel Piovi",
+      position: "Centrocampista",
+      club: "FBC Melgar",
+      country: "Argentina",
+      number: 8,
+    },
+    cover: ezequielPiovi,
+    media: [
+      { type: "image", src: ezequielPiovi, orientation: "landscape", alt: "web ezequiel piovi" },
+    ],
+    metrics: [
+      { value: "+30K", label: "Visitas en 30 días" },
+      { value: "Resultados actualizados", label: "Seguimiento continuo" },
+    ],
+    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
+    testimonial: null,
+    tech: ["React", "Framer Motion"],
+  },
+  {
+    slug: "jp_ruizgomez",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://jp-ruizgomez.netlify.app",
+    player: {
+      name: "JP Ruiz Gomez",
+      position: "Delantero",
+      club: "FBC Melgar",
+      country: "Argentina",
+      number: 9,
+    },
+    cover: jpRuizGomez,
+    media: [
+      { type: "image", src: jpRuizGomez, orientation: "landscape", alt: "web jp ruiz gomez" },
+    ],
+    metrics: [
+      { value: "+30K", label: "Visitas en 30 días" },
+      { value: "Resultados actualizados", label: "Seguimiento continuo" },
+    ],
+    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
+    testimonial: null,
+    tech: ["React", "Framer Motion"],
+  },
+  {
+    slug: "facundo_callejo",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://facundo-callejo.netlify.app",
+    player: {
+      name: "Facundo Callejo",
+      position: "Delantero",
+      club: "FBC Melgar",
+      country: "Argentina",
+      number: 11,
+    },
+    cover: facundoCallejo,
+    media: [
+      { type: "image", src: facundoCallejo, orientation: "landscape", alt: "web facundo callejo" },
+    ],
+    metrics: [
+      { value: "+30K", label: "Visitas en 30 días" },
+      { value: "Resultados actualizados", label: "Seguimiento continuo" },
+    ],
+    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
+    testimonial: null,
+    tech: ["React", "Framer Motion"],
+  },
+  {
+    slug: "hector_fertoli",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://hector-fertoli.netlify.app",
+    player: {
+      name: "Hector Fertoli",
+      position: "Mediocampista",
+      club: "Universitario",
+      country: "Argentina",
+      number: 8,
+    },
+    cover: hectorFertoli,
+  }
 ];
 
 /** Casos publicables, en el orden en que deben mostrarse. */

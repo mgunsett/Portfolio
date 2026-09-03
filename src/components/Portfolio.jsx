@@ -1,19 +1,12 @@
-import {
-  Box,
-  Grid,
-  Flex,
-  Text,
-  Heading,
-  Link,
-  Badge,
-  GridItem,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { MotionBox, MotionFlex} from "./Motion.jsx";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { projects } from "../data/projects";
+import { Box, Grid, Flex, Text, Heading, GridItem, useDisclosure } from "@chakra-ui/react";
+import { MotionBox } from "./Motion.jsx";
+import ProjectPosterCard from "./ProjectPosterCard.jsx";
 import ModalProyects from "./ModalProyects.jsx";
+import { projects } from "../data/projects";
 import { useState } from "react";
+
+/** Retardo entre card y card al entrar en pantalla, en segundos. */
+const STAGGER = 0.08;
 
 const Portfolio = ({ number = "03" }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -89,115 +82,28 @@ const Portfolio = ({ number = "03" }) => {
                 pago y paneles de administración.
               </Text>
             </GridItem>
+
             <GridItem colSpan={{ base: 1, md: 12 }}>
-            <Grid 
-              templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
-              gap={6}
-            >
-            {projects.map((p, i) => (
-              <MotionFlex
-                key={i}
-                direction="column"
-                justifyContent={'space-between'}
-                p={{ base: 6, md: 8 }}
-                border="1px solid" 
-                borderColor="green"
-                position="relative"
-                overflow="hidden"
-                initial={{ y: 0 }}
-                whileHover="hover"
-                animate="rest"
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                variants={{
-                  rest: { y: 0 },
-                  hover: { y: -6 }
-                }}
+              {/* Tres por fila en desktop, dos en tablet y una en mobile: por
+                  debajo de ~300px de ancho la captura del sitio deja de leerse. */}
+              <Grid
+                templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+                gap={{ base: 5, md: 6 }}
               >
-                {/* Animated left border */}
-                <MotionBox
-                  position="absolute"
-                  left={0}
-                  top="50%"
-                  width="3px"
-                  bg="green"
-                  variants={{
-                    rest: { height: 0, y: "-50%" },
-                    hover: { height: "100%", y: "-50%" }
-                  }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                />
-                {/* Top info */}
-                <Flex justify="space-between" mb={4}>
-                  <Text
-                    fontSize="sm"
-                    fontWeight="medium"
-                    letterSpacing="wider"
-                    textTransform="uppercase"
-                    color="green"
+                {projects.map((project, i) => (
+                  <MotionBox
+                    key={project.name}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: i * STAGGER }}
                   >
-                    {p.name}
-                  </Text>
-                  <Text fontSize="sm" opacity={0.6}>
-                    {p.year}
-                  </Text>
-                </Flex>
-
-                <Heading
-                  as="h3"
-                  fontFamily="Syne, sans-serif"
-                  fontSize="lg"
-                  fontWeight="bold"
-                  textTransform="uppercase"
-                  mb={4}
-                >
-                  {p.title}
-                </Heading>
-
-                <Text mb={6} opacity={0.8} fontSize="sm">
-                  {p.description}
-                </Text>
-
-                {/* Tags */}
-                <Flex wrap="wrap" gap={2} mb={6}>
-                  {p.tech.map((tech, i) => (
-                    <Badge
-                      key={i}
-                      fontSize="xs"
-                      px={3}
-                      py={1}
-                      bg="yellow"
-                      color="#0B0B0B"
-                      textTransform="none"
-                      _hover={{cursor: 'default', opacity: 0.8}}
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </Flex>
-
-                {/* Link */}
-                <Link
-                  as="button"
-                  type="button"
-                  onClick={() => handleOpenProject(p)}
-                  display="inline-flex"
-                  alignItems="center"
-                  gap={2}
-                  fontSize="sm"
-                  fontWeight="semibold"
-                  letterSpacing="wide"
-                  textTransform="uppercase"
-                  color="#0F766E"
-                  _hover={{ textDecoration: "none", opacity: 0.8 }}
-                >
-                  Ver proyecto
-                  <ExternalLinkIcon />
-                </Link>
-              </MotionFlex>
-            ))}
-            </Grid>
+                    <ProjectPosterCard project={project} index={i} onOpen={handleOpenProject} />
+                  </MotionBox>
+                ))}
+              </Grid>
             </GridItem>
-            
+
           </Grid>
         </Box>
       </MotionBox>
