@@ -3,7 +3,6 @@ import guido1 from "../../public/media/players/guido_mainero1.webp";
 import gonzalo from "../../public/media/players/gonzalo_piovi.jpeg";
 import gonzalo1 from "../../public/media/players/gonzalo_piovi1.webp";
 import ronaldo from "../../public/media/players/ronaldo_martinez.webp";
-import ronaldo1 from "../../public/media/players/ronaldo_martinez1.png";
 import miguelRondeli from "../assets/masJugadores/miguel_rondelli.webp";
 import andresZanini from "../assets/masJugadores/andres_zanini.webp";
 import ezequielPiovi from "../assets/masJugadores/ezequiel_piovi.webp";
@@ -16,47 +15,25 @@ import lisandroAlzugaray from "../assets/masJugadores/lisandro_alzugaray.webp";
 import luisRamos from "../assets/masJugadores/luis_ramos.webp";
 import matiasDiBenedetto from "../assets/masJugadores/matias_dibenedetto.webp";
 import nicolasSilva from "../assets/masJugadores/nicolas_silva.webp";
-/**
- * Todos los casos publicados, en un solo array.
- *
- * `tier` decide en qué sección aparece cada uno:
- *   - "featured" → los mockups de teléfono de "Destacados" (02).
- *   - "more"     → el carrusel de "Más proyectos" (04).
- *
- * Viven juntos a propósito: la forma del objeto es idéntica, el modal de
- * detalle es el mismo y `playersSummary` —el strip del Hero— cuenta sobre el
- * total. Mover un caso de una sección a la otra es cambiar una palabra, y dar
- * de alta un jugador se hace en un único lugar.
- *
- * `cover` es la captura que se ve en la card, y su formato depende del tier:
- * los destacados van dentro de un PhoneFrame y necesitan un screenshot mobile
- * vertical; los del carrusel se muestran apaisados, así que ahí va la captura
- * desktop.
- */
+import cainFara from "../assets/masJugadores/cain_fara.webp";
+import polacoFydriszewski from "../assets/masJugadores/polaco_fydriszewski.webp";
+
+
 export const players = [
   {
-    slug: "guido_mainero",          // identificador único, sin espacios
+    slug: "guido_mainero", 
     tier: "featured",
     status: "live",          // "coming" = teaser, sin material aún
     year: "2026",
-    url: "https://guidomainero.com",              // landing en vivo (null si no está)
+    url: "https://guidomainero.com",      
     player: {
       name: "Guido Mainero",
       position: "Delantero",
       club: "Platense",
       country: "Argentina",
-      number: 7,                      // opcional
+      number: 7,   
     },
-    cover: guido,   // captura mobile, vertical
-    media: [
-      { type: "image", src: guido1, orientation: "landscape", alt: "web guido mainero" },
-    ],
-    metrics: [                           // máximo 3, siempre con período explícito
-      { value: "+120K", label: "Visitas en 30 días" },
-    ],
-    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
-    testimonial: null,
-    tech: ["React", "Framer Motion"],
+    cover: guido,  
   },
   {
     slug: "gonzalo_piovi",
@@ -72,15 +49,6 @@ export const players = [
       number: 33,
     },
     cover: gonzalo1,
-    media: [
-      { type: "image", src: gonzalo, orientation: "landscape", alt: "web gonzalo piovi" },
-    ],
-    metrics: [
-      { value: "+120K", label: "Visitas en 30 días" },
-    ],
-    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
-    testimonial: null,
-    tech: ["React", "Framer Motion"],
   },
   {
     slug: "ronaldo_martinez",
@@ -91,21 +59,11 @@ export const players = [
     player: {
       name: "Rony Martinez",
       position: "Delantero",
-      club: "Talleres",
+      club: "Vélez Sarsfield",
       country: "Argentina",
-      number: 9,
+      number: 77,
     },
     cover: ronaldo,
-    media: [
-      { type: "image", src: ronaldo1, orientation: "landscape", alt: "web ronaldo martinez" },
-    ],
-    metrics: [
-      { value: "+30K", label: "Visitas en 30 días" },
-      { value: "Resultados actualizados", label: "Seguimiento continuo" },
-    ],
-    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
-    testimonial: null,
-    tech: ["React", "Framer Motion"],
   },
   {
     slug: "miguel_rondelli",
@@ -118,21 +76,9 @@ export const players = [
       position: "Entrenador",
       club: "FBC Melgar",
       country: "Argentina",
-      // Sin dorsal: es DT. El rol ya lo dice `position`, y el modal solo
-      // imprime el "#" cuando hay número.
       number: null,
     },
     cover: miguelRondeli,   // captura desktop, apaisada
-    media: [
-      { type: "image", src: miguelRondeli, orientation: "landscape", alt: "web miguel rondelli" },
-    ],
-    metrics: [
-      { value: "+30K", label: "Visitas en 30 días" },
-      { value: "Resultados actualizados", label: "Seguimiento continuo" },
-    ],
-    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
-    testimonial: null,
-    tech: ["React", "Framer Motion"],
   },
   {
     slug: "andres_zanini",
@@ -143,21 +89,26 @@ export const players = [
     player: {
       name: "Andrés Zanini",
       position: "Delantero",
-      club: "FBC Melgar",
+      club: "Dep la Serena",
       country: "Argentina",
-      number: 10,
+      number: 2,
     },
     cover: andresZanini,
-    media: [
-      { type: "image", src: andresZanini, orientation: "landscape", alt: "web andres zanini" },
-    ],
-    metrics: [
-      { value: "+30K", label: "Visitas en 30 días" },
-      { value: "Resultados actualizados", label: "Seguimiento continuo" },
-    ],
-    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
-    testimonial: null,
-    tech: ["React", "Framer Motion"],
+  },
+  {
+    slug: "cain_fara",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://cain-fara.vercel.app",
+    player: {
+      name: "Cain Fara",
+      position: "Defensor",
+      club: "Universitario",
+      country: "Argentina",
+      number: 2,
+    },
+    cover: cainFara,
   },
   {
     slug: "ezequiel_piovi",
@@ -168,46 +119,41 @@ export const players = [
     player: {
       name: "Ezequiel Piovi",
       position: "Centrocampista",
-      club: "FBC Melgar",
+      club: "Estudiantes LP",
       country: "Argentina",
-      number: 8,
+      number: 21,
     },
     cover: ezequielPiovi,
-    media: [
-      { type: "image", src: ezequielPiovi, orientation: "landscape", alt: "web ezequiel piovi" },
-    ],
-    metrics: [
-      { value: "+30K", label: "Visitas en 30 días" },
-      { value: "Resultados actualizados", label: "Seguimiento continuo" },
-    ],
-    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
-    testimonial: null,
-    tech: ["React", "Framer Motion"],
   },
   {
-    slug: "jp_ruizgomez",
+    slug: "polaco_fydriszewski",
     tier: "more",
     status: "live",
     year: "2026",
-    url: "https://jp-ruizgomez.netlify.app",
+    url: "https://polaco-fydriszewski.netlify.app",
     player: {
-      name: "JP Ruiz Gomez",
+      name: "Polaco Fydriszewski",
       position: "Delantero",
-      club: "FBC Melgar",
+      club: "Juniors Barranquilla",
       country: "Argentina",
-      number: 9,
+      number: 19,
     },
-    cover: jpRuizGomez,
-    media: [
-      { type: "image", src: jpRuizGomez, orientation: "landscape", alt: "web jp ruiz gomez" },
-    ],
-    metrics: [
-      { value: "+30K", label: "Visitas en 30 días" },
-      { value: "Resultados actualizados", label: "Seguimiento continuo" },
-    ],
-    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
-    testimonial: null,
-    tech: ["React", "Framer Motion"],
+    cover: polacoFydriszewski,
+  },
+  {
+    slug: "matias_dibenedetto",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://matias-dibenedetto.netlify.app",
+    player: {
+      name: "Matias Dibenedetto",
+      position: "Delantero",
+      club: "Universitario",
+      country: "Argentina",
+      number: 5,
+    },
+    cover: matiasDiBenedetto,
   },
   {
     slug: "facundo_callejo",
@@ -218,21 +164,26 @@ export const players = [
     player: {
       name: "Facundo Callejo",
       position: "Delantero",
-      club: "FBC Melgar",
+      club: "Cusco FC",
       country: "Argentina",
+      number: 9,
+    },  
+    cover: facundoCallejo,
+  },
+  {
+    slug: "luis_ramos",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://luis-ramos.netlify.app",
+    player: {
+      name: "Luis Ramos",
+      position: "Delantero",
+      club: "Alianza Lima",
+      country: "Peru",
       number: 11,
     },
-    cover: facundoCallejo,
-    media: [
-      { type: "image", src: facundoCallejo, orientation: "landscape", alt: "web facundo callejo" },
-    ],
-    metrics: [
-      { value: "+30K", label: "Visitas en 30 días" },
-      { value: "Resultados actualizados", label: "Seguimiento continuo" },
-    ],
-    highlights: ["Ficha de carrera interactiva", "Multi-idioma ES/EN"],
-    testimonial: null,
-    tech: ["React", "Framer Motion"],
+    cover: luisRamos,
   },
   {
     slug: "hector_fertoli",
@@ -248,6 +199,81 @@ export const players = [
       number: 8,
     },
     cover: hectorFertoli,
+  },
+  {
+    slug: "ivan_colman",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://ivan-colman.netlify.app",
+    player: {
+      name: "Ivan Colman",
+      position: "Centrocampista",
+      club: "Cusco FC",
+      country: "Argentina",
+      number: 10,
+    },
+    cover: ivanColman,
+  },
+  {
+    slug: "lisandro_alzugaray",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://lisandro-alzugaray.netlify.app",
+    player: {
+      name: "Lisandro Alzugaray",
+      position: "Delantero",
+      club: "Universitario",
+      country: "Argentina",
+      number: 30,
+    },
+    cover: lisandroAlzugaray,
+  },
+  {
+    slug: "jp_ruizgomez",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://jp-ruizgomez.netlify.app",
+    player: {
+      name: "JP Ruiz Gomez",
+      position: "Delantero",
+      club: "FBC Melgar",
+      country: "Argentina",
+      number: 9,
+    },
+    cover: jpRuizGomez,
+  },
+  {
+    slug: "nicolas_silva",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://nicolas-silva.netlify.app",
+    player: {
+      name: "Nicolas Silva",
+      position: "Defensor",
+      club: "Universitario",
+      country: "Argentina",
+      number: 4,
+    },
+    cover: nicolasSilva,
+  },
+  {
+    slug: "julian_aquino",
+    tier: "more",
+    status: "live",
+    year: "2026",
+    url: "https://julian-aquino.netlify.app",
+    player: {
+      name: "Julian Aquino",
+      position: "Delantero",
+      club: "Universitario",
+      country: "Argentina",
+      number: 7,
+    },
+    cover: julianAquino,
   }
 ];
 
