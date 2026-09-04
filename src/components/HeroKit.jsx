@@ -71,9 +71,19 @@ export const Eyebrow = ({ text, center, color }) => (
 /**
  * Franja de datos bajo el título: pares valor/etiqueta separados por una barra.
  * En el Hero deportivo lleva los clubes; en el del Portfolio, las métricas.
+ *
+ * `limit` recorta la lista y `more` es el remate que avisa que hay más detrás.
+ * Los dos son opcionales a propósito: la franja de clubes se corta en tres para
+ * no comerse dos renglones, pero el Portfolio muestra sus tres métricas enteras
+ * y ahí un "y más..." sería mentira.
  */
-export const HeroMetaStrip = ({ lead, items, center }) => {
+export const HeroMetaStrip = ({ lead, items, center, limit, more }) => {
+  const accent = useDarkMode() ? "yellow" : "green";
+
   if (!items || items.length === 0) return null;
+
+  const shown = limit ? items.slice(0, limit) : items;
+  const hasMore = Boolean(more) && shown.length < items.length;
 
   return (
     <Flex
@@ -85,19 +95,37 @@ export const HeroMetaStrip = ({ lead, items, center }) => {
     >
       {lead && (
         <>
-          <Text fontSize="xs" letterSpacing="0.2em" color={useDarkMode() ? "yellow" : "green"} textTransform="uppercase" opacity={0.6}>
-            +20 JUGADORES
+          <Text
+            fontSize="xs"
+            letterSpacing="0.2em"
+            color={accent}
+            textTransform="uppercase"
+            opacity={0.6}
+          >
+            {lead}
           </Text>
-          <Box w="2px" h={4} bg={useDarkMode() ? "yellow" : "green"} />
+          <Box w="2px" h={4} bg={accent} />
         </>
       )}
 
-      {items.map((item) => (
-        <Text key={item} fontSize="xs" color={useDarkMode() ? "yellow" : "green"} textTransform="uppercase" opacity={0.75} fontFamily="space">
+      {shown.map((item) => (
+        <Text
+          key={item}
+          fontSize="xs"
+          color={accent}
+          textTransform="uppercase"
+          opacity={0.75}
+          fontFamily="space"
+        >
           {item}
         </Text>
       ))}
-      y más...
+
+      {hasMore && (
+        <Text fontSize="xs" opacity={0.6} fontFamily="space">
+          {more}
+        </Text>
+      )}
     </Flex>
   );
 };

@@ -1,20 +1,16 @@
-import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
 import { MotionBox } from "./Motion";
 import SectionDivider from "./SectionDivider";
 import SectionHeader from "./SectionHeader";
-import { whatsappLink } from "../config/brand";
+import { scrollToSection } from "../utils/scrollToSection";
 
-/** Qué incluye una landing de jugador. */
-const INCLUDES = [
-  "Diseño exclusivo, sin plantillas",
-  "Trayectoria y estadísticas de carrera",
-  "Galería de video y fotos",
-  "Optimizada para mobile y para compartir",
-  "Contacto directo para clubes y representantes",
-  "Dominio propio y puesta en línea",
-];
-
-/** El proceso, para que el cliente sepa exactamente en qué se mete. */
+/**
+ * El proceso, para que el cliente sepa exactamente en qué se mete.
+ *
+ * El "qué incluye" que vivía acá se mudó a la sección de Planes: listado una
+ * sola vez y arriba de todo, las tres cards se leían iguales y ninguna
+ * justificaba su alcance.
+ */
 const STEPS = [
   {
     n: "01",
@@ -65,11 +61,14 @@ const ServiceOffer = () => {
                 subtitle="De la primera charla a la web publicada, en cuatro pasos claros."
               />
 
+              {/* Encadena con la sección que sigue en vez de saltar al chat:
+                  el visitante que llegó hasta acá todavía no eligió alcance, y
+                  mandarlo a WhatsApp antes de los planes se salteaba el paso
+                  donde entiende qué está pidiendo. */}
               <Box
-                as="a"
-                href={whatsappLink()}
-                target="_blank"
-                rel="noopener noreferrer"
+                as="button"
+                type="button"
+                onClick={() => scrollToSection("planes")}
                 display="inline-flex"
                 alignItems="center"
                 gap={2}
@@ -81,13 +80,13 @@ const ServiceOffer = () => {
                 color="green"
                 _hover={{ opacity: 0.8 }}
               >
-                Pedir presupuesto →
+                Ver planes →
               </Box>
             </GridItem>
 
             <GridItem colSpan={{ base: 1, md: 7 }}>
               {/* Proceso */}
-              <Grid templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)" }} gap={6} mb={12}>
+              <Grid templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)" }} gap={6}>
                 {STEPS.map((step) => (
                   <Box key={step.n} borderTop="2px solid" borderColor="green" pt={4}>
                     <Text fontSize="sm" fontWeight="bold" color="yellow" letterSpacing="0.2em" mb={2}>
@@ -106,28 +105,6 @@ const ServiceOffer = () => {
                       {step.text}
                     </Text>
                   </Box>
-                ))}
-              </Grid>
-
-              {/* Qué incluye */}
-              <Text
-                fontSize="sm"
-                letterSpacing="0.2em"
-                textTransform="uppercase"
-                color="green"
-                fontWeight="semibold"
-                mb={4}
-              >
-                Qué incluye
-              </Text>
-              <Grid templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)" }} gap={3}>
-                {INCLUDES.map((item) => (
-                  <Flex key={item} align="flex-start" gap={3}>
-                    <Box w={2} h={2} bg="yellow" borderRadius="full" mt={2} flexShrink={0} />
-                    <Text fontSize="sm" opacity={0.85} fontFamily="space">
-                      {item}
-                    </Text>
-                  </Flex>
                 ))}
               </Grid>
             </GridItem>

@@ -8,14 +8,25 @@ import { playersSummary } from "../data/players";
 
 const EYEBROW_TEXT = "Sportfolio · Landing Pages";
 
+/**
+ * Los dos CTA arrancan el recorrido por sus dos extremos: la prueba (los casos
+ * destacados) y la oferta (los planes). El contacto ya no necesita botón acá —
+ * cada plan termina en su propio "Consultar" y el Navbar lo tiene siempre a
+ * mano.
+ */
 const ACTIONS = [
-  { label: "Ver casos", sectionId: "casos", variant: "primary" },
-  { label: "Contacto", sectionId: "contacto", variant: "secondary" },
+  { label: "Ver destacados", sectionId: "casos", variant: "primary" },
+  { label: "Ver planes", sectionId: "planes", variant: "secondary" },
 ];
 
-/** Prueba social: clubes de los jugadores con caso publicado. */
-const clubsLead = () =>
-  `${playersSummary.count} ${playersSummary.count === 1 ? "jugador" : "jugadores"}`;
+/**
+ * Prueba social. El "+20" es la cifra de marca, no el conteo de casos
+ * publicados: hay trabajos entregados que todavía no están en la grilla.
+ */
+const CLUBS_LEAD = "+20 jugadores";
+
+/** Cuántos clubes entran antes del remate, para que la franja no pase de un renglón. */
+const CLUBS_SHOWN = 3;
 
 /**
  * Hero de la página Sportfolio: la línea de servicio de landings para
@@ -128,7 +139,12 @@ const Hero = () => {
           >
             Webs para Deportistas Profesionales
           </Text>
-          <HeroMetaStrip lead={clubsLead()} items={playersSummary.clubs} />
+          <HeroMetaStrip
+            lead={CLUBS_LEAD}
+            items={playersSummary.clubs}
+            limit={CLUBS_SHOWN}
+            more="y más..."
+          />
 
           <HeroActions actions={ACTIONS} />
         </Stack>

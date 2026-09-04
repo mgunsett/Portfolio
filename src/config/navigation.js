@@ -23,11 +23,12 @@ export const PORTFOLIO_NAV = [
 /** Sportfolio: la línea de servicio de landings para futbolistas. */
 export const SPORTFOLIO_NAV = [
   { id: "home", number: "00", label: "Inicio" },
-  { id: "preview", number: "01", label: "La landing" },
-  { id: "casos", number: "02", label: "Casos" },
+  { id: "preview", number: "01", label: "Landing Page" },
+  { id: "casos", number: "02", label: "Destacados" },
   { id: "servicio", number: "03", label: "Servicio" },
   { id: "mas-proyectos", number: "04", label: "Más proyectos" },
-  { id: "contacto", number: "05", label: "Contacto" },
+  { id: "planes", number: "05", label: "Planes" },
+  { id: "contacto", number: "06", label: "Contacto" },
 ];
 
 export const NAV_BY_ROUTE = {
