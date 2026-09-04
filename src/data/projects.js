@@ -3,6 +3,7 @@ import vilanova from "../assets/proyects/vilanova.webp";
 import bereal from "../assets/proyects/bereal.webp";
 import alpinaHome from "../assets/proyects/alpimaHome.webp";
 import balenza from "../assets/proyects/balenza.webp";
+import gonzaloPiovi from "../assets/proyects/gonzaloPiovi.webp";
 
 /**
  * Trabajos de la sección "Otros trabajos" (03).
@@ -20,13 +21,24 @@ export const projects = [
     name: "LedSports",
     category: "Marketing Deportivo",
     title: "Agencia de Marketing Deportivo" ,
-    year: "2026",
+    year: "2025",
     description:
        `Sitio corporativo de servicios, ficha de jugadores personalizada, 
         estrategias de patrocinio orientadas a marcas y entidades deportivas.`,
     tech: ["React", "Firebase", "Chakra UI", "Framer Motion", "Vite", "React Router"],
     cover: ledsports,
     url: "https://ledsportsmarketing.com/"
+  },
+  {
+    name: "Gonzalo Piovi",
+    category: "Sportfolio Profesional",
+    title: "Portfolio Profesional de Gonzalo Piovi",
+    year: "2026",
+    description:
+      "Portfolio personal que muestra proyectos, habilidades y experiencia profesional en el ámbito deportivo.",
+    tech: ["React", "Chakra UI", "Framer Motion", "Vite", "React Router"],
+    cover: gonzaloPiovi,
+    url: "https://gonzalopiovi.com/"
   },
   {
     name: "Vilanova Sf",
@@ -43,7 +55,7 @@ export const projects = [
     name: "Be Real Clothes",
     category: "Tienda Online",
     title: "Tienda Online Indumentaria Urbana",
-    year: "2025",
+    year: "2024",
     description:
       "E-commerce con base de datos de productos, catálogo, carrito, autenticación y pasarela de pago.",
     tech: ["React", "Framer Motion", "Vite", "Chakra UI", "Firebase", "Mercado Pago"],

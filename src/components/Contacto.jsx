@@ -20,7 +20,7 @@ import { BRAND, mailtoLink, whatsappLink } from "../config/brand";
  */
 const COPY = {
   sportfolio: {
-    text: "¿Sos jugador, representante o club? Contame el proyecto y armamos juntos la presencia digital que le falta. Primera charla sin costo.",
+    text: "¿Sos jugador, representante o club? Encontranos en cualquiera de nuestras vías de contacto.",
     mailSubject: "Consulta por una landing page",
     mailBody:
       "Hola Matías,\n\nTe contacto porque vi tu portfolio. Soy (jugador / representante / club) y me gustaría consultarte por...",
@@ -95,7 +95,7 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
                 textTransform="uppercase"
                 lineHeight="1.2"
               >
-                HABLEMOS
+                CONTACTO
               </Heading>
               <Text mt={4} fontSize={{ base: "md", md: "lg" }}>
                 {copy.text}

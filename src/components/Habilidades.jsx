@@ -28,7 +28,6 @@ import canva from '../assets/icono-canva.webp';
 import wireframes from '../assets/icono-wireframes.webp';
 import responsive from '../assets/icono-responsive.webp';
 import claude from '../assets/icono-claude.webp';
-import './styleComponents.css';
 
 
 const Habilidades = ({ number = "02" }) => {

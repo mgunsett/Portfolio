@@ -74,18 +74,16 @@ const Portfolio = ({ number = "03" }) => {
                 textTransform="uppercase"
                 lineHeight="1.2"
               >
-                OTROS TRABAJOS
+                PROYECTOS
               </Heading>
               <Text mt={4} fontSize={{ base: "md", md: "lg" }} opacity={0.8} fontFamily="space" maxW="2xl">
-                E-commerce, plataformas y sitios corporativos. El respaldo técnico
-                detrás de cada landing: bases de datos, autenticación, pasarelas de
+                Landing pages, E-commerce, plataformas y sitios corporativos. El respaldo técnico
+                detrás de cada web: bases de datos, autenticación, pasarelas de
                 pago y paneles de administración.
               </Text>
             </GridItem>
 
             <GridItem colSpan={{ base: 1, md: 12 }}>
-              {/* Tres por fila en desktop, dos en tablet y una en mobile: por
-                  debajo de ~300px de ancho la captura del sitio deja de leerse. */}
               <Grid
                 templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
                 gap={{ base: 5, md: 6 }}
