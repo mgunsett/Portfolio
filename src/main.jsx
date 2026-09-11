@@ -4,6 +4,9 @@ import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import theme from "./theme";
+import { initAnalytics } from "./lib/analytics";
+
+initAnalytics();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ChakraProvider theme={theme}>

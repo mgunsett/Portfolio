@@ -15,6 +15,7 @@ import { MotionBox } from "./Motion";
 import SectionDivider from "./SectionDivider";
 import SectionHeader from "./SectionHeader";
 import { BRAND, whatsappLink } from "../config/brand";
+import { trackWhatsApp } from "../lib/analytics";
 import ledHorizontal from "../assets/led_horizontal.png";
 
 
@@ -296,6 +297,7 @@ const PlanCard = ({ plan, index }) => {
         <Box
           as="a"
           href={whatsappLink(plan.ctaMessage)}
+          onClick={() => trackWhatsApp({ origen: "plan", plan: plan.id })}
           target="_blank"
           rel="noopener noreferrer"
           mt="auto"

@@ -4,10 +4,14 @@ import Home from "./pages/Home";
 import Sportfolio from "./pages/Sportfolio";
 import Navbar from "./components/Navbar";
 import ColorModeToggle from "./components/ColorModeToggle";
+import { usePageTracking } from "./hooks/usePageTracking";
 import { ROUTES } from "./config/navigation";
 
 const App = () => {
   const location = useLocation();
+
+  // Un page_view por ruta: la SPA no recarga, gtag no se entera solo.
+  usePageTracking();
 
   return (
     <>

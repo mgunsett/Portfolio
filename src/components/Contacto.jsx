@@ -12,6 +12,7 @@ import { MotionBox } from "./Motion.jsx";
 import { MdMailOutline, MdWhatsapp  } from "react-icons/md";
 import { FaLinkedin  } from "react-icons/fa";
 import { BRAND, mailtoLink, whatsappLink } from "../config/brand";
+import { trackWhatsApp, trackEmail, trackLinkedin } from "../lib/analytics";
 
 /**
  * La sección vive en las dos páginas, así que el texto y el asunto del mail
@@ -108,6 +109,7 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
                 <MotionBox
                     as={Link}
                     href={mailto}
+                    onClick={() => trackEmail(variant)}
                     p={6}
                     border="1px solid"
                     bg={colorbg}
@@ -148,6 +150,7 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
               <MotionBox
                 as={Link}
                 href={whatsappLink()}
+                onClick={() => trackWhatsApp({ origen: variant })}
                 target="_blank"
                 rel="noopener noreferrer"
                 p={6}
@@ -191,6 +194,7 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
               <MotionBox
                 as={Link}
                 href={BRAND.social.linkedin}
+                onClick={() => trackLinkedin(variant)}
                 target="_blank"
                 rel="noopener noreferrer"
                 p={6}
