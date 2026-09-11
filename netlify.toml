@@ -1,0 +1,14 @@
+# Configuración de build de Netlify.
+#
+# El comando y el directorio de publicación siguen viniendo del panel: acá
+# solo se declara lo que conviene tener versionado.
+
+[build.environment]
+  # VITE_GA_ID no es un secreto y no puede serlo: toda variable con prefijo
+  # VITE_ se compila dentro del bundle que descarga el navegador. Además un
+  # Measurement ID de GA4 es público por diseño —se ve en el código fuente de
+  # cualquier sitio con Analytics— y no da acceso a nada.
+  #
+  # Sin esta línea el escáner de secretos encuentra el ID en dist/assets/*.js
+  # y corta el deploy.
+  SECRETS_SCAN_OMIT_KEYS = "VITE_GA_ID"
