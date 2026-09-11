@@ -53,10 +53,10 @@ const Partners = () => {
         >
           <Flex align="center" gap={4}>
             {partner.logo && (
-              <Image src={partner.logo} alt={partner.name} h="40px" objectFit="contain" />
+              <Image loading="lazy" decoding="async" src={partner.logo} alt={partner.name} h="40px" objectFit="contain" />
             )}
             <Box>
-              <Image src={ledHorizontal} alt="LED Horizontal" h="40px" objectFit="contain" />
+              <Image loading="lazy" decoding="async" src={ledHorizontal} alt="LED Sports, agencia de marketing deportivo" h="40px" objectFit="contain" />
               <Text fontSize="xs" opacity={0.75} fontFamily="space" mt={1}>
                 {partner.role}
               </Text>

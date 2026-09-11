@@ -76,7 +76,7 @@ const Hero = () => {
         <Flex flexDirection="column" alignItems="center" textAlign="center" gap={2}>
           <Eyebrow text={EYEBROW_TEXT} center color={dark ? "beige" : "green"} />
 
-          <Heading
+          <Heading as="p"
             fontSize={{ base: "6xl", sm: "7xl" }}
             lineHeight="0.95"
             letterSpacing="-0.02em"
@@ -88,7 +88,7 @@ const Hero = () => {
           </Heading>
         </Flex>
         <Stack spacing={4} align="center" w="100%">
-          <Heading
+          <Heading as="p"
             fontSize={{ base: "6xl", sm: "7xl" }}
             lineHeight="0.95"
             letterSpacing="-0.02em"
@@ -126,7 +126,7 @@ const Hero = () => {
         <Stack spacing={7} maxW={{ md: "50%", lg: "48%" }}>
           <Eyebrow text={EYEBROW_TEXT} />
 
-          <Heading fontSize={{ md: "6xl", lg: "7xl", xl: "8xl" }} lineHeight="1">
+          <Heading as="p" fontSize={{ md: "6xl", lg: "7xl", xl: "8xl" }} lineHeight="1">
             MATÍAS <br />
             <Box as="span" color="green">GUNSETT</Box>
           </Heading>

@@ -114,7 +114,7 @@ const PartnerSeal = () => (
     >
       En alianza con
     </Text>
-    <Image
+    <Image loading="lazy" decoding="async"
       src={ledHorizontal}
       alt={BRAND.partner.name}
       h={{ base: "16px", md: "18px" }}

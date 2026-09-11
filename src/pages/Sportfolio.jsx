@@ -24,7 +24,7 @@ import { BRAND, displayName } from "../config/brand";
  */
 const Sportfolio = () => {
   return (
-    <PageWrapper>
+    <PageWrapper h1="Landing pages para futbolistas profesionales — SportFolio by Matías Gunsett">
       <SeoHead
         title={`${BRAND.role} | ${displayName()}`}
         description={BRAND.claim}

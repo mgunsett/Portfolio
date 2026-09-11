@@ -42,13 +42,13 @@ const Footer = () => {
                 px={{ base: 4, md: 20, lg: 40 }}
             >
                 <Box>
-                    <Image src={logo} alt={displayName()} boxSize={{ base: "150px", md: "200px" }} />
+                    <Image loading="lazy" decoding="async" src={logo} alt={displayName()} boxSize={{ base: "150px", md: "200px" }} />
                 </Box>
 
                 {/* Links y redes: visibles en todos los breakpoints */}
                 <Flex direction="row" justify="center" gap={{ base: 16, md: 20 }}>
                     <Box>
-                        <Heading as="h3" size="lg">Links</Heading>
+                        <Heading as="h2" size="lg">Links</Heading>
                         <List mt={2} spacing={2}>
                             {links.map((link) => (
                                 <ListItem key={link.id} display="flex" alignItems="center" gap={2}>
@@ -94,10 +94,10 @@ const Footer = () => {
                     </Box>
 
                     <Box>
-                        <Heading as="h3" size="lg" textAlign={{ base: "right", md: "left" }}>Social</Heading>
+                        <Heading as="h2" size="lg" textAlign={{ base: "right", md: "left" }}>Social</Heading>
                         <Flex mt={4} gap={4} justify={{ base: "flex-end", md: "flex-start" }}>
                             <Link href={BRAND.social.instagram} isExternal>
-                                <Image
+                                <Image loading="lazy" decoding="async"
                                     src={instagram}
                                     alt="Instagram"
                                     boxSize="30px"
@@ -114,7 +114,7 @@ const Footer = () => {
                                 <BsFillThreadsFill size={30} />
                             </Link>
                             <Link href={BRAND.social.github} isExternal mt={'-2px'}>
-                                <Image
+                                <Image loading="lazy" decoding="async"
                                     src={iconoGithub}
                                     alt="GitHub"
                                     boxSize="34px"
@@ -141,9 +141,9 @@ const Footer = () => {
                                     fontWeight="semibold"
                                     _hover={{ textDecoration: 'none', color: hoverColor }}
                                 >
-                                    <Image
+                                    <Image loading="lazy" decoding="async"
                                         src={ledHorizontal}
-                                        alt="LED Horizontal"
+                                        alt="LED Sports, agencia de marketing deportivo"
                                         h="25px"
                                         objectFit="contain"
                                     />

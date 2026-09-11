@@ -40,7 +40,7 @@ const PlayersShowcase = () => {
             <Grid templateColumns={{ base: "1fr", md: "repeat(12, 1fr)" }} gap={{ base: 8, md: 12 }}>
               <GridItem colSpan={{ base: 1, md: 12 }}>
                 <Flex align="flex-end" gap={{ base: 3, md: 5 }}>
-                  <Image
+                  <Image loading="lazy" decoding="async"
                     src={matiAvatar}
                     alt=""
                     aria-hidden="true"

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://matiasgunsett.com/sitemap.xml
+Sitemap: https://matiasgunsett.netlify.app/sitemap.xml

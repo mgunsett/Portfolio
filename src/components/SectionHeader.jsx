@@ -19,7 +19,7 @@ const SectionHeader = ({ number, title, subtitle, dotColor = "yellow" }) => (
       </Text>
     </Flex>
 
-    <Heading
+    <Heading as="h2"
       fontFamily={'"Syne", sans-serif'}
       fontSize={{ base: "3xl", md: "4xl" }}
       fontWeight="700"

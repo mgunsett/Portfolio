@@ -185,7 +185,7 @@ const ScreenshotPhone = ({ player, isComing }) => {
       ) : (
         // Sin captura todavía: iniciales sobre el fondo, en vez de un hueco gris.
         <Flex w="100%" h="100%" align="center" justify="center" bg="surface">
-          <Heading fontSize="5xl" color="green" opacity={0.5} letterSpacing="-0.02em">
+          <Heading as="span" aria-hidden="true" fontSize="5xl" color="green" opacity={0.5} letterSpacing="-0.02em">
             {player.player.name
               .split(" ")
               .map((w) => w[0])

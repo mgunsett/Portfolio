@@ -17,7 +17,7 @@ import { BRAND, displayName } from "../config/brand";
  */
 const Home = () => {
   return (
-    <PageWrapper>
+    <PageWrapper h1="Matías Gunsett — Desarrollador Front-End React: landing pages y aplicaciones web a medida">
       <SeoHead
         title={`${displayName()} | ${BRAND.roleSecondary}`}
         description={BRAND.claimDev}

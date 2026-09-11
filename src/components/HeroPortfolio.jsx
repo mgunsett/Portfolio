@@ -53,7 +53,7 @@ const HeroPortfolio = () => {
         gap={8}
       >
         <Eyebrow text={EYEBROW_TEXT} center />
-        <Heading
+        <Heading as="p"
           className="hero-portfolio-heading-mobile"
           display="flex"
           flexDirection="column"
@@ -135,7 +135,7 @@ const HeroPortfolio = () => {
               <Eyebrow text={EYEBROW_TEXT} />
             </Flex>
 
-            <Heading
+            <Heading as="p"
               fontSize={{ md: "6xl", lg: "7xl", xl: "8xl" }}
               lineHeight="1"
               letterSpacing="-0.02em"

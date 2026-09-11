@@ -88,7 +88,7 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
                   {number}
                 </Text>
               </Flex>
-              <Heading
+              <Heading as="h2"
                 fontFamily={'"Syne", sans-serif'}
                 fontSize={{ base: "3xl", md: "4xl" }}
                 fontWeight="700"

@@ -81,7 +81,7 @@ const Habilidades = ({ number = "02" }) => {
                   {number}
                 </Text>
               </Flex>
-              <Heading
+              <Heading as="h2"
                 fontFamily={'"Syne", sans-serif'}
                 fontSize={["3xl", "4xl"]}
                 fontWeight="700"
@@ -110,7 +110,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={html} 
                         alt="HTML" 
                         w={8} 
@@ -132,7 +132,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={css} 
                         alt="CSS" 
                         w={8} 
@@ -154,7 +154,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={js} 
                         alt="JavaScript" 
                         w={8} 
@@ -176,7 +176,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={react} 
                         alt="React" 
                         w={8} 
@@ -198,7 +198,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={chakra} 
                         alt="Chakra UI" 
                         w={10} 
@@ -234,7 +234,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={node} 
                         alt="Node.js" 
                         w={8} 
@@ -256,9 +256,9 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={auth} 
-                        alt="Authentication" 
+                        alt="Autenticación de usuarios" 
                         w={10} 
                         h={10}
                         transition='transform 0.2s ease-in-out'
@@ -278,9 +278,9 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={api} 
-                        alt="API" 
+                        alt="Integración de APIs" 
                         w={10} 
                         h={10}
                         transition='transform 0.2s ease-in-out'
@@ -300,7 +300,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={postgre} 
                         alt="PostgreSQL" 
                         w={10} 
@@ -322,7 +322,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={firebase} 
                         alt="Firebase" 
                         w={10} 
@@ -358,7 +358,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={git} 
                         alt="Git" 
                         w={10} 
@@ -380,7 +380,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={github} 
                         alt="GitHub" 
                         w={10} 
@@ -402,7 +402,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={vite} 
                         alt="Vite" 
                         w={10} 
@@ -424,7 +424,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={hostinger} 
                         alt="Hostinger" 
                         w={10} 
@@ -446,7 +446,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={claude} 
                         alt="Claude" 
                         w={10} 
@@ -482,7 +482,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={figma} 
                         alt="Figma" 
                         w={10} 
@@ -504,7 +504,7 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={canva} 
                         alt="Canva" 
                         w={10} 
@@ -526,9 +526,9 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={wireframes} 
-                        alt="Wireframes" 
+                        alt="Wireframes y prototipado" 
                         w={10} 
                         h={10}
                         transition='transform 0.2s ease-in-out'
@@ -548,9 +548,9 @@ const Habilidades = ({ number = "02" }) => {
                         align="center"
                         justify="center"
                     >
-                        <Image 
+                        <Image loading="lazy" decoding="async" 
                         src={responsive} 
-                        alt="Responsive Design" 
+                        alt="Diseño responsive" 
                         w={10} 
                         h={10}
                         transition='transform 0.2s ease-in-out'

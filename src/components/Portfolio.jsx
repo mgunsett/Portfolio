@@ -67,7 +67,7 @@ const Portfolio = ({ number = "03" }) => {
                   {number}
                 </Text>
               </Flex>
-              <Heading
+              <Heading as="h2"
                 fontFamily={'"Syne", sans-serif'}
                 fontSize={["3xl", "4xl"]}
                 fontWeight="700"
