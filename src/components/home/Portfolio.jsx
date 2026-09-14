@@ -1,9 +1,9 @@
 import { Box, Grid, Flex, Text, Heading, GridItem, useDisclosure } from "@chakra-ui/react";
-import { MotionBox } from "./Motion.jsx";
-import ProjectPosterCard from "./ProjectPosterCard.jsx";
-import ModalProyects from "./ModalProyects.jsx";
-import { projects } from "../data/projects";
-import { trackCaso } from "../lib/analytics";
+import { MotionBox } from "../ui/Motion.jsx";
+import ProjectPosterCard from "../casos/ProjectPosterCard.jsx";
+import ModalProyects from "../casos/ModalProyects.jsx";
+import { projects } from "../../data/projects";
+import { trackCaso } from "../../lib/analytics";
 import { useState } from "react";
 
 /** Retardo entre card y card al entrar en pantalla, en segundos. */

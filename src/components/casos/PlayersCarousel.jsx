@@ -2,7 +2,7 @@ import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import PlayerPosterCard from "./PlayerPosterCard";
-import { useDragScroll } from "../hooks/useDragScroll";
+import { useDragScroll } from "../../hooks/useDragScroll";
 
 /**
  * Cuántas cards entran por pantalla. El resto de card que queda asomando es

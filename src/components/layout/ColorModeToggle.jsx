@@ -1,6 +1,6 @@
 import { IconButton, Tooltip, useColorMode } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
-import { MotionBox } from "./Motion";
+import { MotionBox } from "../ui/Motion";
 
 const ColorModeToggle = () => {
   const { colorMode, toggleColorMode } = useColorMode();

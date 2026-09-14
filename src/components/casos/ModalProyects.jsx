@@ -13,11 +13,11 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FiMonitor, FiSmartphone, FiExternalLink } from "react-icons/fi";
-import LaptopFrame from "./LaptopFrame";
-import MediaFrame from "./MediaFrame";
-import PhoneFrame from "./PhoneFrame";
-import SectionDivider from "./SectionDivider";
-import { trackLandingExterna } from "../lib/analytics";
+import LaptopFrame from "../mockups/LaptopFrame";
+import MediaFrame from "../mockups/MediaFrame";
+import PhoneFrame from "../mockups/PhoneFrame";
+import SectionDivider from "../ui/SectionDivider";
+import { trackLandingExterna } from "../../lib/analytics";
 
 /** Vista previa de un proyecto de desarrollo dentro de un frame desktop/mobile. */
 const ModalProyects = ({ isOpen, onClose, project }) => {

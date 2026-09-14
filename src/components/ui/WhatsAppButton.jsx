@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
-import { whatsappLink } from "../config/brand";
-import { trackWhatsApp } from "../lib/analytics";
+import { whatsappLink } from "../../config/brand";
+import { trackWhatsApp } from "../../lib/analytics";
 
 /**
  * Default polimórfico: el Button de Chakra renderizado como ancla. Un WhatsApp

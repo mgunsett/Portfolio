@@ -1,8 +1,8 @@
 import { Badge, Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
-import { MotionBox, MotionFlex, MotionImage } from "./Motion";
-import PhoneFrame, { ISLAND_SAFE_TOP } from "./PhoneFrame";
-import matiAvatar from "../assets/mati_avatar.webp";
+import { MotionBox, MotionFlex, MotionImage } from "../ui/Motion";
+import PhoneFrame, { ISLAND_SAFE_TOP } from "../mockups/PhoneFrame";
+import matiAvatar from "../../assets/mati_avatar.webp";
 
 /**
  * Ancho del mockup. De acá sale el alto de la card, el tamaño del avatar

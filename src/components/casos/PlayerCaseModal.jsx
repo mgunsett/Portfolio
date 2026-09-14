@@ -18,11 +18,11 @@ import {
 } from "@chakra-ui/react";
 import { FiExternalLink, FiMonitor, FiSmartphone } from "react-icons/fi";
 import { useState } from "react";
-import LaptopFrame from "./LaptopFrame";
-import MediaFrame from "./MediaFrame";
-import PhoneFrame from "./PhoneFrame";
-import SectionDivider from "./SectionDivider";
-import { trackLandingExterna } from "../lib/analytics";
+import LaptopFrame from "../mockups/LaptopFrame";
+import MediaFrame from "../mockups/MediaFrame";
+import PhoneFrame from "../mockups/PhoneFrame";
+import SectionDivider from "../ui/SectionDivider";
+import { trackLandingExterna } from "../../lib/analytics";
 
 /**
  * Detalle de un caso de jugador: galería (videos y capturas), sitio en vivo

@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Link, Text, useColorMode } from "@chakra-ui/react";
-import { MotionBox } from "./Motion";
-import { BRAND } from "../config/brand";
-import ledHorizontal from "../assets/led_horizontal.png";
+import { MotionBox } from "../ui/Motion";
+import { BRAND } from "../../config/brand";
+import ledHorizontal from "../../assets/led_horizontal.png";
 
 /**
  * Franja de credibilidad: la colaboración con la agencia de marketing deportivo.

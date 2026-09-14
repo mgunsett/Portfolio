@@ -1,10 +1,10 @@
 import { Box, Heading, Text, Stack, Flex, useColorMode } from "@chakra-ui/react";
-import { MotionBox } from "./Motion";
-import { HeroAvatar, HeroHalo } from "./HeroArt";
-import { useHeroParallax } from "../hooks/useHeroParallax";
-import { Eyebrow, HeroActions, HeroMetaStrip } from "./HeroKit";
-import { BRAND } from "../config/brand";
-import "../style/style.css";
+import { MotionBox } from "../ui/Motion";
+import { HeroAvatar, HeroHalo } from "../hero/HeroArt";
+import { useHeroParallax } from "../../hooks/useHeroParallax";
+import { Eyebrow, HeroActions, HeroMetaStrip } from "../hero/HeroKit";
+import { BRAND } from "../../config/brand";
+import "../../style/style.css";
 
 const EYEBROW_TEXT = "Portfolio";
 const CLAIM = "Front-End Dev · React.js";

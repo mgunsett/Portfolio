@@ -2,9 +2,9 @@ import { Box, Flex, Grid, Link, Text, useColorMode } from "@chakra-ui/react";
 import { useReducedMotion } from "framer-motion";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { BsFillThreadsFill } from "react-icons/bs";
-import { MotionBox, MotionFlex } from "./Motion";
-import { BRAND } from "../config/brand";
-import { trackEmail, trackSocial } from "../lib/analytics";
+import { MotionBox, MotionFlex } from "../ui/Motion";
+import { BRAND } from "../../config/brand";
+import { trackEmail, trackSocial } from "../../lib/analytics";
 
 const SOCIALS = [
   { key: "instagram", href: BRAND.social.instagram, label: "Instagram", Icon: FaInstagram },

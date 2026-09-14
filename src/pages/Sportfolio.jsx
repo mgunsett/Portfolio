@@ -1,14 +1,14 @@
 import PageWrapper from "../layouts/PageWrapper";
-import SeoHead from "../components/SeoHead";
-import Hero from "../components/Hero";
-import LandingPreview from "../components/LandingPreview";
-import PlayersShowcase from "../components/PlayersShowcase";
-import Partners from "../components/Partners";
-import ServiceOffer from "../components/ServiceOffer";
-import MoreProjects from "../components/MoreProjects";
-import Plans from "../components/Plans";
-import Contacto from "../components/Contacto";
-import Footer from "../components/Footer";
+import SeoHead from "../components/layout/SeoHead";
+import Hero from "../components/sportfolio/Hero";
+import LandingPreview from "../components/sportfolio/LandingPreview";
+import PlayersShowcase from "../components/sportfolio/PlayersShowcase";
+import Partners from "../components/sportfolio/Partners";
+import ServiceOffer from "../components/sportfolio/ServiceOffer";
+import MoreProjects from "../components/sportfolio/MoreProjects";
+import Plans from "../components/sportfolio/Plans";
+import Contacto from "../components/comunes/Contacto";
+import Footer from "../components/comunes/Footer";
 import { BRAND, displayName } from "../config/brand";
 
 /**

@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Link, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
-import { trackLandingExterna } from "../lib/analytics";
+import { trackLandingExterna } from "../../lib/analytics";
 
 /**
  * Sitio en vivo embebido.

@@ -8,12 +8,12 @@ import {
   Link,
   useColorMode,
 } from "@chakra-ui/react";
-import { MotionBox, MotionLink } from "./Motion.jsx";
+import { MotionBox, MotionLink } from "../ui/Motion.jsx";
 import { MdMailOutline, MdWhatsapp  } from "react-icons/md";
 import { FaLinkedin  } from "react-icons/fa";
-import { BRAND, mailtoLink } from "../config/brand";
-import { trackEmail, trackSocial } from "../lib/analytics";
-import WhatsAppButton from "./WhatsAppButton";
+import { BRAND, mailtoLink } from "../../config/brand";
+import { trackEmail, trackSocial } from "../../lib/analytics";
+import WhatsAppButton from "../ui/WhatsAppButton";
 
 /**
  * La sección vive en las dos páginas, así que el texto y el asunto del mail

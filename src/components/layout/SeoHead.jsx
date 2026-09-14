@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BRAND, displayName } from "../config/brand";
+import { BRAND, displayName } from "../../config/brand";
 
 /** Crea o actualiza un <meta> por name o property. */
 const setMeta = (attr, key, content) => {

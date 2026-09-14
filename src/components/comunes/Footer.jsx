@@ -9,18 +9,18 @@ import {
     ListItem,
     Image,
 } from "@chakra-ui/react";
-import logoOscuro from "../assets/logo-oscuro.png";
-import logoClaro3 from "../assets/logo-claro3.png";
+import logoOscuro from "../../assets/logo-oscuro.png";
+import logoClaro3 from "../../assets/logo-claro3.png";
 import { BsFillThreadsFill } from "react-icons/bs";
-import instagram from "../assets/instagram.webp";
-import iconoGithub from "../assets/icono-github.webp";
+import instagram from "../../assets/instagram.webp";
+import iconoGithub from "../../assets/icono-github.webp";
 import { Link as RouterLink } from "react-router-dom";
-import { BRAND, displayName } from "../config/brand";
-import ledHorizontal from "../assets/led_horizontal.png";
-import matiAvatar3 from "../assets/mati_avatar3.webp";
-import { useSiteNav } from "../hooks/useSiteNav";
-import { scrollToSection } from "../utils/scrollToSection";
-import { trackSocial } from "../lib/analytics";
+import { BRAND, displayName } from "../../config/brand";
+import ledHorizontal from "../../assets/led_horizontal.png";
+import matiAvatar3 from "../../assets/mati_avatar3.webp";
+import { useSiteNav } from "../../hooks/useSiteNav";
+import { scrollToSection } from "../../utils/scrollToSection";
+import { trackSocial } from "../../lib/analytics";
 
 const Footer = () => {
 

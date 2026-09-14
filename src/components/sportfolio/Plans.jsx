@@ -12,14 +12,14 @@ import {
 } from "@chakra-ui/react";
 import { useReducedMotion } from "framer-motion";
 import { MdCheck } from "react-icons/md";
-import { MotionBox } from "./Motion";
-import SectionDivider from "./SectionDivider";
-import SectionHeader from "./SectionHeader";
-import { BRAND } from "../config/brand";
-import { paginaActual } from "../lib/analytics";
-import { useVisibilidad } from "../hooks/useVisibilidad";
-import WhatsAppButton from "./WhatsAppButton";
-import ledHorizontal from "../assets/led_horizontal.png";
+import { MotionBox } from "../ui/Motion";
+import SectionDivider from "../ui/SectionDivider";
+import SectionHeader from "../ui/SectionHeader";
+import { BRAND } from "../../config/brand";
+import { paginaActual } from "../../lib/analytics";
+import { useVisibilidad } from "../../hooks/useVisibilidad";
+import WhatsAppButton from "../ui/WhatsAppButton";
+import ledHorizontal from "../../assets/led_horizontal.png";
 
 
 const PLANS = [

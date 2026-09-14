@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { scrollToSection } from "../utils/scrollToSection";
+import { scrollToSection } from "../../utils/scrollToSection";
 import { useColorMode } from "@chakra-ui/react";
 const useDarkMode = () => {
   const { colorMode } = useColorMode();

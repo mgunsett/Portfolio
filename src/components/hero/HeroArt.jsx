@@ -1,8 +1,8 @@
 import { Box, Image } from "@chakra-ui/react";
-import { MotionBox, MotionImage } from "./Motion";
-import fondoPortfolio from "../assets/fondo_portfolio.webp";
-import avatarBlob from "../assets/fondo_avatar.webp";
-import avatarFigure from "../assets/mati_avatar2.webp";
+import { MotionBox, MotionImage } from "../ui/Motion";
+import fondoPortfolio from "../../assets/fondo_portfolio.webp";
+import avatarBlob from "../../assets/fondo_avatar.webp";
+import avatarFigure from "../../assets/mati_avatar2.webp";
 
 // Colores base del tema, necesarios en los degradados (no se pueden usar tokens dentro de gradients)
 const BG_DARK = "#0B0B0B";

@@ -7,8 +7,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Fragment } from "react";
-import { MotionBox } from "./Motion";
-import { BRAND } from "../config/brand";
+import { MotionBox } from "../ui/Motion";
+import { BRAND } from "../../config/brand";
 import { useColorMode } from "@chakra-ui/react";
 
 const ProfessionalProfile = ({ number = "01" }) => {

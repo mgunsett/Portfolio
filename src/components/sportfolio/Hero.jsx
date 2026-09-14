@@ -1,10 +1,10 @@
 import { Box, Heading, Text, Stack, Flex, useColorMode } from "@chakra-ui/react";
-import { MotionBox } from "./Motion";
-import { HeroSideArt, HeroMobileArt, HeroHalo } from "./HeroArt";
-import { useHeroParallax } from "../hooks/useHeroParallax";
-import { Eyebrow, HeroActions, HeroMetaStrip } from "./HeroKit";
-import { BRAND } from "../config/brand";
-import { playersSummary } from "../data/players";
+import { MotionBox } from "../ui/Motion";
+import { HeroSideArt, HeroMobileArt, HeroHalo } from "../hero/HeroArt";
+import { useHeroParallax } from "../../hooks/useHeroParallax";
+import { Eyebrow, HeroActions, HeroMetaStrip } from "../hero/HeroKit";
+import { BRAND } from "../../config/brand";
+import { playersSummary } from "../../data/players";
 
 const EYEBROW_TEXT = "Sportfolio · Landing Pages";
 

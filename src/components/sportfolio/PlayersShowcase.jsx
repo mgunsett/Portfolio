@@ -1,13 +1,13 @@
 import { Box, Flex, Grid, GridItem, Image, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-import { MotionBox } from "./Motion";
-import SectionDivider from "./SectionDivider";
-import SectionHeader from "./SectionHeader";
-import PlayersRail from "./PlayersRail";
-import PlayerCaseModal from "./PlayerCaseModal";
-import { featuredPlayers } from "../data/players";
-import { trackCaso } from "../lib/analytics";
-import matiAvatar from "../assets/mati_avatar.webp";
+import { MotionBox } from "../ui/Motion";
+import SectionDivider from "../ui/SectionDivider";
+import SectionHeader from "../ui/SectionHeader";
+import PlayersRail from "../casos/PlayersRail";
+import PlayerCaseModal from "../casos/PlayerCaseModal";
+import { featuredPlayers } from "../../data/players";
+import { trackCaso } from "../../lib/analytics";
+import matiAvatar from "../../assets/mati_avatar.webp";
 
 const PlayersShowcase = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -1,8 +1,8 @@
 import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
-import { MotionBox } from "./Motion";
-import SectionDivider from "./SectionDivider";
-import SectionHeader from "./SectionHeader";
-import { scrollToSection } from "../utils/scrollToSection";
+import { MotionBox } from "../ui/Motion";
+import SectionDivider from "../ui/SectionDivider";
+import SectionHeader from "../ui/SectionHeader";
+import { scrollToSection } from "../../utils/scrollToSection";
 
 /**
  * El proceso, para que el cliente sepa exactamente en qué se mete.

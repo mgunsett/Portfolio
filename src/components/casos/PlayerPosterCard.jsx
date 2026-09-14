@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { useReducedMotion } from "framer-motion";
-import { MotionBox, MotionFlex, MotionImage } from "./Motion";
+import { MotionBox, MotionFlex, MotionImage } from "../ui/Motion";
 
 /**
  * Proporción de la card. Las capturas son de la web en desktop (~16:9), así

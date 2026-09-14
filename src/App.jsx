@@ -2,8 +2,8 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
 import Sportfolio from "./pages/Sportfolio";
-import Navbar from "./components/Navbar";
-import ColorModeToggle from "./components/ColorModeToggle";
+import Navbar from "./components/layout/Navbar";
+import ColorModeToggle from "./components/layout/ColorModeToggle";
 import { usePageTracking } from "./hooks/usePageTracking";
 import { ROUTES } from "./config/navigation";
 

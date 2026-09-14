@@ -8,26 +8,26 @@ import {
   Image,
   useColorMode,
 } from "@chakra-ui/react";
-import { MotionBox } from "./Motion";
-import html from '../assets/icono-html.webp';
-import css from '../assets/icono-css.webp';
-import js from '../assets/icono-js.webp';
-import react from '../assets/icono-react.webp';
-import chakra from '../assets/icono-chakra.webp';
-import node from '../assets/icono-node.webp';
-import api from '../assets/icono-api.webp'; 
-import postgre from '../assets/icono-postgre.webp';
-import firebase from '../assets/icono-firebase.webp';
-import auth from '../assets/icono-auth.webp';
-import git from '../assets/icono-git.webp';
-import github from '../assets/icono-github.webp';
-import vite from '../assets/icono-vite.webp';
-import hostinger from '../assets/icono-hostinger.webp';
-import figma from '../assets/icono-figma.webp';
-import canva from '../assets/icono-canva.webp';
-import wireframes from '../assets/icono-wireframes.webp';
-import responsive from '../assets/icono-responsive.webp';
-import claude from '../assets/icono-claude.webp';
+import { MotionBox } from "../ui/Motion";
+import html from '../../assets/icono-html.webp';
+import css from '../../assets/icono-css.webp';
+import js from '../../assets/icono-js.webp';
+import react from '../../assets/icono-react.webp';
+import chakra from '../../assets/icono-chakra.webp';
+import node from '../../assets/icono-node.webp';
+import api from '../../assets/icono-api.webp'; 
+import postgre from '../../assets/icono-postgre.webp';
+import firebase from '../../assets/icono-firebase.webp';
+import auth from '../../assets/icono-auth.webp';
+import git from '../../assets/icono-git.webp';
+import github from '../../assets/icono-github.webp';
+import vite from '../../assets/icono-vite.webp';
+import hostinger from '../../assets/icono-hostinger.webp';
+import figma from '../../assets/icono-figma.webp';
+import canva from '../../assets/icono-canva.webp';
+import wireframes from '../../assets/icono-wireframes.webp';
+import responsive from '../../assets/icono-responsive.webp';
+import claude from '../../assets/icono-claude.webp';
 
 
 const Habilidades = ({ number = "02" }) => {

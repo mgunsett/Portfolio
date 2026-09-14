@@ -1,8 +1,8 @@
 import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
-import { MotionBox, MotionImage } from "./Motion";
-import SectionDivider from "./SectionDivider";
-import SectionHeader from "./SectionHeader";
-import mockupScreen from "../assets/mockup_screen1.webp";
+import { MotionBox, MotionImage } from "../ui/Motion";
+import SectionDivider from "../ui/SectionDivider";
+import SectionHeader from "../ui/SectionHeader";
+import mockupScreen from "../../assets/mockup_screen1.webp";
 
 /**
  * Features que rodean el mockup. `side` define en qué columna cae

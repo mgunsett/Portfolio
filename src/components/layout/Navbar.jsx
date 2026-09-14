@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Box, Button, Flex, useColorMode } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import { MotionBox } from "./Motion";
+import { MotionBox } from "../ui/Motion";
 import NavMenuPanel from "./NavMenuPanel";
-import { useSiteNav } from "../hooks/useSiteNav";
-import { useScrolled } from "../hooks/useScrolled";
-import { scrollToSection } from "../utils/scrollToSection";
+import { useSiteNav } from "../../hooks/useSiteNav";
+import { useScrolled } from "../../hooks/useScrolled";
+import { scrollToSection } from "../../utils/scrollToSection";
 
 /** Las tres barras del botón: se cruzan en X cuando el panel está abierto. */
 const HamburgerBars = ({ open }) => {

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { VisuallyHidden } from "@chakra-ui/react";
-import { MotionBox } from "../components/Motion";
+import { MotionBox } from "../components/ui/Motion";
 
 const variants = {
   initial: { opacity: 0, y: 40 },

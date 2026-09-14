@@ -1,12 +1,12 @@
 import { Box, Flex, Text, useDisclosure } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
-import { MotionBox } from "./Motion";
-import SectionDivider from "./SectionDivider";
-import SectionHeader from "./SectionHeader";
-import PlayersCarousel from "./PlayersCarousel";
-import PlayerCaseModal from "./PlayerCaseModal";
-import { morePlayers } from "../data/players";
-import { trackCaso } from "../lib/analytics";
+import { MotionBox } from "../ui/Motion";
+import SectionDivider from "../ui/SectionDivider";
+import SectionHeader from "../ui/SectionHeader";
+import PlayersCarousel from "../casos/PlayersCarousel";
+import PlayerCaseModal from "../casos/PlayerCaseModal";
+import { morePlayers } from "../../data/players";
+import { trackCaso } from "../../lib/analytics";
 
 const ALL = "Todos";
 

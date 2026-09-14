@@ -1,11 +1,11 @@
 import PageWrapper from "../layouts/PageWrapper";
-import SeoHead from "../components/SeoHead";
-import HeroPortfolio from "../components/HeroPortfolio";
-import ProfessionalProfile from "../components/ProfessionalProfile";
-import Habilidades from "../components/Habilidades";
-import Portfolio from "../components/Portfolio";
-import Contacto from "../components/Contacto";
-import Footer from "../components/Footer";
+import SeoHead from "../components/layout/SeoHead";
+import HeroPortfolio from "../components/home/HeroPortfolio";
+import ProfessionalProfile from "../components/home/ProfessionalProfile";
+import Habilidades from "../components/home/Habilidades";
+import Portfolio from "../components/home/Portfolio";
+import Contacto from "../components/comunes/Contacto";
+import Footer from "../components/comunes/Footer";
 import { BRAND, displayName } from "../config/brand";
 
 /**
