@@ -18,6 +18,7 @@ import gonzaloPiovi from "../assets/proyects/gonzaloPiovi.webp";
  */
 export const projects = [
   {
+    slug: "ledsports",
     name: "LedSports",
     category: "Marketing Deportivo",
     title: "Agencia de Marketing Deportivo" ,
@@ -30,6 +31,7 @@ export const projects = [
     url: "https://ledsportsmarketing.com/"
   },
   {
+    slug: "gonzalo_piovi",
     name: "Gonzalo Piovi",
     category: "Sportfolio Profesional",
     title: "Portfolio Profesional de Gonzalo Piovi",
@@ -41,6 +43,7 @@ export const projects = [
     url: "https://gonzalopiovi.com/"
   },
   {
+    slug: "vilanova_sf",
     name: "Vilanova Sf",
     category: "Tienda Online",
     title: "Tienda Online Indumentaria Surfwear",
@@ -52,6 +55,7 @@ export const projects = [
     url: "https://vilanovasf.netlify.app/"
   },
   {
+    slug: "be_real_clothes",
     name: "Be Real Clothes",
     category: "Tienda Online",
     title: "Tienda Online Indumentaria Urbana",
@@ -64,6 +68,7 @@ export const projects = [
   },
   {
     // TODO: `year` y `tech` quedaron estimados. El año se ve en la card.
+    slug: "balenza_studio",
     name: "Balenza Studio",
     category: "Tienda Online",
     title: "Tienda Online Indumentaria Femenina",
@@ -75,6 +80,7 @@ export const projects = [
     url: "https://balenzastudio.netlify.app/"
   },
    {
+    slug: "alphina_home",
     name: "Alphina Home",
     category: "Sitio Inmobiliario",
     title: "Sitio Inmobiliaria de Lujo",

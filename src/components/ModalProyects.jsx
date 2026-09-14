@@ -17,6 +17,7 @@ import LaptopFrame from "./LaptopFrame";
 import MediaFrame from "./MediaFrame";
 import PhoneFrame from "./PhoneFrame";
 import SectionDivider from "./SectionDivider";
+import { trackLandingExterna } from "../lib/analytics";
 
 /** Vista previa de un proyecto de desarrollo dentro de un frame desktop/mobile. */
 const ModalProyects = ({ isOpen, onClose, project }) => {
@@ -70,6 +71,14 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                   icon={<FiExternalLink />}
                   as={Link}
                   href={project?.url}
+                  onClick={() =>
+                    trackLandingExterna({
+                      caso: project?.slug,
+                      tipo: "desarrollo",
+                      url_destino: project?.url,
+                      origen: "modal",
+                    })
+                  }
                   variant="ghost"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -91,6 +100,8 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                       src: project?.url,
                       alt: `${project?.name || "Proyecto"} - Vista desktop`,
                     }}
+                    caso={project?.slug}
+                    tipo="desarrollo"
                     viewportWidth={1440}
                     position="absolute"
                     inset={0}
@@ -109,6 +120,8 @@ const ModalProyects = ({ isOpen, onClose, project }) => {
                       src: project?.url,
                       alt: `${project?.name || "Proyecto"} - Vista mobile`,
                     }}
+                    caso={project?.slug}
+                    tipo="desarrollo"
                     viewportWidth={390}
                     position="absolute"
                     inset={0}

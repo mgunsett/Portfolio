@@ -3,6 +3,7 @@ import { MotionBox } from "./Motion.jsx";
 import ProjectPosterCard from "./ProjectPosterCard.jsx";
 import ModalProyects from "./ModalProyects.jsx";
 import { projects } from "../data/projects";
+import { trackCaso } from "../lib/analytics";
 import { useState } from "react";
 
 /** Retardo entre card y card al entrar en pantalla, en segundos. */
@@ -13,6 +14,7 @@ const Portfolio = ({ number = "03" }) => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const handleOpenProject = (project) => {
+    trackCaso({ caso: project.slug, tipo: "desarrollo", origen: "proyectos_dev" });
     setSelectedProject(project);
     onOpen();
   };

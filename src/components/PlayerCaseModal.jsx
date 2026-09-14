@@ -22,6 +22,7 @@ import LaptopFrame from "./LaptopFrame";
 import MediaFrame from "./MediaFrame";
 import PhoneFrame from "./PhoneFrame";
 import SectionDivider from "./SectionDivider";
+import { trackLandingExterna } from "../lib/analytics";
 
 /**
  * Detalle de un caso de jugador: galería (videos y capturas), sitio en vivo
@@ -89,6 +90,14 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
                     icon={<FiExternalLink />}
                     as={Link}
                     href={player.url}
+                    onClick={() =>
+                      trackLandingExterna({
+                        caso: player.slug,
+                        tipo: "jugador",
+                        url_destino: player.url,
+                        origen: "modal",
+                      })
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="ghost"
@@ -106,6 +115,8 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
                   <LaptopFrame maxW="min(94%, calc(60vh * 1.6))" url={player.url}>
                     <MediaFrame
                       item={{ type: "iframe", src: player.url, alt: `${info.name} — vista desktop` }}
+                      caso={player.slug}
+                      tipo="jugador"
                       viewportWidth={1440}
                       position="absolute"
                       inset={0}
@@ -120,6 +131,8 @@ const PlayerCaseModal = ({ isOpen, onClose, player }) => {
                   <PhoneFrame maxW={{ base: "280px", sm: "300px" }}>
                     <MediaFrame
                       item={{ type: "iframe", src: player.url, alt: `${info.name} — vista mobile` }}
+                      caso={player.slug}
+                      tipo="jugador"
                       viewportWidth={390}
                       position="absolute"
                       inset={0}

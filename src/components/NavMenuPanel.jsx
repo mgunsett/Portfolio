@@ -4,6 +4,7 @@ import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { BsFillThreadsFill } from "react-icons/bs";
 import { MotionBox, MotionFlex } from "./Motion";
 import { BRAND } from "../config/brand";
+import { trackEmail, trackSocial } from "../lib/analytics";
 
 const SOCIALS = [
   { key: "instagram", href: BRAND.social.instagram, label: "Instagram", Icon: FaInstagram },
@@ -128,6 +129,7 @@ const NavMenuPanel = ({ links, onSelect }) => {
             >
               <Link
                 href={`mailto:${BRAND.email}`}
+                onClick={() => trackEmail("menu")}
                 fontFamily="space"
                 fontSize="sm"
                 opacity={0.75}
@@ -141,6 +143,7 @@ const NavMenuPanel = ({ links, onSelect }) => {
                   <Link
                     key={social.key}
                     href={social.href}
+                    onClick={() => trackSocial({ red: social.key, origen: "menu" })}
                     isExternal
                     aria-label={social.label}
                     opacity={0.7}

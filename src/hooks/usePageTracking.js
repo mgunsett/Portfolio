@@ -9,14 +9,20 @@ import { trackPageView } from "../lib/analytics";
  * recarga, así que gtag no se entera solo. Por eso `send_page_view` va en
  * false en la config y la vista la mandamos nosotros.
  *
- * Lee `document.title` después de que SeoHead lo haya escrito: React corre los
- * efectos de los hijos antes que los del padre, y este hook vive en App
- * mientras SeoHead cuelga de cada página.
+ * El setTimeout(0) no es decorativo: SeoHead escribe `document.title` dentro de
+ * su propio efecto, y si leyéramos el título acá de forma síncrona GA se
+ * quedaría con el de la página anterior. Aplazarlo un tick lo manda al final de
+ * la cola, cuando el título ya es el nuevo. El clearTimeout cancela el envío si
+ * la ruta vuelve a cambiar antes de que llegue el turno.
  */
 export const usePageTracking = () => {
   const { pathname, search } = useLocation();
 
   useEffect(() => {
-    trackPageView(`${pathname}${search}`, document.title);
+    const id = setTimeout(() => {
+      trackPageView(`${pathname}${search}`, document.title);
+    }, 0);
+
+    return () => clearTimeout(id);
   }, [pathname, search]);
 };

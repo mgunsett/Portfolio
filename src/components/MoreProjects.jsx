@@ -6,6 +6,7 @@ import SectionHeader from "./SectionHeader";
 import PlayersCarousel from "./PlayersCarousel";
 import PlayerCaseModal from "./PlayerCaseModal";
 import { morePlayers } from "../data/players";
+import { trackCaso } from "../lib/analytics";
 
 const ALL = "Todos";
 
@@ -66,6 +67,7 @@ const MoreProjects = ({ number = "04" }) => {
       : morePlayers.filter((p) => p.player.position === filter);
 
   const handleOpen = (player) => {
+    trackCaso({ caso: player.slug, tipo: "jugador", origen: "mas_proyectos" });
     setSelected(player);
     onOpen();
   };

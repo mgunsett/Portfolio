@@ -6,6 +6,7 @@ import SectionHeader from "./SectionHeader";
 import PlayersRail from "./PlayersRail";
 import PlayerCaseModal from "./PlayerCaseModal";
 import { featuredPlayers } from "../data/players";
+import { trackCaso } from "../lib/analytics";
 import matiAvatar from "../assets/mati_avatar.webp";
 
 const PlayersShowcase = () => {
@@ -13,6 +14,7 @@ const PlayersShowcase = () => {
   const [selected, setSelected] = useState(null);
 
   const handleOpen = (player) => {
+    trackCaso({ caso: player.slug, tipo: "jugador", origen: "destacados" });
     setSelected(player);
     onOpen();
   };

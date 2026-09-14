@@ -1,5 +1,6 @@
 import { Box, Flex, Image, Link, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
+import { trackLandingExterna } from "../lib/analytics";
 
 /**
  * Sitio en vivo embebido.
@@ -17,7 +18,7 @@ import { useEffect, useRef, useState } from "react";
  * buena. Por eso la salida no es automática sino el link a abrirlo en una
  * pestaña, siempre visible mientras carga.
  */
-const LiveSiteFrame = ({ item, zoom, viewportWidth, ...boxProps }) => {
+const LiveSiteFrame = ({ item, zoom, viewportWidth, caso, tipo, ...boxProps }) => {
   const containerRef = useRef(null);
   const iframeRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
@@ -92,6 +93,14 @@ const LiveSiteFrame = ({ item, zoom, viewportWidth, ...boxProps }) => {
           </Text>
           <Link
             href={item.src}
+            onClick={() =>
+              trackLandingExterna({
+                caso,
+                tipo,
+                url_destino: item.src,
+                origen: "fallback",
+              })
+            }
             target="_blank"
             rel="noopener noreferrer"
             color="green"
@@ -118,7 +127,7 @@ const LiveSiteFrame = ({ item, zoom, viewportWidth, ...boxProps }) => {
  * Respeta `prefers-reduced-motion`: si el usuario la tiene activada, el video
  * queda quieto en su poster con los controles disponibles.
  */
-const MediaFrame = ({ item, zoom = 0.72, viewportWidth, ...boxProps }) => {
+const MediaFrame = ({ item, zoom = 0.72, viewportWidth, caso, tipo, ...boxProps }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -213,6 +222,8 @@ const MediaFrame = ({ item, zoom = 0.72, viewportWidth, ...boxProps }) => {
         item={item}
         zoom={zoom}
         viewportWidth={viewportWidth}
+        caso={caso}
+        tipo={tipo}
         {...frame}
         {...boxProps}
       />

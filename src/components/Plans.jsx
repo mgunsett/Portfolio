@@ -1,5 +1,6 @@
 import {
   Box,
+  chakra,
   Flex,
   Grid,
   Heading,
@@ -14,8 +15,10 @@ import { MdCheck } from "react-icons/md";
 import { MotionBox } from "./Motion";
 import SectionDivider from "./SectionDivider";
 import SectionHeader from "./SectionHeader";
-import { BRAND, whatsappLink } from "../config/brand";
-import { trackWhatsApp } from "../lib/analytics";
+import { BRAND } from "../config/brand";
+import { paginaActual } from "../lib/analytics";
+import { useVisibilidad } from "../hooks/useVisibilidad";
+import WhatsAppButton from "./WhatsAppButton";
 import ledHorizontal from "../assets/led_horizontal.png";
 
 
@@ -294,12 +297,11 @@ const PlanCard = ({ plan, index }) => {
 
         {/* mt="auto" empuja el botón al piso: con listas de distinto largo los
             tres CTA quedan igual alineados abajo. */}
-        <Box
-          as="a"
-          href={whatsappLink(plan.ctaMessage)}
-          onClick={() => trackWhatsApp({ origen: "plan", plan: plan.id })}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppButton
+          as={chakra.a}
+          origen="planes"
+          plan={plan.id}
+          mensaje={plan.ctaMessage}
           mt="auto"
           display="flex"
           alignItems="center"
@@ -324,7 +326,7 @@ const PlanCard = ({ plan, index }) => {
           }
         >
           Consultar →
-        </Box>
+        </WhatsAppButton>
       </MotionBox>
     </Box>
   );
@@ -339,8 +341,11 @@ const PlanCard = ({ plan, index }) => {
  * lleva el único botón de cada card.
  */
 const Plans = ({ number = "05" }) => {
+  // Mide alcance: cuánta gente llega a ver los planes, no solo cuánta consulta.
+  const refSeccion = useVisibilidad("ver_planes", { pagina: paginaActual() });
+
   return (
-    <Box id="planes" position="relative">
+    <Box id="planes" ref={refSeccion} position="relative">
       <SectionDivider mt={10} mb={12} />
 
       <MotionBox

@@ -61,7 +61,7 @@ const Habilidades = ({ number = "02" }) => {
         <Box maxW="6xl" mx="auto">
           <Grid
             templateColumns={{ base: "1fr", md: "repeat(12, 1fr)" }}
-            gap={12}
+            gap={{ base: 6, md: 12 }}
           >
             <GridItem colSpan={{ base: 1, md: 12 }}>
               <Flex align="center" gap={4} mb={6}>
@@ -102,9 +102,9 @@ const Habilidades = ({ number = "02" }) => {
               >
                 Front-End
                 </Text>
-                <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
+                <Flex align="center" justify="flex-start" pt={{ base: 4, md: 6 }} wrap="wrap" gap={2}>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -121,12 +121,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" textTransform="uppercase" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" textTransform="uppercase" mt={{ base: 2, md: 3 }} textAlign="center">
                             HTML
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -143,12 +143,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" textTransform="uppercase" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" textTransform="uppercase" mt={{ base: 2, md: 3 }} textAlign="center">
                             CSS
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -165,12 +165,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             JavaScript
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -187,12 +187,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             React.js
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -209,7 +209,7 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Chakra UI
                         </Text>
                     </Flex>
@@ -226,9 +226,9 @@ const Habilidades = ({ number = "02" }) => {
               >
                 Backend
                 </Text>
-                <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
+                <Flex align="center" justify="flex-start" pt={{ base: 4, md: 6 }} wrap="wrap" gap={2}>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -245,12 +245,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}      
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Node.js
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -267,12 +267,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Auth
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -289,12 +289,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             API Rest
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -311,12 +311,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             PostgreSQL
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -333,7 +333,7 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Firebase
                         </Text>
                     </Flex>
@@ -350,9 +350,9 @@ const Habilidades = ({ number = "02" }) => {
               >
                 HERRAMIENTAS
                 </Text>
-                <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
+                <Flex align="center" justify="flex-start" pt={{ base: 4, md: 6 }} wrap="wrap" gap={2}>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -369,12 +369,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}      
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Git
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -391,12 +391,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             GitHub
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -413,12 +413,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Vite
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }}
                         flexDirection="column"
                         align="center"
@@ -435,12 +435,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Hostinger
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -457,7 +457,7 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Claude
                         </Text>
                     </Flex>
@@ -474,9 +474,9 @@ const Habilidades = ({ number = "02" }) => {
               >
                 UX/UI DESIGN
                 </Text>
-                <Flex align="center" justify="flex-start" pt={6} wrap="wrap" gap={2}>
+                <Flex align="center" justify="flex-start" pt={{ base: 4, md: 6 }} wrap="wrap" gap={2}>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }} 
                         flexDirection="column"
                         align="center"
@@ -493,12 +493,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}      
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Figma
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }}
                         flexDirection="column"
                         align="center"
@@ -515,12 +515,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Canva
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={{ base: 16, md: 20 }}
                         flexDirection="column"
                         align="center"
@@ -537,12 +537,12 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Wireframes
                         </Text>
                     </Flex>
                     <Flex 
-                        h={24} 
+                        h={{ base: 20, md: 24 }} 
                         w={20}
                         flexDirection="column"
                         align="center"
@@ -559,7 +559,7 @@ const Habilidades = ({ number = "02" }) => {
                             filter: shadowFilter
                         }}
                         />
-                        <Text fontSize="xs" letterSpacing="0.08em" mt={3} textAlign="center">
+                        <Text fontSize="xs" letterSpacing="0.08em" mt={{ base: 2, md: 3 }} textAlign="center">
                             Responsive
                         </Text>
                     </Flex>

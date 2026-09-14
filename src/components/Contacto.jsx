@@ -8,11 +8,12 @@ import {
   Link,
   useColorMode,
 } from "@chakra-ui/react";
-import { MotionBox } from "./Motion.jsx";
+import { MotionBox, MotionLink } from "./Motion.jsx";
 import { MdMailOutline, MdWhatsapp  } from "react-icons/md";
 import { FaLinkedin  } from "react-icons/fa";
-import { BRAND, mailtoLink, whatsappLink } from "../config/brand";
-import { trackWhatsApp, trackEmail, trackLinkedin } from "../lib/analytics";
+import { BRAND, mailtoLink } from "../config/brand";
+import { trackEmail, trackSocial } from "../lib/analytics";
+import WhatsAppButton from "./WhatsAppButton";
 
 /**
  * La sección vive en las dos páginas, así que el texto y el asunto del mail
@@ -109,9 +110,10 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
                 <MotionBox
                     as={Link}
                     href={mailto}
-                    onClick={() => trackEmail(variant)}
+                    onClick={() => trackEmail("contacto")}
                     p={6}
                     border="1px solid"
+                    borderRadius="xl"
                     bg={colorbg}
                     borderColor="transparent"
                     whileHover={{ y: -4 }}
@@ -125,6 +127,7 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
                   align="center" 
                   justify="center" 
                   bg="green"
+                  borderRadius="xl"
                   >
                         <MdMailOutline fontSize={'22px'} color="white" />
                   </Flex>
@@ -147,14 +150,12 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
               </MotionBox>
 
               {/* WHATSAPP */}
-              <MotionBox
-                as={Link}
-                href={whatsappLink()}
-                onClick={() => trackWhatsApp({ origen: variant })}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                as={MotionLink}
+                origen="contacto"
                 p={6}
                 border="1px solid"
+                borderRadius="xl"
                 bg={colorbg}
                 borderColor="transparent"
                 whileHover={{ y: -4 }}
@@ -168,6 +169,7 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
                     align="center"
                     justify="center"  
                     bg="yellow"
+                    borderRadius="xl"
                   >
                     <MdWhatsapp fontSize={'22px'} color="black" />
                   </Flex>
@@ -188,19 +190,20 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
                     </Text>
                   </Box>
                 </Flex>
-              </MotionBox>
+              </WhatsAppButton>
 
               {/* LINKEDIN */}
               <MotionBox
                 as={Link}
                 href={BRAND.social.linkedin}
-                onClick={() => trackLinkedin(variant)}
+                onClick={() => trackSocial({ red: "linkedin", origen: "contacto" })}
                 target="_blank"
                 rel="noopener noreferrer"
                 p={6}
                 border="1px solid"
                 bg={colorbg}
                 borderColor="transparent"
+                borderRadius="xl"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
                 _hover={{ textDecoration: "none", boxShadow: shadowBox }}
@@ -212,6 +215,7 @@ const Contacto = ({ variant = "sportfolio", number = "04" }) => {
                     align="center"
                     justify="center"  
                     bg='green'
+                    borderRadius="xl"
                   >
                     <FaLinkedin fontSize={'22px'} color= 'white' />
                   </Flex>
