@@ -2,38 +2,16 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import PlayerCard from "./PlayerCard";
 
-/**
- * Ancho de cada card en el carrusel mobile. El 22% que sobra deja asomar la
- * card siguiente: es lo que le avisa al visitante que la fila sigue, sin
- * necesidad de una flecha ni de un texto que lo explique.
- */
+/***  Ancho de cada card en el carrusel mobile  ***/
 const CARD_W = "78%";
 
-/**
- * El padding lateral de la sección, repetido acá porque el carrusel se sale de
- * él (`mx` negativo) para que el scroll llegue al borde de la pantalla y las
- * cards no queden encajonadas.
- */
+/**  Padding lateral de la sección  **/
 const SIDE_PAD = 6;
 
-/**
- * Los casos: carrusel horizontal en mobile, grilla a partir de md.
- *
- * En mobile cada card apilada ocupaba una pantalla entera y recorrer tres casos
- * era un scroll largo con poca recompensa. En fila con scroll-snap la sección
- * mide una pantalla en total y comparar dos landings es un gesto lateral; la
- * información completa igual está a un tap, en el modal.
- *
- * De md en adelante el mismo contenedor pasa a `grid` y el snap deja de
- * aplicar, así que no hay dos árboles de cards que mantener en paralelo.
- */
 const PlayersRail = ({ players, onOpen }) => {
   const railRef = useRef(null);
   const [active, setActive] = useState(0);
 
-  // Card activa = la que quedó más cerca del canto izquierdo. Se mide sobre el
-  // DOM en vez de dividir por un ancho fijo porque el ancho es porcentual y el
-  // gap cambia por breakpoint.
   const handleScroll = () => {
     const rail = railRef.current;
     if (!rail) return;

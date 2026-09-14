@@ -88,7 +88,7 @@ const HeroPortfolio = () => {
             Especialidad · {BRAND.role}
           </Text>
 
-          <HeroMetaStrip items={STATS} center />
+          
 
           <HeroActions actions={ACTIONS} full />
         </Stack>

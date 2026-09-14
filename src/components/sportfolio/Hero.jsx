@@ -7,32 +7,13 @@ import { BRAND } from "../../config/brand";
 import { playersSummary } from "../../data/players";
 
 const EYEBROW_TEXT = "Sportfolio · Landing Pages";
-
-/**
- * Los dos CTA arrancan el recorrido por sus dos extremos: la prueba (los casos
- * destacados) y la oferta (los planes). El contacto ya no necesita botón acá —
- * cada plan termina en su propio "Consultar" y el Navbar lo tiene siempre a
- * mano.
- */
 const ACTIONS = [
   { label: "Ver destacados", sectionId: "casos", variant: "primary" },
   { label: "Ver planes", sectionId: "planes", variant: "secondary" },
 ];
-
-/**
- * Prueba social. El "+20" es la cifra de marca, no el conteo de casos
- * publicados: hay trabajos entregados que todavía no están en la grilla.
- */
 const CLUBS_LEAD = "+20 jugadores";
-
-/** Cuántos clubes entran antes del remate, para que la franja no pase de un renglón. */
 const CLUBS_SHOWN = 3;
 
-/**
- * Hero de la página Sportfolio: la línea de servicio de landings para
- * futbolistas. El título es el mismo que el del Portfolio a propósito — es la
- * misma marca personal — pero el eyebrow, el claim y los CTAs son deportivos.
- */
 const Hero = () => {
   const { colorMode } = useColorMode();
   const dark = colorMode === "dark";
@@ -44,7 +25,7 @@ const Hero = () => {
       minH="100vh"
       display="flex"
       alignItems="center"
-      px={{ base: 6, md: 12, lg: 40 }}
+      px={{ base: 6, md: 12, lg: 48 }}
       py={{ base: 12, md: 0 }}
       pt={{ base: 24, md: 0 }}
       position="relative"

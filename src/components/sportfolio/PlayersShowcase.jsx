@@ -41,25 +41,23 @@ const PlayersShowcase = () => {
           {featuredPlayers.length > 0 ? (
             <Grid templateColumns={{ base: "1fr", md: "repeat(12, 1fr)" }} gap={{ base: 8, md: 12 }}>
               <GridItem colSpan={{ base: 1, md: 12 }}>
-                <Flex align="flex-end" gap={{ base: 3, md: 5 }}>
+                {/* En mobile/tablet el codo del emote queda apoyado sobre el punto amarillo del SectionHeader */}
+                <Flex align="flex-start" gap={0}>
                   <Image loading="lazy" decoding="async"
                     src={matiAvatar}
                     alt=""
                     aria-hidden="true"
                     display={{ base: "block", xl: "none" }}
-                    h={{ base: "185px", md: "230px" }}
+                    h={{ base: "310px", md: "350px" }}
                     w="auto"
                     maxW="none"
-                    ml={{ base: -6, md: -4 }}
+                    ml={{ base: -4, md: -4 }}
+                    mr={{ base: "-24px", md: "-8px" }}
                     flexShrink={0}
                     filter="drop-shadow(0 18px 30px rgba(0, 0, 0, 0.55))"
                   />
 
-                  <Box
-                    borderLeft={{ base: "1px solid", xl: "none" }}
-                    borderColor="green"
-                    pl={{ base: 5, xl: 0 }}
-                  >
+                  <Box mt={{ base: "30px", md: "62px", xl: 0 }}>
                     <SectionHeader
                       number="02"
                       title={

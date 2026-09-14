@@ -59,10 +59,8 @@ export const HeroSideArt = ({ dark, style, side = "right", alt }) => (
   </Box>
 );
 
-/**
- * Misma imagen en mobile, pero como fondo a sangre detrás de todo el contenido:
- * opacidad baja + velo para que el texto siga siendo legible en ambos modos.
- */
+/** Image Hero mobile **/
+
 export const HeroMobileArt = ({ dark }) => (
   <Box
     display={{ base: "block", md: "none" }}
@@ -87,7 +85,8 @@ export const HeroMobileArt = ({ dark }) => (
   </Box>
 );
 
-/** Halo difuso que da profundidad y funde la imagen con el fondo del tema. */
+/** Halo difuso **/
+
 export const HeroHalo = ({ side = "right" }) => (
   <Box
     position="absolute"
@@ -119,7 +118,6 @@ export const HeroAvatar = ({ w, style, alt = "", dark }) => (
     style={style}
     transition={{ type: "spring", stiffness: 80, damping: 20 }}
   >
-    {/* Sombra difusa que apoya la figura sobre el fondo del tema */}
     <Box
       as="span"
       display="block"
@@ -135,7 +133,6 @@ export const HeroAvatar = ({ w, style, alt = "", dark }) => (
       aria-hidden="true"
     />
 
-    {/* position relative para que la sombra absoluta quede por detrás */}
     <Image
       src={avatarBlob}
       alt=""

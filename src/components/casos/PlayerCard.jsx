@@ -4,32 +4,8 @@ import { MotionBox, MotionFlex, MotionImage } from "../ui/Motion";
 import PhoneFrame, { ISLAND_SAFE_TOP } from "../mockups/PhoneFrame";
 import matiAvatar from "../../assets/mati_avatar.webp";
 
-/**
- * Ancho del mockup. De acá sale el alto de la card, el tamaño del avatar
- * apoyado y el hueco que le reserva la grilla, así que si se toca hay que
- * revisar `pl` / `pt` en PlayersShowcase.
- */
 const PHONE_MAX_W = "260px";
 
-/**
- * Avatar apoyado sobre la esquina superior izquierda del teléfono.
- *
- * La geometría sale del render: el antebrazo apoya al 31% de la altura del
- * avatar, o sea que el 69% restante del cuerpo cuelga por debajo del punto de
- * apoyo. Para que ese punto caiga sobre el borde superior del teléfono y los
- * pies lleguen a su base, el avatar tiene que medir ~136% del alto del
- * teléfono; el excedente (~36%) es la cabeza y los hombros asomando por
- * arriba.
- *
- * Se mide contra el teléfono y no contra la card entera a propósito: con el
- * encabezado arriba, ese 136% sobre la card completa dispararía el avatar a
- * casi 1000px de alto.
- *
- * `w="auto"` deja que el ancho salga del aspect ratio, y `right="82%"` hace
- * que solo el antebrazo pise el teléfono: el cuerpo cae en el margen que le
- * reserva la grilla. Debajo de xl no hay margen lateral suficiente; ahí el
- * avatar aparece una sola vez, junto al encabezado de la sección.
- */
 const LeaningAvatar = () => (
   <MotionImage
     src={matiAvatar}
@@ -55,8 +31,8 @@ const CardHeader = ({ player, showCta }) => (
     alignItems="center"
     flex="1"
     w="100%"
-    mb={{ base: 2, md: 6, xl: 6}}
-    ml={{ base: 0, xl: "-8%" }}
+    mb={{ base: 4, md: 6, xl: 6}}
+    ml={{ base: '-20px', xl: "-8%" }}
   >
     <Flex direction="column" alignItems="center" gap={1}>
       <Text
@@ -86,12 +62,12 @@ const CardHeader = ({ player, showCta }) => (
         alignItems="center"
         borderTop="1px solid"
         borderColor="green" 
-        w="140px"
+        w={{ base: "100px", md: "140px" }}
         mt={4}
       >
         <Box
           w="1px"
-          h="40px"
+          h={{ base: "20px", md: "40px" }}
           bg="green"
         />
         <Box  

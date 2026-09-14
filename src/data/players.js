@@ -100,7 +100,7 @@ export const players = [
     tier: "more",
     status: "live",
     year: "2026",
-    url: "https://cain-fara.vercel.app",
+    url: "https://cainfara.vercel.app",
     player: {
       name: "Cain Fara",
       position: "Defensor",

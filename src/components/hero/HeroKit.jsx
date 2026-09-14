@@ -6,7 +6,8 @@ const useDarkMode = () => {
   return colorMode === "dark";
 };
 
-/** Estilos de los dos botones del Hero, compartidos por las dos páginas. */
+/** Estilos de los dos botones del Hero **/
+
 const VARIANTS = {
   primary: {
     bg: "green",
@@ -20,10 +21,8 @@ const VARIANTS = {
   },
 };
 
-/**
- * Botonera del Hero. `actions` es una lista de { label, sectionId, variant },
- * así cada página define sus propios CTAs sin duplicar estilos.
- */
+/**  Botonera del Hero **/
+
 export const HeroActions = ({ actions, full }) => (
   <Flex gap={4} w={full ? "100%" : "auto"} pt={{ base: 1, md: 0 }}>
     {actions.map(({ label, sectionId, variant = "primary" }) => {
@@ -68,15 +67,8 @@ export const Eyebrow = ({ text, center, color }) => (
   </Flex>
 );
 
-/**
- * Franja de datos bajo el título: pares valor/etiqueta separados por una barra.
- * En el Hero deportivo lleva los clubes; en el del Portfolio, las métricas.
- *
- * `limit` recorta la lista y `more` es el remate que avisa que hay más detrás.
- * Los dos son opcionales a propósito: la franja de clubes se corta en tres para
- * no comerse dos renglones, pero el Portfolio muestra sus tres métricas enteras
- * y ahí un "y más..." sería mentira.
- */
+/** Strip de metadatos del Hero, con lead y lista de items. */
+
 export const HeroMetaStrip = ({ lead, items, center, limit, more }) => {
   const accent = useDarkMode() ? "yellow" : "green";
 

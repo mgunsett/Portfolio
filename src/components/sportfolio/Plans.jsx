@@ -1,4 +1,9 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Box,
   chakra,
   Flex,
@@ -8,6 +13,7 @@ import {
   Image,
   Link,
   Text,
+  useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useReducedMotion } from "framer-motion";
@@ -150,6 +156,18 @@ const FeatureItem = ({ text, accent }) => (
   </Flex>
 );
 
+/** La lista de prestaciones. Misma marcación colapsada o desplegada. */
+const FeatureList = ({ features, accent, ...rest }) => (
+  <Flex as="ul" direction="column" gap={3.5} pl={0} styleType="none" {...rest}>
+    {features.map((feature) => (
+      <FeatureItem key={feature} text={feature} accent={accent} />
+    ))}
+  </Flex>
+);
+
+/** Rótulo de la lista: el "todo lo del plan anterior +", o el genérico del primero. */
+const listLabel = (plan) => plan.inherits ?? "Todo lo que incluye";
+
 /**
  * Card de un modelo.
  *
@@ -160,6 +178,12 @@ const FeatureItem = ({ text, accent }) => (
  */
 const PlanCard = ({ plan, index }) => {
   const reduced = useReducedMotion();
+
+  // Hasta lg las cards van en una sola columna: ahí la lista se pliega. En la
+  // grilla de tres columnas hay alto de sobra y se muestra entera, que es lo
+  // que permite comparar los planes de un vistazo.
+  const compacto =
+    useBreakpointValue({ base: true, lg: false }, { ssr: false, fallback: "base" }) ?? true;
 
   const cardBg = useColorModeValue("rgba(255,255,255,0.75)", "rgba(17,17,17,0.85)");
   const featuredBg = useColorModeValue(
@@ -205,7 +229,7 @@ const PlanCard = ({ plan, index }) => {
         bgGradient={featured ? featuredBg : undefined}
         backdropFilter="blur(6px)"
         px={{ base: 6, md: 6, lg: 7 }}
-        py={{ base: 7, lg: featured ? 10 : 8 }}
+        py={{ base: 6, lg: featured ? 10 : 8 }}
         my={{ lg: featured ? -6 : 0 }}
         boxShadow={featured ? "0 20px 60px rgba(0,0,0,0.35)" : "none"}
         initial={{ opacity: 0, y: 24 }}
@@ -265,35 +289,72 @@ const PlanCard = ({ plan, index }) => {
         {/* El sello va debajo del título y no encima: primero se lee qué plan
             es, después con quién se produce. Arriba competía con el nombre. */}
         {plan.withPartner && (
-          <Box mt={4}>
+          <Box mt={{ base: 3, lg: 4 }}>
             <PartnerSeal />
           </Box>
         )}
 
-        <Text mt={4} fontSize="sm" fontFamily="space" opacity={0.75} lineHeight="1.6">
+        <Text mt={{ base: 3, lg: 4 }} fontSize="sm" fontFamily="space" opacity={0.75} lineHeight="1.6">
           {plan.audience}
         </Text>
 
-        <Box h="1px" bg={dividerColor} my={6} />
+        <Box h="1px" bg={dividerColor} my={{ base: 5, lg: 6 }} />
 
-        {plan.inherits && (
-          <Text
-            mb={4}
-            fontFamily="space"
-            fontSize="10px"
-            letterSpacing="0.16em"
-            textTransform="uppercase"
-            opacity={0.6}
-          >
-            {plan.inherits}
-          </Text>
+        {/* En mobile las tres listas juntas hacían una sección larguísima de
+            scrollear. La lista se pliega detrás de su propio rótulo —el "todo
+            lo del plan anterior +"— y el CTA queda a la vista sin scroll. */}
+        {compacto ? (
+          <Accordion allowToggle mb={6} reduceMotion={Boolean(reduced)}>
+            <AccordionItem border="none">
+              {/* py={3} y ancho completo: es el único control táctil de la card. */}
+              <AccordionButton
+                px={0}
+                py={3}
+                borderRadius="6px"
+                _hover={{ bg: "transparent", opacity: 1 }}
+                _focusVisible={{ boxShadow: "outline" }}
+              >
+                <Box
+                  as="span"
+                  flex="1"
+                  textAlign="left"
+                  fontFamily="space"
+                  fontSize="11px"
+                  letterSpacing="0.16em"
+                  textTransform="uppercase"
+                  opacity={0.75}
+                >
+                  {listLabel(plan)}{" "}
+                  <Box as="span" color={accent}>
+                    ({plan.features.length})
+                  </Box>
+                </Box>
+                <AccordionIcon color={accent} />
+              </AccordionButton>
+
+              <AccordionPanel px={0} pt={4} pb={0}>
+                <FeatureList features={plan.features} accent={accent} />
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+        ) : (
+          <>
+            {plan.inherits && (
+              <Text
+                mb={4}
+                fontFamily="space"
+                fontSize="10px"
+                letterSpacing="0.16em"
+                textTransform="uppercase"
+                opacity={0.6}
+              >
+                {plan.inherits}
+              </Text>
+            )}
+
+            <FeatureList features={plan.features} accent={accent} mb={8} />
+          </>
         )}
-
-        <Flex as="ul" direction="column" gap={3.5} mb={8} pl={0} styleType="none">
-          {plan.features.map((feature) => (
-            <FeatureItem key={feature} text={feature} accent={accent} />
-          ))}
-        </Flex>
 
         {/* mt="auto" empuja el botón al piso: con listas de distinto largo los
             tres CTA quedan igual alineados abajo. */}
